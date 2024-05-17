@@ -1,0 +1,707 @@
+okay hello welcome to uh week 11's lecture uh it's been a little while since we
+0:06
+talked about some of these things we had the kind of uh with the package presentations in the middle but we're going to talk focus
+0:12
+mostly on supervised machine learning we're gonna get into uh really
+0:17
+specifically uh well anyway that's the kind of topic for the evaluation metrics i'm gonna review some of the stuff that we went over
+0:24
+um in terms of just how to deal with the output from these kind of probabilistic models and we're gonna translate those
+0:29
+into much more discrete terms in terms of how we use them just to evaluate our models so that's what we're
+0:34
+doing this week it's all uh it's all uh model evaluation if i if i had to be quite honest you
+0:42
+know outside of building models feature engineering you know those types of things model evaluation uh is kind of critical
+0:48
+across the entire lifecycle data science projects you don't just do it once you do it almost continuously so having a
+0:53
+good grasp on the different ways you can evaluate a model is going to be critical
+0:58
+uh to understanding anything about machine learning uh i think actually to be honest it's probably a step that gets overlooked a
+1:04
+lot we're gonna spend a whole week here talking about it and then we're gonna go back to our k n models we're gonna think about different ways to
+1:10
+to evaluate them all right in the lab so let's jump right into it shrink myself here okay all right so
+1:18
+just as a review here what we've got is uh uh this is our typical
+1:24
+kind of you know well anyway machine learning kind of view here i'm just going to
+1:30
+angle this just a little bit further like that there we go uh and so what we see is we got our you know we got our data coming in we got to
+1:36
+put it down here in the test set put it over there the training set we talked about that all right so we split into training and test
+1:42
+all right and so uh what we're gonna do is we're gonna build our models off of this training set all right so that to a certain extent
+1:48
+you know there's no uh there's no biasing our training set um when we go to evaluate
+1:54
+with our test set so we're going to build that model off of the training set this is all just kind of a review here
+2:01
+all right and then that bottle is going to be able to to uh make some predictions right we're going to have this model
+2:06
+but what we're going to do is we're going to take that test set right we're making this more confusing
+2:12
+it has to be and we're going to pass that through our model we're going to get our predictions but then we're going to do evaluations
+2:18
+right on those predictions okay so we can we can evaluate how well our
+2:25
+actual model works all right we can do that you know we can run evaluations inside
+2:31
+just based off the training set we can do that all right we can basically detect our error rate things like that you know because we're going to have
+2:36
+labels for this training set as well but the idea primarily is to evaluate
+2:43
+once we built our model on unseen data which is how we're going to use that's why we do training test
+2:49
+so that's what we're going to talk about mostly and that's you know the the enormous approach when we think
+2:55
+about how machine learning works okay all right this is just the same thing again i don't know why it's there again
+3:01
+but it is okay so the question really is what metrics should we be should we be using all
+3:06
+right accuracy is the one that everybody talks about it's almost always not enough you know
+3:12
+so how reliable are the predictions and what are the errors of our training data
+3:17
+are they a good ins a good indicator of future area uh errors i'm gonna tell
+3:23
+you right here the answer is probably not right to a certain extent they they will but it's important to know that we have
+3:29
+to be thinking about just basically continuous evaluation all right you know data drift is the thing where
+3:35
+your data starts to change over time so using the same model the results may become skewed or biased
+3:42
+all right so that's why you have to continuously evaluate once you put these models into production we always have to be thinking we're not
+3:47
+just building something in isolation what's it going to look like when it's actually working out there in the real world
+3:52
+that's why model evaluation is so important because we have to keep track of that okay so they're going to be future
+3:59
+errors in your data future changes with it uh there's 100 certainty that that's going to happen no
+4:05
+data stays all the same so we have to continuously be evaluating performance that's why it's it's so important it's a big thing that
+4:11
+data science professionals do is just evaluate how these models are working and if they're
+4:16
+not working the way they're supposed to be then they get retrained right okay so we talked about this we have our kind of our four quadrant model
+4:23
+uh four quadrant kind of concept here with full seconds or circle stuff and then erase a lot so true positives
+4:29
+false positives true negatives and false negatives all right i'll let you read through this but you get it which is basically analogized
+4:36
+to like the uh to the wolf scenario all right so if there is a wolf and we say it's a wolf true positive all
+4:42
+right if there is no wolf when we say there is no wolf true negative and the opposites are true here okay what we're talking
+4:50
+about there is a confusion matrix all right we introduced this two weeks ago but the confusion matrix is basically
+4:55
+the foundation with which we're going to build all of these evaluation metrics around it's how well our model
+5:00
+in a classification standpoint all right so we're doing all classification here i'll talk about regression towards the end but this is
+5:06
+all classification all right how well our model is doing in putting these uh putting our training data or otherwise into these specific
+5:13
+categories okay so we do that using this this confusion matrix and it's aptly named
+5:18
+you know it's fun to joke about this but it's often confusing all right and that's going to generate
+5:24
+something called a receiver operating curve and an area underneath the curve all right we're going to get into how those are calculated but they use
+5:31
+something called a threshold all right threshold we'll talk about that later basically it's going to use
+5:37
+these different threshold measures all right and calculate the accuracy at each one of those measures right and
+5:43
+that creates this curve i'll show you how that works all right so in keeping in mind the way that
+5:48
+things work is that classification models you know typically all right they're looking for a specific class
+5:56
+a one or a zero right that's a bullion output you know kind of a binary classification problem where one all right is going to be the
+6:03
+positive attribute right typically what we mean by positive attribute here
+6:08
+is that there is some benefit to being in the positive class right it's usually
+6:14
+what it means and it can be translated into different ways but the ones we're going to show here too is for instance the identification of a
+6:20
+potential threat to a system might be a one right that's a positive outcome that we positively identified a threat
+6:26
+so that's the reason that we did it that way all right but typically when we think about this thing the example people talk about is like getting access to some resource right
+6:33
+you got you got the loan right you got into school whatever that might be that's usually uh what we think about we
+6:39
+think about the positive attribute in terms of classifying different people okay
+6:44
+all right so here we'll look at that all right these are uh probabilistic
+6:50
+outputs so the idea is that they're they can't they'll predict hard classes right these ones are zeros but the way
+6:58
+that they predict these classes is based off a percentage likelihood of that event to occur all
+7:03
+right so we'll i'll explain exactly more what that means but uh just really quick i mean the idea is
+7:09
+that for instance if a model predicts that something is 75 chance fraud it's likely that
+7:16
+the output of that will be a one right if it predicts that there's a 25 chance that it's fraud the output of
+7:22
+that will be a zero all right i'll get into more details about that but generally that's how it works you know a higher percentage
+7:28
+likelihood of something it's going to predict it it's going to put that one label on it less likely it's going to put a zero
+7:34
+okay all right all right so
+7:40
+let's work through an example we're talking here about intruder fraud detection all right not exactly a super exciting example but
+7:47
+you know we're going to get in there so the idea here is that you know we got 135 emails all right they're entering our our
+7:54
+google account right we're going to try and detect whether some of them are spam or not classic spam no spam situation here all
+8:00
+right and so what we're going to do is we're going to generate a you know a theoretical you know a magical uh
+8:08
+probabilistic measure a result of a tree based classifier all right to determine the likelihood that any one of these emails
+8:14
+is fraudulent all right so we're generating probabilities here so percentage likelihood
+8:20
+all right the cut off point all right this is important here right the cut-off point
+8:26
+that is predetermined in the tree and is a universal standard of most machine learning algorithms is 50
+8:34
+okay all right so what what does that mean all right so just
+8:39
+think back to what i just said about the 75 25 scenario all right
+8:45
+and let's be more discreet about that all right in this example right if our
+8:51
+uh our tree based classifier don't worry about understanding what that means just we just replace it with k n if that's
+8:57
+easier to our classifier just take that part off our classifier predicts that one data point right let's just say
+9:03
+this is data point x right the likelihood
+9:09
+probability of that particular data point being spam is 51 right
+9:17
+so what label is it going to put on that you guessed it right this isn't that
+9:22
+hard it's going to put a one on it if there's another data point you know data point y whatever that is
+9:27
+i guess i could do like x1 and then you know x2 something like that 49 right it's going to predict
+9:35
+that's a zero that's what we mean when we talk about cut off all right this cutoff all right it's
+9:41
+also referred to as the threshold
+9:46
+it's a threshold measure okay these are the same thing cut off threshold generally they're
+9:52
+talked about in the same breath okay and so for this instance the threshold is 50 so anything equal to or greater
+9:57
+than 50 gets classified into the positive class all right and anything
+10:02
+less than fifty percent is classified into the negative class and to the zero all right and that typically is the the
+10:10
+uh the extent of the goal of most machine learning algorithms is just to create
+10:15
+this classification system it's just that simple okay all right most of this i think we kind
+10:22
+of know but let's walk through this example right below are some results of this really down here of our
+10:29
+of our model all right our in our very confusing matrix okay and so here um uh you know they center
+10:36
+on positive and negative classification i don't think i need to read through all this let's just look at this right so both true negative
+10:41
+and true positive are good all right so we want these numbers here we've talked about this before to be high we want these
+10:49
+to be low okay so in a perfect model right all our data points would be in here there's no such thing as a perfect
+10:55
+model if you see that that's happening something's probably going terribly wrong but anyway important to think about it
+11:00
+all right as a goal okay so here we're walking through the idea of thresholding all right so we're
+11:06
+not just showing the confusion matrix we're thinking about how we can use that threshold all right
+11:12
+to our advantage or disadvantage to better understand how the classification is working all right this is another
+11:18
+uh it's another piece of machine learning that you can change all right you can attenuate
+11:23
+in production to fit your research problem or your whatever project problem you happen to
+11:29
+be working on all right adjusting the threshold it's another knob it's another lever that you can use okay so here think of
+11:37
+this as this you know is this is this crank right we've turned this threshold all the way down to zero
+11:42
+all right so what does that mean okay what that means is that everything is captured as fraud all right and nobody
+11:47
+ever gets an email again and everybody lives happier happily ever after right okay so what we see here
+11:55
+right is that because our threshold is so low right is that we
+12:00
+have no tolerance for potential fraud okay everything gets labeled as
+12:06
+potential fraud so what happens is that we have 103 false positives here because remember
+12:11
+everything's fraud all right but we did get 32 of them right because they actually were fraud okay so
+12:16
+we got 32 of those right but then we didn't get anything else over here like false negative two negatives because there's no ability to have a negative class right
+12:23
+okay let's go the other way right all right so let's assume we set that threshold
+12:29
+all the way up to all the way up to 100 right so now nothing is fraud
+12:34
+everybody becomes rich through arabian princesses and we're all we're all off in good shape did i spell
+12:40
+that right don't think i did anyway it doesn't matter so here the opposite happens right so because we have
+12:46
+zero um we have we have uh no protection at all against fraud
+12:52
+everything gets classified um as not being fraud and so here we have a bunch of true
+12:57
+negatives which that's just good yay all right but we have a bunch of false negatives right so all of these 32 should actually be
+13:04
+over here okay that's the general idea now the thing to keep in mind here and you
+13:09
+know if you want to pause this for a minute and think about it is that there's probably scenarios where
+13:14
+according to what problem you might have right you might adjust that threshold measure right
+13:19
+maybe you have certain tolerances okay for false positives
+13:24
+right so i just want you to stop and think all right we do this sometimes but stop and think about what a scenario
+13:30
+you can think of right that might actually dictate uh the acceptance of false positives
+13:36
+right so just take a second
+13:42
+all right so let's keep going all right we're going to talk about that in class i just keep going i'm not sure like how
+13:47
+long to pause because i want you to pause not me but anyway okay all right so we can further assess our model all right by digging more
+13:54
+into the confusion matrix right so this is where it really starts to live up to its name okay so
+13:59
+we have these true positive rates which is also called sensitivity okay which can also be called recall we
+14:05
+have these false positive rates here which could also be called specificity all right so there's simple calculations
+14:11
+about how we would do this okay so you can just basically plug and chug here all right so you can leave
+14:16
+this true positive true positive false negative i think we walked through this so i'm going to spend a whole lot of time on it
+14:22
+but here you can just you can just see how this works so this is a true positive right so that goes in there right true positive another true
+14:29
+positive right and then false negative so this is basically just a you know like when we got when we
+14:34
+predict true positives how often are we right okay not that good okay all right so
+14:42
+not so good here false positive rate when we predicted false positives how good do we do hey that's not so bad all right we actually want this to be low
+14:48
+all right so we don't want that to be too high all right we want the true positive rate to be high and we want the
+14:54
+false positive rate to be low that part is pretty pretty intuitive i think okay all right
+15:00
+and so staying with this the true positive rate and false positive rate these were generated as a result of a 50
+15:09
+threshold okay right remember what remember how we remember how we did it we adjusted the threshold and then
+15:14
+everything it was up to 100 all of our data was over here right this was 32 and this was 103.
+15:21
+okay you can imagine if we had that scenario right where this was 32 and this was 103
+15:27
+we could actually calculate these scores again okay all right so they
+15:32
+would be probably really good for i don't know really good for false positive rate we're really bad for true positive right right because
+15:38
+we've been predicting anything is true okay but that would mean you notice that this was instead of this
+15:45
+being 100 instead of this being 50 threshold you know then we'd be calculating something at 100 threshold
+15:51
+right so each one of those different percentage points 1 to 100 different
+15:57
+threshold measures they produce true positive and false positive rates okay
+16:02
+so at 30 what is our true positive and false positive rate at 70 threshold what is our true
+16:08
+positive and false positive rate and those just become data points on a axis you just graph them
+16:15
+on the y and x axis and that is how you create a receiver operating curve
+16:20
+okay so each one of these here this you know this is the false true positive rate and false positive rate and what
+16:27
+calculates this all right is just the different thresholds that's it okay and so each one of these
+16:34
+points is just put onto this line for each one of the different thresholds
+16:39
+all the way up and that's how this is calculated okay all right so
+16:47
+all right if we had a very good uh a really good very i mean this is kind of intuitive right
+16:53
+but if we have a really good classifier everything about this is kind of like the general sphere where 50 might occur
+16:59
+this would be way higher like up here okay this is probably isn't too bad or but this is kind of this is a nice
+17:05
+example here you know this is an okay classifier but it's not really learning all that much and then the area under
+17:10
+the curve is just the shaded portion it's like literally the area under the curve all right so
+17:16
+we had a perfect receiver curve and it was like this the area underneath the curve would be 100
+17:22
+okay so it's just the ratio of basically this area that's not out of the curve to this area that's in the
+17:29
+curve and that's it all right so the better classifier higher the roc higher the auc right and
+17:35
+it's much more kind of oriented towards this balance between false positives
+17:40
+and true positives oh here look i did this already okay so you get it so here we go
+17:45
+perfect score this never happens so if this happens you've got big problems so this is this is probably pretty good
+17:52
+you know you're probably you're probably pretty happy you're publishing that paper and hear what this means
+17:58
+all right what this means is that your your your classifier is contributing absolutely nothing right because below
+18:05
+this line here you might as well just be randomly guessing right you got a 50 50 chance to get this right
+18:10
+so you want to see your curve actually show up somewhere so that's not so good all right okay
+18:18
+there's kind of a notional chart you know between 90 and you know 90 and 10 is pretty good
+18:23
+between 80 and 90. you know anything down here is pretty bad so
+18:29
+worthless that's pretty good it's true this is worthless all right
+18:35
+we saw this don't know why it's there again anyway just maybe as a quick reminder okay so there's lots of there's lots of
+18:42
+ways to calculate the accuracy i shouldn't say accuracy it's just not totally fair to evaluate
+18:47
+how good of a model you have all right all right these are all a bunch of a
+18:53
+bunch of different approaches okay we talked about uh we talked about a bunch of these this
+18:58
+is sensitivity all right we talked about that um okay
+19:04
+uh and this is just one minus specificity all right so that's also we talk about
+19:10
+true positive and false positive rate that's what those are you know it's it's it's really confusing here
+19:16
+um so generally these are different ways we've already we've already talked about these you've seen them uh earlier in the slide so you
+19:23
+can just go back and you'll see that the calculations are the same okay an f1 score is an important one that i'm
+19:29
+going to talk about specifically this is well anyway this is accuracy detection rate balance accuracy is good but
+19:35
+f f1 score in particular what it does it's very attenuated towards unbalanced data sets all right so it
+19:42
+uses a harmonic mean all right which is more sensitive okay than just your standard mean and so
+19:48
+it is more sensitive to basically imbalances between these between
+19:53
+precision and recall okay it's particularly useful if you have unbalanced data sets right
+20:00
+if you have a very highly skewed data set say you're like you know 90 10
+20:06
+or something like that or 10 is just your target class okay that's what i mean it's like that maybe 10 is like the the positive class
+20:12
+you're trying to detect that which is often the case in fraud in terms of spam so f1 does a pretty
+20:18
+good job of attenuating just exactly how you're doing with this particular class and
+20:24
+then penalizing you if you're not doing that well so i would i would certainly consider that
+20:29
+especially when you have um especially we have an unbalanced
+20:35
+class that's really what it's designed for okay we also have log loss okay so log loss
+20:41
+measures the uncertainty of the probabilities of your model all right by carrying to the to the true label all right what log loss does
+20:49
+to a certain extent all right before i get into this is it penalizes you for being really
+20:55
+wrong okay so it takes into account how much of the percentage uh miss
+21:02
+accurate percentage inaccuracy of any one label is to the actual true
+21:08
+label all right let me explain it better so like for instance if you happen to predict there's a 10
+21:13
+chance that saying something belongs to the positive class right your model is going to predict that it
+21:19
+belongs to the negative class but if in fact it belongs to the positive class right log loss is going to penalize you
+21:25
+greater than if you happen to predict a label i'd say 45 labeled it as a zero when it should
+21:32
+have been one all right because the basically the the scope of the error for the 10
+21:38
+as compared to 45 or 49 or whatever is much larger so that means that when your model got it wrong it got
+21:44
+it really wrong okay so if you're inside the margin you're guessing it wrong but you're not really
+21:49
+that wrong log loss takes that into account okay all right so if we see a log loss
+21:57
+of one can be expected you know your case when our model gives us less than a forty percent
+22:02
+probability estimate you know selecting the actual class true all right so knowing the base rate is
+22:07
+going to be really important okay so this you can if you get a log loss of one that's how we can translate it right
+22:14
+basically it's like wherever it hits this curve more or less right it gives us about a 40 chance at any one time of being
+22:21
+accurate all right so that's how you that's how you can uh you can use that output of the log loss
+22:27
+number it's also really good i mean it would give you a much better sense uh a holistic idea of just how well your
+22:35
+model is performing okay so instead of just kind of blanketed ones and zeros it will take into account just how wrong the
+22:41
+model is okay and it actually might be quite telling when you use log loss because your model is actually not doing a very
+22:47
+good job at all okay all right so we covered f1 all right and these are extensions of
+22:52
+just like your typical precision recall recovered log loss all right so now we're going to talk about kappa
+22:57
+right so cap is a way you know it's strictly used in um just for outputs of classifiers
+23:04
+all right so it indicates how much better our classifier is performing over the performance of the cat fire then it would be just a guessing you
+23:10
+know that's not super useful but it is really good for multi-class models
+23:16
+all right and it and it was actually used created originally to determine how much
+23:22
+consensus there is among uh expert opinion okay so let's dig a little bit more into it here
+23:28
+all right apparently i don't do that so let me do it here okay i'll give you a reference kappa all
+23:34
+right but basically the way you calculate this is that you know say we had you know and that's good for ensembles but you can do
+23:40
+this from multi-class examples all right if we had three models
+23:46
+okay and they were all trying to predict the true label here right so this is label a label b or these are just inputs c well
+23:53
+let's do it this way x1 x1 x2 x3
+24:00
+i'm not going to do this calculation at hand but basically i'm just going to try it and so we and try and show you how it works just know that x1
+24:07
+all right the true label of x1 all right is 1. okay true label of x2 say is 0
+24:14
+all right and the true label of x3 is one okay so if we had three models
+24:20
+here models x y and z maybe i should change those to abc maybe better
+24:27
+okay all right and every one of these models predicted right that x1 was in
+24:35
+fact a one okay remember it's a one the capital score here would basically be a hundred percent right you understand there's agreement
+24:41
+amongst all three of these all right so almost perfect agreement right so if we assume here we do a
+24:47
+different one so we just do it the opposite right you guys kind of get where i'm going it was zero zero zero oh wait i have to do it the
+24:52
+other way where every model predicted that this was a one all right so there's a hundred
+24:58
+percent consensus that this in fact was a one but we know it to be a zero that means you know this kappa score
+25:04
+would be would be like a zero this would equal like a one all right and then you know the rest of them is
+25:09
+you know kind of generally you can get the idea if there's one one zero here right this would be you know capital score of like you know
+25:15
+66 or something like that all right so it would still be kind of above this threshold we consider kind of a you know a
+25:20
+substantial agreement so we've got two that agree here right that's how campo works it's just
+25:25
+that simple uh there are different approaches to capital but basically it's just oriented around how much agreement there is so
+25:31
+you can do this in the binary okay binary example it would take an aggregate score basically what are the
+25:37
+percentage just add kind of sums all this up and tells you uh over uh
+25:44
+your entire um you know prediction to label how accurate you are it really
+25:50
+works well especially tuned i mean it's basically just i mean that it in binary examples it's it's
+25:57
+basically just the detection rate but in multi-class samples it works really well right so you can scale it
+26:03
+across if you have um you know three labels that you're trying to to to predict how well
+26:08
+across those three levels is there agreement you know in terms of the way that things are working with the um
+26:15
+with the actual predicted class okay we'll show examples of all these in the code i don't know why i go through and
+26:20
+erase all this probably easier for me just to keep it there but anyway okay so that's generally how kappa works it
+26:26
+just shows you kind of this uh percentage of agreement across the different labels all right
+26:32
+all right let's keep going i don't know about another definition but basically what i'm talking about here is that
+26:38
+we're just moving into regression okay another name for regression is functional approximation
+26:44
+all right so here what we're trying to do um is our target variable is our dependent variable other variables are independent
+26:50
+i think that's probably a you know kind of a language that people are familiar with
+26:56
+i'm going to go in here all right so let's just keep going so let's just talk about how we would predict basically instead of doing
+27:02
+classification here we're just talking about continuous all right so instead of categorical variable now we're moving into a continuous one all right
+27:08
+so there's different metrics that you would use to assess a continuous variable right kind of in a regression format these are
+27:16
+the standard ones that i think a lot of people are familiar with mean squared error right that's just a difference between the predicted and
+27:22
+actual values okay between the predicted and actual values you just sum it up all right
+27:28
+all right this is the same as above except you take the square root all right
+27:35
+to put the error back in terms of the dependent variable all right so here what you're doing is you're taking the average you're squaring it and then
+27:41
+you're summing it and here what you're doing is you're taking out the square because you're just taking the square root all right so you put it back
+27:47
+in the language of the dependent variable so that gives you a better idea of exactly how far off
+27:52
+you are okay this is very similar all right except uh taking the square you just use the
+27:58
+average you think the absolute value instead of squaring all right these are what these calculations look like here you're just taking the absolute value here you're
+28:04
+squaring the differences all right and then root mean squared error you'll see that this calculation
+28:10
+this equation here is exactly the same as this one right it just takes the square root and
+28:16
+then divides it by the total number all right actually it's alright that's part of it basically the
+28:22
+only thing it's doing is adding the square root so this one here is i want you to we're
+28:27
+not we don't do a whole lot of continuous variable prediction in this class we probably should do more but what this
+28:34
+one does all right is it just normalizes all right that root mean squared error
+28:40
+by dividing it by the maximum and minimum of your dependent variable
+28:47
+okay so basically what it does like remember up here right we take the mean squared error all
+28:53
+right but this is not going to be in the language of the dependent root mean squared error will be all right it puts it back inside
+28:59
+the basically they're basically in the same values as uh as our dependent what this does
+29:06
+is it puts it in context uh to the range of our dependent variable okay so we
+29:11
+have a really big range we have a small root mean squared error awesome okay
+29:17
+a really big root mean squared error but a very small range not so good okay so that means here what
+29:24
+you can literally calculate is the you can think of this almost like kind of like confidence intervals to a certain extent all right where say like
+29:30
+what percentage of our root mean squared error is actually uh you know what percentage of the range
+29:36
+of our dependent variable is accounted for inside the root mean squared error we want that to be small
+29:41
+okay so if for instance i don't know if we have a range of our dependent variable is between 0 and 100 and our root mean
+29:48
+squared error say is 50 i mean that at any one point it could be 50 off inside that range that's not
+29:54
+so great if we have a range between zero and a million right and our mean squared error is only 50 that's
+30:01
+that's not quite as bad right so it helps put that into context that's what this does here it's all right it just normalizes that inside the
+30:07
+range all right last couple of things here i just want to throw these at you because
+30:12
+we're going to start talking about them as we start to get into more complicated machine learning algorithms
+30:17
+all right linear regression as you may be aware has a overfitting problem
+30:23
+all right has a tendency to learn as many variables as you give it right go down to the very lowest level
+30:28
+what we call this is overfitting it basically has a very low bias right so it just memorizes the data okay
+30:36
+i bring this up because it's associated with thresholding because if you want to adjust the thresholding it will help for overfitting
+30:42
+all right okay but it also it also kind of um stems into what we're
+30:48
+going to be talking about kind of moving forward so i'm trying to introduce these topics a bit a bit earlier uh
+30:55
+so here what can be said is regression and sparsity so what we want when we
+31:00
+think about and this this is sparsely this is true of all you know kind of all models
+31:06
+all right this should be our goal there's a whole field of study about this but we want our models to be as accurate
+31:12
+as possible with as many features as possible that's basically sparsity all right it allows them to be agile
+31:18
+all right that is the data grows all right it's not heavily dependent on a large number of covariates all right that we
+31:23
+have a bunch that are really predictive and we use those and we power those up as much as possible it's computationally
+31:29
+more efficient to think of that as as well so sparsity in terms of our models helps us not only in generalizability
+31:36
+but also in computational resources when they're deployed out in the real world all right so sparsity is a real thing
+31:42
+all right so let's talk about it so what do we mean by sparse okay so we have three examples here and why
+31:48
+does it relate to variance and bias we have three examples one two you guys can count right three okay
+31:55
+all right so here what we have is like your typical regression model right if unattuned in the right way it memorizes these features to such a
+32:02
+way where there is no generalizability right the pattern with which it is put on to
+32:07
+this data set exactly matches the pattern of the data okay so this is called high variance
+32:14
+okay so it's over fit all right low bias high variance all right so that's kind of what we
+32:20
+would see over here right all right this one here is going to have high bias
+32:26
+okay it's going to be underfit and these are generalizations sorry these are generalizations all right but we have much
+32:33
+fewer features here all right so there's patterns inside the data which we're just not accounting for okay so this one
+32:39
+is under fit so here we have high bias okay and low variance
+32:45
+so that's what we see down here all right so we have this tight little cluster
+32:50
+okay and here we have kind of a pretty high pattern associated with where the data points
+32:55
+are all right and then here this is our you know the porridge is just right kind of thing all right we
+33:01
+see that the line isn't exactly memorizing the dots right and we don't see it go like this
+33:07
+right we see that it's generalizable because it fits near them all right and also it uses
+33:13
+fewer features okay so that's what we mean by it's fit kind of just right
+33:18
+all right so the way the where that would sit would probably be kind of in the middle here okay
+33:26
+all right where the grouping would be tighter than this one right but it would be on target
+33:34
+all right so it'd probably be a combination of these things here all right so this is low bias low variance just to work through these
+33:39
+right where you see it's just you know super tight here in the middle and this is high bias
+33:45
+and high variance all right so it's off the target and scattered okay so this is kind of like a classic
+33:51
+example using this target thing you know you'll see these all over the place all right but really what this lacks is kind
+33:57
+of this fifth component here where we see that the data probably you know unlike this portion of
+34:04
+it right it probably goes out to this second rim all right but it's not that far off
+34:11
+something like that but it's on target okay and that's what we mean that it fits just right right maybe it doesn't leave
+34:17
+this second white circle right but it is on target okay so we've introduced a bunch of
+34:25
+concept here all right to include kind of to include how to manage thresholds we've talked about different performance
+34:30
+metrics including f1 and kappa and log loss those are all kind of extensions of our typical precision
+34:35
+recall trade-off we also started talking here about this bias variance trade-off right
+34:41
+now the thing is to put these two things together all right i want you to think about what you what
+34:47
+you could do all right with thresholding as it relates to to the bias variance trade-off
+34:53
+okay that's these relate right because you can think about how these dots represent
+34:58
+right in general kind of performance of the model okay we'll talk more about this next week but
+35:04
+thresholding can be used to adjust exactly what this looks like all right
+35:10
+in general though you'll talk about kind of the trade-off in in machine learning models as it relates
+35:16
+to variance bias trade-off all right it's a huge component of what we think about when we think about uh the applications machine
+35:22
+learning methods and models in general right and how close they can grow so it relates to some of the topics that we've been
+35:28
+discussing here all right but it also kind of is an extension all right of that all right so i just
+35:33
+wanted to walk you all through that and uh that's it for this week we'll talk more about
+35:39
+all this next week and we'll have some code examples um to go through as well to just to kind of
+35:44
+reinforce these like we always do so i will see you then
