@@ -21,7 +21,7 @@ content = file.read()
 file.close()
 
 #remove timestamps
-new_content = re.sub(pattern='\n\d:\d\d\n|\n\d\d:\d\d', repl="", string=content)
+new_content = re.sub(pattern='\n\d:\d\d|\n\d\d:\d\d', repl="", string=content)
 
 #save new (clean) file in processed file
 f=open(f"processed\\{filename}.txt", "a")
