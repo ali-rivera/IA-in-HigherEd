@@ -1,448 +1,894 @@
 
 okay all right so let me pop this up here
+0:08
 bigger i can do that there we go all right so we've been talking about decision trees today all right we'll build a
+0:14
 little bit maybe towards ensemble models towards the end but principally we're just going to talk about decision trees
+0:19
 we're going to talk about how they're made or give you some theoretical background related to uh rates of how they are how constructed
+0:24
 and how they're used they can be used for both regression and classification we're principally going to talk about classification
+0:31
 at this point which is the primary use case for them and then um i'll talk about some of the weaknesses and strengths generally all right so
+0:37
 let's just jump right into it here all right okay so this is what a little
+0:42
 ahead of myself trying to shrink my there we go okay okay
+0:48
 so uh i said all of that already so all right so let's talk right away
+0:54
 about uh about the way that trees work okay so when we think about them they're kind of this you know this upside down triangle
+1:01
 basically they kind of build out this way and they're constructed largely of these uh you know basically these
+1:08
 four things right so we have a root node which is basically this top note up here in a decision tree they have these internal
+1:14
 nodes which are basically these split nodes they come out like this all right so it has one edge
+1:20
 and these edges are just basically the lines that are connecting to connecting the nodes okay and then they
+1:26
 have a leaf node or terminal node kind of the same thing it has one node coming in one edge and then no outgoing edges
+1:33
 basically you think about them as kind of at the bottom of the tree okay so this is our this is our terminal
+1:39
 i'm sorry our root up here this is an internal node and then these are the leaf nodes and
+1:44
 then all of these things together have these edges that connect them all right hey it's really easy just to look at it this
+1:51
 way and so here what we see this is our this is our root note up here all right this is the old classic iris
+1:57
 iris data set that everybody just loves seeing over and over again so here we have the root nodes these are
+2:03
 internals and then down here on the bottom we see the leaves all right so this is a
+2:08
 matplotlib graphic actually coming out of python it
+2:14
 does a bit better job and we'll talk about kind of this all the components of this as we move along so what's going on
+2:19
 inside the boxes i don't have to totally understand but uh we'll take a look but this is
+2:25
 also important note here is that right so a leaf node doesn't have to be all the way down on the bottom all right then we have one right here
+2:31
 because we have no edges coming out of this basically what this is saying is that
+2:36
 petal width just to give you some context here pedal width does such a good job
+2:41
 of classifying setosa right that's remember that's a type of flower
+2:47
 that we have there does such a good job of classifying setosa there's no reason to move on as you can see here basically any any
+2:54
 petal width that is less than or equal to 1.75
+2:59
 all right is going to be fall into the subtosa class right essentially all right so let's
+3:07
 keep moving all right so that's that's it at a very high level is what we think about when
+3:12
 we we think about decision trees and again it's just like this a cyclical graph that kind of moves down all right but
+3:18
 how do they make these choices so let's let's talk about that all right so the most important question so what
+3:24
 is the most important question uh to move on to a second date right it seems to me
+3:29
 like uh you know are you married is probably a more important criteria than uh hey
+3:36
 what's your favorite music you know if you don't know this one i guess it depends on your your
+3:42
 your ethical standing but yeah in general you have to say to yourself what are these important questions that
+3:48
 that you need to ask or need to be informed of in order to move on to a second date all right so
+3:53
 when we think about that the question that the most amount of relevant information this is exactly how a decision tree works all
+4:00
 right they're going to need they want to be able to figure out which variable gives it the most relevant information
+4:06
 to be able to decide uh how to classify our target variable all right all right so
+4:14
 you know depending on the condition of the first answer all right then you might select you know the next most important
+4:20
 question for in terms of just information gain as maybe the question we're trying to work out here obviously is
+4:27
 you know whether we're going to move to a move to a second date all right so are you married all right if the answer
+4:32
 to this question is yes hopefully most people would say whoa okay well check please
+4:37
 all right so that that might be it all right if the answer here is yes is yes all right again you would stop
+4:44
 all right but then you know the question would be like what is the next series of questions that you might ask
+4:50
 all right you know belief in a blue colored sky you know maybe that's good because you could you know
+4:55
 get a sense of whether someone is insane or not or you know maybe then you do move on to say you know do we have more things in common you
+5:01
 know what are your favorite foods or music or whatever all right so if you if the answer was to
+5:06
 no then maybe you move on to the next variable which talks about something that is just kind of more personal to see if
+5:12
 you're you know if your likes and dislikes overlap okay
+5:18
 any question is like when should you stop asking questions all right so say you made it you passed the uh past the marriage
+5:24
 hurdle and now you're on to what music do you like right and so
+5:30
 here you know it might be that you know a certain person you know fifty percent will go on uh on
+5:35
 a date if they believe that they like you know acoustic and then maybe this this is disco or something and so you know 50
+5:41
 percent of people will go that so then you start getting very specific about likes and dislikes in terms of what type
+5:46
 of music alright so you can imagine this would be just a factor level variable that could have all sorts of different types of
+5:52
 classical and brock and you know the rap and
+5:57
 lots of other types of music which apparently i'm having trouble naming but anyway so you think about that and
+6:03
 depending on the answer to that maybe people would have more information about whether their likes or dislikes overlapped right okay all right
+6:11
 so this is basically how this how this works okay so uh it's fairly intuitive that's a big
+6:16
 reason that people like decision trees because of this nature you can kind of explain it in simple terms about how they're used and
+6:22
 how they make choices all right so we asked the question you know what is
+6:27
 what is the variable that has the most important information in terms of the ones and zeros that we're trying to
+6:33
 classify and here we're trying to classify whether someone is likely to go on a second date or not all right so we
+6:39
 asked this first question about marriage all right and that results similar to what we saw in the flower
+6:44
 example to maybe a perfect classification of whether they will go on to the second date or not right the majority of people would not
+6:51
 go on to a second date right knowing that someone was married but if the answer to this is no all right this would be no this would be
+6:56
 yes and then up above here we basically would be you know
+7:01
 second date is the variable we're trying to classify right so that would just be a list of
+7:08
 zeros and ones right zero being no second date and one being yes
+7:14
 okay excuse me and then we get more specific right based off the type of
+7:20
 music that people are interested in there might be more of a disjointed result
+7:28
 right okay so we asked the most important information and then conditioned on the first answer
+7:35
 we select the next most important question and when the answer is no longer providing any additional information we
+7:41
 stop growing the branch all right it looks like maybe this is a 50 50 split you know 50 50. something like that
+7:49
 we kind of stopped growing the blanche all right and we just do this all right and we'll talk about stopping criteria it also has a lot to do with
+7:55
 the complexity perimeter things like that or hyper parameters that you can tune to keep it above a certain level
+8:01
 all sorts of different things you just basically keep repeating these two steps over and over again until no more
+8:08
 information can be gained with the variables that you have all right so you use all the variables that
+8:13
 you have inside your inside your data set to try and gradually get to know better and better
+8:19
 whether someone will go on a second date or not all right okay all right
+8:26
 so decision trees are hierarchical all right what that means is basically um
+8:33
 they're built just in the way that you know we've kind of been viewing them is that they you know they start start small and grow
+8:39
 more complex all right decisions decisions are made until a predetermined metric is met and we will
+8:46
 talk about what that metric might look like all right it could be you know a certain amount of
+8:51
 terminal nodes all right predefined there's lots of different hyper parameters you could actually set a lot of people set the
+8:57
 number of layers say if you have you know a huge amount of data at your disposal
+9:03
 you know the more layers that are in a tree the more complex the decisions get all right all right and so
+9:09
 the model is is built such that a sequence of ordered decisions concerning the value result and you know at the end
+9:17
 the model inside the terminal nodes are the leaf nodes all right actually predicts the class label okay i'll give
+9:22
 you a percentage likelihood of that as well so it does it has a probabilistic output similar to k n it's non-parametric
+9:30
 uh it just means that you know the number of parameters is not determined all right as is the case with linear
+9:38
 models you know you kind of know what the variables are going to be with this it's it's not always
+9:44
 predestined right you could have a couple of variables that are incredibly good at predicting these classes you know marriage might be one
+9:50
 of them and so you actually wouldn't need that many to have a very high level of certainty or to hit some level of
+9:55
 metric that you're targeting or it could be that there are you have a bunch of weak variables so you need to have a very complex tree to
+10:01
 understand how people's decisions are are being made right and so we also don't need to worry about
+10:08
 any assumptions being met about distributions or perimeters okay
+10:14
 so there's no normality assumptions no standardization all right it's just a cyclical graph all
+10:20
 right so it's used in model probabilities and causality you can use there are causal trees a bit more
+10:26
 complicated to translate but trees consist of these nodes and edges and they're defined by this decision rule
+10:32
 and we're going to we're going to talk about what that rule is all right okay let's talk about the background a
+10:37
 little bit all right so it uses recursive binary
+10:42
 splitting which basically means that it it considers every possible partition space
+10:48
 and then it divides the one based off uh it chooses the partition space basically chooses where to split
+10:54
 a variable to locally optimize that information gain right so it does
+11:02
 not consider the future of the tree doesn't consider the past it only tries to optimize that
+11:07
 individual node those individual internal leaves okay all right
+11:12
 and it will consider every possible partition uh available when doing that okay so it
+11:18
 this is this is what we call kind of a greedy approach right it's kind of like localized optimality um optimality
+11:25
 optimization inside that one internal node okay so it's going to try and make the best choice it can
+11:31
 uh inside that internal node right so it's each step of the tree building
+11:36
 process it picks the best the best split for that particular that particular split it does not consider
+11:42
 the future all right all right so trees you know i talked about this they can be they can use be used for um prediction
+11:49
 or classification but they use recursive binary splitting in both cases all right um the difference between
+11:56
 regressive trees uh is that they're they're going to predict okay so classification trees are going
+12:03
 to predict the actual class whereas regression is going to predict a particular number all right
+12:12
 right okay so the probability measure um that derives this building for
+12:19
 classification comes in two forms all right so we have these these two um measures which are
+12:24
 generally used for are very typical it's either it's either a genie index or
+12:29
 enthalpy genie index is actually a bit more common you saw that on the on the graph that we showed earlier with the iris data set it actually gave you
+12:37
 the genie index at each internal node but we're going to go through both of them they're very similar they're both
+12:42
 related to basically to information gain which is the key component to kind of
+12:47
 understand how decision trees work is this idea about that they're they're selecting the variable and how to split that
+12:54
 up variable based off the idea that they are maximizing information gained locally at that particular node okay
+13:01
 all right all right so the background here this is
+13:08
 the cart algorithm all right um it's a classification and regression
+13:13
 tree all right it was first uh introduced here by 1984 with these four
+13:20
 researchers all right it can be used in numerical categorical data all right so the first or splits the
+13:25
 training data into two subsets all right i guess we kind of know that a single feature all right it searches through all the possible features
+13:32
 all right to identify the split that produces the purest subsets right so the the purest idea is that purity is
+13:38
 related to maximizing information gain okay all right so it stops once you can't find a pla a split all right that
+13:45
 that reduces impurity right or by some other pre-predetermined hyper parameter
+13:51
 all right so let me kind of explain a bit more as we go all right it
+13:58
 all right so that's a bit of a theoretical background of those two papers it really just takes kind of this idea of information gain and puts it into
+14:05
 practice so it's similar to those four steps that we talked about the card algorithm is basically those four steps
+14:10
 in practice you know we're repeating steps two and three all right okay it does have uh some pretty
+14:18
 some pretty weighty advantages right it is simple to understand and interpret through data visualization
+14:24
 this is a single tree remember you just produce a single tree all right it doesn't require almost any data preparation at all all right the
+14:30
 other techniques often require normalization or dummy variables need to be created and blank values need
+14:36
 to be removed you know trees have a lot of advantages that they do not have to do a lot of that all right so they're able to handle
+14:42
 numerical categorical data all right it uses it what we call a white box bottle all right so you can actually see what's
+14:49
 going on all right you can understand why it made the decisions it's made and uh it's very interpretable okay as
+14:55
 compared to maybe more black box models some neural network approaches even though we're getting better at explainable ai things like that um
+15:03
 and then even when you get up to ensemble models with random force they also become a little a little hard to
+15:09
 understand it's pretty straight straightforward to evaluate i mean most of the models nowadays are not too bad you can use
+15:15
 these the evaluation metrics that we went over um you know in you know last
+15:20
 week in the week before adding you know edit at a pretty high rate uh pretty much for all of these but
+15:25
 they're also very usable here for tree based methods um okay okay it does have some
+15:34
 limitations as all algorithms do so this is important to remember what they are otherwise uh
+15:40
 we'll be using to use uh use these methods in the wrong circumstances all right they do have
+15:48
 like a legitimate uh tendency to overfit you know if you're just growing a tree
+15:53
 without any type of restrictions you're almost guaranteeing that it's going to overfit linear models are the same way
+15:59
 so we have to control for those a bit all right so you have to think about you know if you have 100 you know if you hunt as an example if
+16:05
 you have 100 data points right you have six levels you're gonna have 64 terminal nodes right if you only have 100 data points
+16:10
 so you basically you don't have a lot of single a lot of single terminal nodes which means you're basically just memorizing
+16:16
 the data they're not going to generalize well and this is again this is our bias variance trade-off we'd want to use hyperparameter two need to
+16:22
 pull that back up or maybe some other uh metrics that we'll talk about in particular this this this idea of this complexity
+16:29
 parameter to set that to a certain level that minimizes the error associated with the predictions and the actual values
+16:35
 and that would be the metric that we try and target so there's lots of ways to be able to control this so it has this problem
+16:42
 we also can control it all right they can also be generally unstable to
+16:48
 small variations in the data because of the nature of how they're how they're designed all right so
+16:54
 this is why you know a single decision tree depending on how good or bad your data is can be very
+16:59
 useful but the truth of the matter is that often people build towards these ensemble models which like
+17:04
 range random forest which is just you know thousands hundreds or thousands of trees
+17:10
 to be able to compensate for kind of this instability associated with a single tree
+17:18
 all right all right so practical distribution tree algorithms are based off of you know
+17:24
 heuristic which is a greedy we talked about this they make local optimal decisions all right so they can't
+17:29
 guarantee that you'll get like the global global optimum all right similar to uh some
+17:35
 other methods like this is that it could be possible that you know you don't get the perfect tree which again is a reason to move
+17:41
 potentially towards ensembles all right all right so the great uh bias trees if
+17:48
 some classes dominate it is there for recommended that you try and balance the data set prior to
+17:56
 fitting all right so if you have a heavily unbalanced data set and this is true of many of the classifiers we're going to be talking about it just doesn't perform
+18:02
 quite as well all right support vector machines actually have a tendency to work a little bit better as an example for
+18:07
 unbalanced data sets a single tree can can be can be can be problematic with data sets that are
+18:13
 quite unbalanced but again that can be cured by moving to kind of more of an ensemble approach
+18:18
 but until we get there we have to understand what one tree is doing before we start building forests all right so let's let's take a look all
+18:24
 right these mathematical approaches and i have some examples all right okay so decision trees uh use several
+18:32
 types of node splitting criteria all right so these are these are those i've talked about these
+18:37
 uh this is what it would be if we had you know kind of a continuous data problem we're trying to actually predict the value all right as
+18:44
 compared to predict the class and these are the two common ones for classification they're really very
+18:49
 similar all right we're going to take a look at we're actually not going to take a look at this one but we're going to take a look at each one of these
+18:56
 and they both use this idea of information gain to determine variable split criteria all
+19:03
 right so let's what is this crazy information gain thing all right so this is enthropy
+19:10
 all right all right so that's the that's the um
+19:16
 that's the equation there all right so basically it's just this all right so it's the the probability
+19:24
 times the log probability of a particular instance you're going to summarize these
+19:30
 together all right so just let me let me walk you through this instead of detailing through the equation here
+19:39
 all right so what we would see here okay so this is we have a total set of six all
+19:44
 right so we're thinking about basically this is our equation in
+19:51
 practice here just this portion of it so we're going to sum these two up and then we're going to subtract them from each other and then that's going to give us base
+19:57
 the general enthalpy of these six dots
+20:03
 all right and you can see here what we have is basically perfect classification all right so or maybe
+20:12
 where we have uh three and three all right so when we subtract these two things from each other
+20:17
 right we just get kind of the net entropy associated with this example right we do the same thing here
+20:23
 we have a little bit of more discontinuity right so we have four and two okay so we just plug and
+20:29
 chug basically into our equation we're just doing the probability here which is two out of six
+20:34
 all right and then probability here so four out of six we're just multiplying that by the
+20:40
 log two of exactly that same ratio and then subtracting them from each other just to get an idea of the balance right
+20:47
 here so what we see here right it's just a total you know kind of one class example obviously we we don't
+20:53
 have to do the blue calculation because we know it's zero and so we just do the green side of it which is going to result in basically no
+21:01
 information so you can so we can put these let's extend this a bit further and just kind of
+21:08
 clumsy through that all right the idea here is that information gain is basically going to be right the
+21:15
 entropy of the parent right which is what we did up here this is the enter fee think of this as the calculations of the
+21:22
 parent all right this is the by the parent i mean before the split all right so this is just what our data looks like before we
+21:29
 before we use any variable examples to be able to split it right
+21:34
 and then it's going to be the minus the average entropy of the children right and the children
+21:40
 are going to be what it looks like you know after some type of decision criteria
+21:46
 has been made okay so you can think of this as up here what we have this is entropy the
+21:51
 parent so we have kind of a perfect division here which is which is which is good maybe that's what we want um
+21:56
 you could think of this as you know pluses maybe went on the date right so that's a it
+22:02
 went on a second date just to continue to extend this example
+22:07
 and the dots all right did not
+22:13
 okay and then we're gonna then we apply some type of question right so this might be i don't know this
+22:19
 might be the marriage question right so
+22:25
 all marriage just pretend i know how to spell all right and so and this would be maybe this is yes
+22:31
 sorry this is a yes category some people are married all right so as a result um
+22:37
 what we see here is that if the answer is yes all right that two of these uh
+22:44
 two of these dots stop right there all right so that's an entropy it's a perfect classification relative to all right no date all right so see no
+22:52
 date which makes sense all right so they yes all right the people the no date uh stop right there all right but but one
+22:59
 person you know this is uh so no all right so despite that
+23:06
 there is some uh all right blending of that and it could just be that you know
+23:12
 whatever that might be is that there's there's no date here all right so what we see is
+23:17
 that there are four out of the all right original six continue on
+23:22
 and probably what we see here in this green dot is maybe there's some other reason why that second date didn't occur all right so we'd have to continue
+23:28
 making splits but for this there's no there's no additional reason for us to continue here right because we have
+23:34
 basically a terminal node okay so we've classified this perfectly
+23:40
 associated with this one no date class and that's exactly what we talked about kind of in the beginning
+23:45
 about how good a particular question would be but here all right we have some we have
+23:51
 some blending right so we don't see a zero so we wouldn't stop we'd continue to go okay all right
+23:58
 now in order to be able to calculate this and just erase some of this trying to put this in context all right
+24:05
 we're gonna take the average of these two numbers right so the average of 0.8
+24:10
 0.0 all right and we're going to subtract that from the parent and that will tell us the quality
+24:17
 essentially of this marriage question or it would give us the net effect in terms of information gain for this
+24:23
 particular question at this particular partition all right so this is a is a yes no so
+24:28
 there's just the partition is simple it's just did they get did are they married or not but if it's a continuous variable
+24:34
 basically try uh every type of potential partition inside that range of
+24:40
 values calculate the information gain to see where it makes the most sense which is the example we saw for um
+24:48
 i guess it was pedal width right so at a certain numerical range 1.75
+24:53
 or greater or was it less anyway at a certain threshold associated with that that distance for that pedal they
+24:59
 had perfect classification for that flower so that's where that um split criteria occurred okay so it
+25:06
 shows all the different potential ranges inside that basically all the the the potential
+25:14
 partitions inside that continuous variable that are represented in the data frame all right they're represented in that vector and chose
+25:20
 that one as being the best because it provided almost perfect information for that particular flower all right so what we would do here this
+25:28
 is a now it's a weighted average because it takes into consideration what the original
+25:34
 split was right okay and so we just subtract uh we add these two things together all
+25:40
 right and then we just subtract it from one and so we get 0.54
+25:46
 all right okay so that would basically be our our net gain there associated with um
+25:54
 associated with our uh information information gain all right so what we would do to finish
+26:01
 this is what we see here is this .54 is the result of this weighted average remember that this is
+26:07
 our calculation of our enter fee previously we just add these together
+26:12
 0.54 then we would subtract that from one and then here we would say we have a general information gain
+26:18
 of 0.46 okay all right so now keep in mind if it was
+26:24
 perfect all right and this resulted in a perfect split as in the extreme examples which sometimes we'd like to refer to that
+26:29
 this would basically just be zero right and then we'd have you know one minus zero we'd have a perfect information gain
+26:36
 of one sorry about that all right and so we would we wouldn't have to move
+26:41
 on any further we'd have a variable that perfectly classifies into date and no date as an example
+26:46
 right but we don't have that all right it's not a perfect classifier it's somewhere in between it's perfect for this one side but there's still lots of information
+26:53
 that could be gained uh and specific to to the um this is the you know when on a date
+27:01
 category so we need to continue to continue to grow this tree out so we could better understand that particular
+27:07
 side of the uh side of the equation okay so let's take a look at another
+27:12
 another example here all right so what we see in order to start the tree right we need to follow again just these
+27:18
 these basically these three steps right i keep giving you steps here but all right we choose a attribute with the
+27:24
 highest information gain okay so we can check child nodes and then we repeat repeat steps one and two you know we're
+27:30
 cursively into uh no more information can be gained all right
+27:35
 so let's take a look at that all right so this is a pretty common example that gets used but what
+27:41
 we're trying to do here is to predict you know should we play outside i think the original example here is like should
+27:47
 we play tennis outside i think are we going to be able to play tennis something like that all right so we have these three variables right this is our
+27:53
 predictor right we're trying to predict um whether play happened outside or not and we have
+27:59
 these variables to help us like the outlook you know the temperature and then the you know the humidity all in
+28:05
 classification all right all in um factors right so let's take a look so this is our our
+28:12
 original variable all right so when we look here yes and no all right that's our play so we have a perfect
+28:18
 all right we've got a perfect information perfect entropy here here we had two that went and played and
+28:24
 two that did not so that that's our parent node at one all right and then we're taking a look at this first
+28:30
 variable here sunny so that resulted in one yes all right all right
+28:37
 and uh two nodes two nodes all right so we have three sunny variables all
+28:43
 right and then when we look across what we see is we have two nodes and one yes all right so it doesn't give
+28:49
 us perfect information all right but it does give us some pretty good information that when it is sunny
+28:54
 we have one yes and two nodes all right but then we have you know when it's cloudy which is also
+29:00
 here what we see so we have one yes all right so we're trying to figure out
+29:06
 play or not play which is at the top and the first variable that we took a look at all right we haven't determined
+29:12
 if this is the best variable for us yet but the first one that we took a look at is outlook so we just did this
+29:17
 combination again we see a zero here we see a 0.92 here and then we're just
+29:22
 going to do this weighted average and then subtract it from our original
+29:29
 original entropy of our target variable okay so this is the weighted average
+29:35
 we're just going to do this 3x4 because remember we had three
+29:40
 three sunnies and one cloudy all right i'm just going to multiply that by the by our enthalpy gain here which is just
+29:47
 this formula that we talked about earlier and we're going to add that to the other one which is going to be
+29:53
 going to be 0 right okay and then we're going to subtract it by 1. so we're going to get all right 0.31
+30:02
 okay so let's keep going let's evaluate let's do this same process and we'll look at some of the other variables
+30:07
 all right so let's look at hot and cold all right so what we see here all right
+30:14
 we see temperature if the temperature is hot right no play no play the temperature is cool
+30:20
 it did play and they did play all right we're giving it away here but this is going to result in perfect classification all right so what we're
+30:26
 going to see here all right is that the relative to the entropy uh that was seen in the target variable
+30:32
 when we do this weighted average obvious this is all going to be zero just like i said before it's going to result in a perfect
+30:39
 perfect information gain okay so here this perfectly matches our
+30:44
 outlier or perfectly matches our target variable whereas the example we had before didn't it
+30:50
 wasn't quite a perfect split right we had one yes over here and we have one yes over here so when we calculate
+30:56
 information gain it's not quite as good as when we do it here right we have perfect information gain
+31:02
 all right so let's we're talking a we've seen an in-between example we've seen a perfect example so now let's look at a
+31:09
 perfectly terrible example all right so here what we see is we have perfect disagreement okay
+31:15
 regardless of whether it's high or low it looks like there was a decision to play and to not play all right so here we
+31:23
 have one yes and one no on both sides of this high
+31:28
 low equation so what we're going to see is when we plug this into our uh you know our enthalpy
+31:38
 equation and we subtract these from each other uh we're going to get one all right which which is basically means
+31:44
 that you know we're not we don't learn anything all right the result of this is one restrict one from one
+31:50
 our net information gain here is going to be absolutely nothing okay so if we were to build this
+31:55
 classifier uh what we would see here this is this is very uncommon of course
+32:00
 but what we see is that our we have this temperature oops
+32:07
 temperature would be right at the top all right so that would be the first variable that we would use it provides
+32:13
 us the most information and then the next one would be outlook i mean actually technically we wouldn't even move on to a next one because we
+32:19
 have perfect classification here so we wouldn't even need another variable so in this in this case when you have perfect information gain
+32:26
 um you just have a you know a tree with the depth of just one split and that's it okay
+32:32
 so that's enthropy all right so information gain is is very similar all right all right so it basically uses
+32:40
 the same idea about net gain all right so pi in this equation just represents
+32:48
 the probability that a random selection would have state i whether it would have you know you think it was whether
+32:54
 someone would be would play or not all right and so the mathematical process this
+32:59
 is pretty much the same i don't think i put the actual i thought i had the actual equation in here but
+33:06
 uh anyway you kind of get the idea here so it's this is just the same all right this is the example that we saw before
+33:11
 all right relative to what the outlook was like right so this
+33:17
 is the outlook calculation it's this one right here okay so we use the same
+33:25
 same general idea i'm just going to show it using the genie coefficient
+33:30
 the difference is that there's not it does not actually include this log conversion okay
+33:37
 which uh is is most of the reason that uh that most of the packages and uh
+33:43
 techniques associated with uh information gain and this uh criteria for selection have a
+33:50
 tendency to default to gini to genie index because it's just not as computationally oh yeah genie and purity i'm sorry it's
+33:56
 up here right it's not as computationally expensive to not to when you take out that log
+34:01
 conversion okay so as a result though it's this the outputs are slightly harder to to
+34:08
 understand relative to the zero to one scale but it's really not too bad um so here what
+34:13
 we see is you know kind of a a genie index here we're subtracting this from one that's
+34:20
 basically point five all right because we have you know just two and two here as compared to one
+34:25
 when we do when we did enthalpy here we see it's 0.5 which kind of represents a perfect
+34:30
 split okay i would do the same calculations all right generally we're just going to plug this into
+34:36
 our equation here and what we're going to see is that from this side we have 0.44 and this actually remains
+34:42
 the same as enthalpy you know kind of a one-sided dominated class would be zero
+34:48
 and then we're just going to do the same thing we're just going to subtract it from the parent right or just do a weighted average three out of four one out of four
+34:55
 all right not that it's going to matter because this is zero and then this is going to be our information gain okay uh
+35:03
 so it works very similar it just doesn't have this basically that logarithmic conversion component to it and as a result uh it kind of is the
+35:10
 default because it is a little bit more efficient right so we went through each one of these this would result basically in a
+35:20
 this is akin to the 0.33 that we saw earlier 0.31
+35:27
 0.31 that we saw earlier and if we did the perfect one it
+35:34
 would be 0.5 all right okay all right so
+35:41
 mean squared error is how it's done if you were doing um if we were doing a continuous
+35:46
 reducing basically a regression based tree all right and so
+35:52
 this is the equation for that it just tries to reduce the the total error of the predicted values at each node
+35:57
 right so the average of each of those groups in terms of the minimizes the mean squared error just
+36:02
 uses mean squared error at each point okay i don't have an example for that
+36:08
 but it happens very similarly to the way that we see um it occur
+36:14
 in with entropy all right it will do the calculations associated with predicting variables inside the tree
+36:22
 pick the threshold associated with that calculate the mean squared error associated with using that particular
+36:28
 variable at that particular split and then it will include the variable that reduces the mean square error the
+36:34
 most right at a particular threshold and then move on to the next node and do the same thing right
+36:45
 all right so here's another example here just to just ignore this up here oops all right just ignored this
+36:53
 we are going to go through this um uh this pregnancy tree example
+37:00
 in uh in class i keep skipping through this all right but the idea here is we're trying to figure out uh we're a uh we're a marketing firm
+37:07
 we're trying to figure out what our shopping shopper characteristics are trying to figure out whether someone is with child or not and so these are as
+37:14
 it turns out the purchasing of folic acid ends up being the best predictor so here we can see this is
+37:20
 kind of a pure split between this is this is pregnant and
+37:26
 that's the other way around sorry not pregnant and pregnant okay so these
+37:34
 are our shoppers that's our variable classification we're trying to predict you know kind of maybe the purchasing habits associated with our
+37:40
 with our clients and as a result then we can you know email them specials on diapers and vitamins or whatever that might be
+37:46
 okay but here what we see is that folic acid does a really good job 120 to 6 in terms of the ratio of pregnancy not
+37:52
 pregnant and predicting so that's why it's going to be our top one okay and then eventually we just work
+37:57
 through the tree gradually to try and understand
+38:03
 all right in particular on kind of the purchasing of non-folic acid to be able to better understand
+38:08
 the split between those two there's an arrow pointing here just to note out that this is a you know basically a leaf
+38:15
 node all right yeah which is kind of uh
+38:21
 high up in the graph okay all right so like i mentioned before decision trees are prone to overfitting
+38:27
 and one solution is we can tune those hyper parameters all right so another solution is built to ensemble talked about that
+38:34
 all right so these are just uh some examples of hyper parameter tuning that that we can
+38:39
 do all right you can set a minimum number of samples to be at a node split all right
+38:44
 go back to that 100 100 100 row example that we had maybe you would want to say hey i need to have
+38:50
 at least you know 10 data points in every node all right so that would avoid kind of
+38:55
 over spitting over splitting right minimum number of samples at a terminal node uh so that would be
+39:03
 um you know at what is the if you choose that same example up here we're saying we need at least 10 examples to do a split maybe the
+39:10
 terminal node you would say hey i need at least i don't know at least five examples to be in a terminal node or something like
+39:16
 that you probably want those numbers to be bigger maybe do 20 as a minimum split and 10 in the terminal something like that
+39:21
 and this is typically the way that people do it is they sept a set of maximum to the depth of the tree and depth just means the number of variables
+39:27
 that you're going to use and the splitting all right so if you have a depth of like five you're not going to have more than five splits
+39:33
 okay all right
+39:38
 you can also set minimums and maximums on the number of actual terminal nodes
+39:44
 okay so that's the number of you know the number of leaves at the very end okay all right and then
+39:51
 and the maximum number of features to be considered at each split this is another way that you can handle it all right and so the idea is that you know keeping in
+39:58
 mind when we have our we have our top number we're gradually doing all these splits
+40:04
 this is not all right have to go this way
+40:09
 all right all right
+40:16
 all right so as you move down this side of the tree all right the variables that
+40:23
 are available all right are ones that have not been used uh anywhere higher all right
+40:30
 inside the split criteria and it's the same for this all right so you'll actually you can see that maybe two
+40:36
 two variables a variable could could get used again all right it could be used twice inside a tree as long as it's not higher
+40:43
 inside the split criteria so in our example that we're doing before if oops you know say
+40:52
 you know this the first example was folic acid right that sent out this portion of the tree
+40:58
 in that portion of the tree folic acid cannot be used anywhere else inside the tree all right but say it was
+41:05
 vitamins what's the second criteria here vitamins could also be used
+41:10
 like over here all right so we might they might actually show up right next to each other in terms of understanding this
+41:17
 population that was in the non-folic acid in this population that was in the folic acid right so what you can do is control the
+41:24
 number of features associated to be considered at any one split so if you want to make sure that there are say five features that remain in order to
+41:31
 give your decision tree a rich environment with which to make decisions you can control that
+41:37
 and if it looks like the tree is complex enough to where maybe there's only you know two variables left to consider you could say hey that's enough let's
+41:43
 just stop there because uh you know the decision space is pretty low all right
+41:51
 okay so the we talked about trees all right this is
+41:56
 you know kind of a clunky transition here but we're moving into a different way to talk about talk about
+42:02
 training our machine learning algorithm and this is through cross-validation all right so the package that we're going to use for
+42:08
 decision trees actually defaults to this all right so it defaults using ten-fold cross-validation
+42:14
 all right so we talked a lot about training test all right the disadvantage between training and
+42:19
 test is you know basically they compete against each other all right as the training set gets
+42:25
 bigger all right testing goes down all right so there cross validation is a way to get around
+42:32
 that to use the entire data set all right and the training and the testing process all right so let's
+42:37
 let's talk about that all right so we have this tension that's why there's this rope here right all right
+42:46
 so uh basically you just select a k and typically it defaults to 10 10k full 10 fold
+42:54
 cross validation all right and so at every at every step what happens is is basically um the
+43:01
 algorithm will do this 10 times all right basically train say you set this criteria to i don't know what this
+43:07
 represents i don't i forgot the number of dots here right one two three four five six
+43:12
 anyway that's that that's there's let's assume that there's 24 dots here or something like that and so this represents 25
+43:18
 of the data uh and what you're going to do is you're going to train the algorithm with the 75 and then test it with this 25 and then
+43:26
 do the same thing here all right so train and test do the same thing here train and test
+43:33
 train to test you're going to do this 10 times all right so here this is basically 4 k
+43:39
 fold cross validation where they divided it into four equally sized parts and then they use
+43:44
 those parts in proportion to be able to train to test the data set all right
+43:49
 so uh we're going to do that too all right but the idea here is that uh you can use the entire data set in the
+43:56
 training process and then do basically internal evaluation with this with this holdout
+44:04
 and that allows you to use all the portions of the dataset as compared to just one big chunk for training
+44:09
 would be chunk for test all right all right so we'll i'll show that a bit
+44:15
 more as once we get into the code
+44:20
 okay so um let's take a look at overfitting all
+44:26
 right um again uh we've talked about well you guys know what overfitting is let's just
+44:31
 jump past that but these are some definitions that we threw in here kind of at the end so ensemble methods
+44:37
 uh we talked about that a little bit we're gonna talk much more about that next week but that's basically when you take you know many there's many different
+44:43
 forms of this but in this example instead of one tree but a whole bunch of trees together and they do majority vote
+44:48
 essentially all right all right so you know it is designed to operate
+44:54
 efficiently uh you know
+45:00
 but it does not guarantee that it can provide you the best the best model because it is slightly different
+45:05
 every time okay so let me stop there and then uh this is it's a lot to get through but
+45:11
 essentially the key key points here to remember about decision trees is that it's centered
+45:16
 on this idea of information gain they do obviously have a tendency to overfit so we want to be able to use those hyper parameters to be able to tune them
+45:22
 there's a lot of options to do that we're going to do a bit more technically about what cross validation
+45:29
 does and how it how we can use it in actual code operations it's a bit it's very handy especially
+45:35
 for especially for for decision trees and then also when we think about unbalanced
+45:40
 data sets uh that can be helpful for that all right because uh decision trees can't be
+45:45
 sensitive to kind of small changes and they're asynch all right so they grow out they're greedy they make these
+45:51
 little local optimized decisions but they're also very easy to interpret through
+45:56
 visualization and they're intuitive so they can be useful for all those all those types of reasons but
+46:01
 we will get much more into it uh in class i'm sorry it's a little bit longer than normal but
+46:08
 thanks for that and i will see you soon
