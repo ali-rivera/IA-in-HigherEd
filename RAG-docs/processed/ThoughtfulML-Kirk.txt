@@ -1,0 +1,5089 @@
+
+
+
+
+
+
+1. Probably Approximately Correct Software - Thoughtful Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thoughtful Machine Learning with Python by Matthew Kirk
+
+
+
+
+Buy on Amazon
+Buy on ebooks.com
+
+
+
+
+
+
+
+Get full access to Thoughtful Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+Chapter 1. Probably Approximately Correct Software
+If you’ve ever flown on an airplane, you have participated in one of the safest forms of travel in the world. The odds of being killed in an airplane are 1 in 29.4 million, meaning that you could decide to become an airline pilot, and throughout a 40-year career, never once be in a crash. Those odds are staggering considering just how complex airplanes really are. But it wasn’t always that way.
+The year 2014 was bad for aviation; there were 824 aviation-related deaths, including the Malaysia Air plane that went missing. In 1929 there were 257 casualties. This makes it seem like we’ve become worse at aviation until you realize that in the US alone there are over 10 million flights per year, whereas in 1929 there were substantially fewer—about 50,000 to 100,000. This means that the overall probability of being killed in a plane wreck from 1929 to 2014 has plummeted from 0.25% to 0.00824%.
+Plane travel changed over the years and so has software development. While in 1929 software development as we know it didn’t exist, over the course of 85 years we have built and failed many software projects.
+Recent examples include software projects like the launch of healthcare.gov, which was a fiscal disaster, costing around $634 million dollars. Even worse are software projects that have other disastrous bugs. In 2013 NASDAQ shut down due to a software glitch and was fined $10 million USD. The year 2014 saw the Heartbleed bug infection, which made many sites using SSL vulnerable. As a result, CloudFlare revoked more than 100,000 SSL certificates, which they have said will cost them millions.
+Software and airplanes share one common thread: they’re both complex and when they fail, they fail catastrophically and publically. Airlines have been able to ensure safe travel and decrease the probability of airline disasters by over 96%. Unfortunately we cannot say the same about software, which grows ever more complex. Catastrophic bugs strike with regularity, wasting billions of dollars.
+Why is it that airlines have become so safe and software so buggy?
+
+Writing Software Right
+Between 1929 and 2014 airplanes have become more complex, bigger, and faster. But with that growth also came more regulation from the FAA and international bodies as well as a culture of checklists among pilots.
+While computer technology and hardware have rapidly changed, the software that runs it hasn’t. We still use mostly procedural and object-oriented code that doesn’t take full advantage of parallel computation. But programmers have made good strides toward coming up with guidelines for writing software and creating a culture of testing. These have led to the adoption of SOLID and TDD. SOLID is a set of principles that guide us to write better code, and TDD is either test-driven design or test-driven development. We will talk about these two mental models as they relate to writing the right software and talk about software-centric refactoring.
+
+SOLID
+SOLID is a framework that helps design better object-oriented code. In the same ways that the FAA defines what an airline or airplane should do, SOLID tells us how software should be created. Violations of FAA regulations occasionally happen and can range from disastrous to minute. The same is true with SOLID. These principles sometimes make a huge difference but most of the time are just guidelines. SOLID was introduced by Robert Martin as the Five Principles. The impetus was to write better code that is maintainable, understandable, and stable. Michael Feathers came up with the mnemonic device SOLID to remember them.
+SOLID stands for:
+
+
+Single Responsibility Principle (SRP)
+
+
+Open/Closed Principle (OCP)
+
+
+Liskov Substitution Principle (LSP)
+
+
+Interface Segregation Principle (ISP)
+
+
+Dependency Inversion Principle (DIP)
+
+
+
+Single Responsibility Principle
+The SRP has become one of the most prevalent parts of writing good object-oriented code. The reason is that single responsibility defines simple classes or objects. The same mentality can be applied to functional programming with pure functions. But the idea is all about simplicity. Have a piece of software do one thing and only one thing. A good example of an SRP violation is a multi-tool (Figure 1-1). They do just about everything but unfortunately are only useful in a pinch.
+
+
+Figure 1-1. A multi-tool like this has too many responsibilities
+
+
+
+Open/Closed Principle
+The OCP, sometimes also called encapsulation, is the principle that objects should be open for extending but not for modification. This can be shown in the case of a counter object that has an internal count associated with it. The object has the methods increment and decrement. This object should not allow anybody to change the internal count unless it follows the defined API, but it can be extended (e.g., to notify someone of a count change by an object like Notifier).
+
+
+Liskov Substitution Principle
+The LSP states that any subtype should be easily substituted out from underneath a object tree without side effect. For instance, a model car could be substituted for a real car.
+
+
+Interface Segregation Principle
+The ISP is the principle that having many client-specific interfaces is better than a general interface for all clients. This principle is about simplifying the interchange of data between entities. A good example would be separating garbage, compost, and recycling. Instead of having one big garbage can it has three, specific to the garbage type.
+
+
+Dependency Inversion Principle
+The DIP is a principle that guides us to depend on abstractions, not concretions. What this is saying is that we should build a layer or inheritance tree of objects. The example Robert Martin explains in his original paper1 is that we should have a KeyboardReader inherit from a general Reader object instead of being everything in one class. This also aligns well with what Arthur Riel said in Object Oriented Design Heuristics about avoiding god classes. While you could solder a wire directly from a guitar to an amplifier, it most likely would be inefficient and not sound very good.
+Note
+The SOLID framework has stood the test of time and has shown up in many books by Martin and Feathers, as well as appearing in Sandi Metz’s book Practical Object-Oriented Design in Ruby. This framework is meant to be a guideline but also to remind us of the simple things so that when we’re writing code we write the best we can. These guidelines help write architectually correct software.
+
+
+
+
+Testing or TDD
+In the early days of aviation, pilots didn’t use checklists to test whether their airplane was ready for takeoff. In the book The Right Stuff by Tom Wolfe, most of the original test pilots like Chuck Yeager would go by feel and their own ability to manage the complexities of the craft. This also led to a quarter of test pilots being killed in action.2
+Today, things are different. Before taking off, pilots go through a set of checks. Some of these checks can seem arduous, like introducing yourself by name to the other crewmembers. But imagine if you find yourself in a tailspin and need to notify someone of a problem immediately. If you didn’t know their name it’d be hard to communicate.
+The same is true for good software. Having a set of systematic checks, running regularly, to test whether our software is working properly or not is what makes software operate consistently.
+In the early days of software, most tests were done after writing the original software (see also the waterfall model, used by NASA and other organizations to design software and test it for production). This worked well with the style of project management common then. Similar to how airplanes are still built, software used to be designed first, written according to specs, and then tested before delivery to the customer. But because technology has a short shelf life, this method of testing could take months or even years. This led to the Agile Manifesto as well as the culture of testing and TDD, spearheaded by Kent Beck, Ward Cunningham, and many others.
+The idea of test-driven development is simple: write a test to record what you want to achieve, test to make sure the test fails first, write the code to fix the test, and then, after it passes, fix your code to fit in with the SOLID guidelines. While many people argue that this adds time to the development cycle, it drastically reduces bug deficiencies in code and improves its stability as it operates in production.3
+Airplanes, with their low tolerance for failure, mostly operate the same way. Before a pilot flies the Boeing 787 they have spent X amount of hours in a flight simulator understanding and testing their knowledge of the plane. Before planes take off they are tested, and during the flight they are tested again. Modern software development is very much the same way. We test our knowledge by writing tests before deploying it, as well as when something is deployed (by monitoring).
+But this still leaves one problem: the reality that since not everything stays the same, writing a test doesn’t make good code. David Heinemer Hanson, in his viral presentation about test-driven damage, has made some very good points about how following TDD and SOLID blindly will yield complicated code. Most of his points have to do with needless complication due to extracting out every piece of code into different classes, or writing code to be testable and not readable. But I would argue that this is where the last factor in writing software right comes in: refactoring.
+
+
+Refactoring
+Refactoring is one of the hardest programming practices to explain to nonprogrammers, who don’t get to see what is underneath the surface. When you fly on a plane you are seeing only 20% of what makes the plane fly. Underneath all of the pieces of aluminum and titanium are intricate electrical systems that power emergency lighting in case anything fails during flight, plumbing, trusses engineered to be light and also sturdy—too much to list here. In many ways explaining what goes into an airplane is like explaining to someone that there’s pipes under the sink below that beautiful faucet.
+Refactoring takes the existing structure and makes it better. It’s taking a messy circuit breaker and cleaning it up so that when you look at it, you know exactly what is going on. While airplanes are rigidly designed, software is not. Things change rapidly in software. Many companies are continuously deploying software to a production environment. All of that feature development can sometimes cause a certain amount of technical debt.
+Technical debt, also known as design debt or code debt, is a metaphor for poor system design that happens over time with software projects. The debilitating problem of technical debt is that it accrues interest and eventually blocks future feature development.
+If you’ve been on a project long enough, you will know the feeling of having fast releases in the beginning only to come to a standstill toward the end. Technical debt in many cases arises through not writing tests or not following the SOLID principles.
+Having technical debt isn’t a bad thing—sometimes projects need to be pushed out earlier so business can expand—but not paying down debt will eventually accrue enough interest to destroy a project. The way we get over this is by refactoring our code.
+By refactoring, we move our code closer to the SOLID guidelines and a TDD codebase. It’s cleaning up the existing code and making it easy for new developers to come in and work on the code that exists like so:
+
+
+Follow the SOLID guidelines
+
+
+Single Responsibility Principle
+
+
+Open/Closed Principle
+
+
+Liskov Substitution Principle
+
+
+Interface Segregation Principle
+
+
+Dependency Inversion Principle
+
+
+
+
+Implement TDD (test-driven development/design)
+
+
+Refactor your code to avoid a buildup of technical debt
+
+
+The real question now is what makes the software right?
+
+
+
+Writing the Right Software
+Writing the right software is much trickier than writing software right. In his book Specification by Example, Gojko Adzic determines the best approach to writing software is to craft specifications first, then to work with consumers directly. Only after the specification is complete does one write the code to fit that spec. But this suffers from the problem of practice—sometimes the world isn’t what we think it is. Our initial model of what we think is true many times isn’t.
+Webvan, for instance, failed miserably at building an online grocery business. They had almost $400 million in investment capital and rapidly built infrastructure to support what they thought would be a booming business. Unfortunately they were a flop because of the cost of shipping food and the overestimated market for online grocery buying. By many measures they were a success at writing software and building a business, but the market just wasn’t ready for them and they quickly went bankrupt. Today a lot of the infrastructure they built is used by Amazon.com for AmazonFresh.
+
+In theory, theory and practice are the same. In practice they are not.
+Albert Einstein
+
+We are now at the point where theoretically we can write software correctly and it’ll work, but writing the right software is a much fuzzier problem. This is where machine learning really comes in.
+
+Writing the Right Software with Machine Learning
+In The Knowledge-Creating Company, Nonaka and Takeuchi outlined what made Japanese companies so successful in the 1980s. Instead of a top-down approach of solving the problem, they would learn over time. Their example of kneading bread and turning that into a breadmaker is a perfect example of iteration and is easily applied to software development.
+But we can go further with machine learning.
+
+
+What Exactly Is Machine Learning?
+According to most definitions, machine learning is a collection of algorithms, techniques, and tricks of the trade that allow machines to learn from data—that is, something represented in numerical format (matrices, vectors, etc.).
+To understand machine learning better, though, let’s look at how it came into existence. In the 1950s extensive research was done on playing checkers. A lot of these models focused on playing the game better and coming up with optimal strategies. You could probably come up with a simple enough program to play checkers today just by working backward from a win, mapping out a decision tree, and optimizing that way.
+Yet this was a very narrow and deductive way of reasoning. Effectively the agent had to be programmed. In most of these early programs there was no context or irrational behavior programmed in.
+About 30 years later, machine learning started to take off. Many of the same minds started working on problems involving spam filtering, classification, and general data analysis.
+The important shift here is a move away from computerized deduction to computerized induction. Much as Sherlock Holmes did, deduction involves using complex logic models to come to a conclusion. By contrast, induction involves taking data as being true and trying to fit a model to that data. This shift has created many great advances in finding good-enough solutions to common problems.
+The issue with inductive reasoning, though, is that you can only feed the algorithm data that you know about. Quantifying some things is exceptionally difficult. For instance, how could you quantify how cuddly a kitten looks in an image?
+In the last 10 years we have been witnessing a renaissance around deep learning, which alleviates that problem. Instead of relying on data coded by humans, algorithms like autoencoders have been able to find data points we couldn’t quantify before.
+This all sounds amazing, but with all this power comes an exceptionally high cost and responsibility.
+
+
+The High Interest Credit Card Debt of Machine Learning
+Recently, in a paper published by Google titled “Machine Learning: The High Interest Credit Card of Technical Debt”, Sculley et al. explained that machine learning projects suffer from the same technical debt issues outlined plus more (Table 1-1).
+They noted that machine learning projects are inherently complex, have vague boundaries, rely heavily on data dependencies, suffer from system-level spaghetti code, and can radically change due to changes in the outside world. Their argument is that these are specifically related to machine learning projects and for the most part they are.
+Instead of going through these issues one by one, I thought it would be more interesting to tie back to our original discussion of SOLID and TDD as well as refactoring and see how it relates to machine learning code.
+
+Table 1-1. The high interest credit card debt of machine learning
+
+
+Machine learning problem
+Manifests as
+SOLID violation
+
+
+
+
+Entanglement
+Changing one factor changes everything
+SRP
+
+
+Hidden feedback loops
+Having built-in hidden features in model
+OCP
+
+
+Undeclared consumers/visibility debt
+
+ISP
+
+
+Unstable data dependencies
+Volatile data
+ISP
+
+
+Underutilized data dependencies
+Unused dimensions
+LSP
+
+
+Correction cascade
+
+*
+
+
+Glue code
+Writing code that does everything
+SRP
+
+
+Pipeline jungles
+Sending data through complex workflow
+DIP
+
+
+Experimental paths
+Dead paths that go nowhere
+DIP
+
+
+Configuration debt
+Using old configurations for new data
+*
+
+
+Fixed thresholds in a dynamic world
+Not being flexible to changes in correlations
+*
+
+
+Correlations change
+Modeling correlation over causation
+ML Specific
+
+
+
+
+
+SOLID Applied to Machine Learning
+SOLID, as you remember, is just a guideline reminding us to follow certain goals when writing object-oriented code. Many machine learning algorithms are inherently not object oriented. They are functional, mathematical, and use lots of statistics, but that doesn’t have to be the case. Instead of thinking of things in purely functional terms, we can strive to use objects around each row vector and matrix of data.
+
+SRP
+In machine learning code, one of the biggest challenges for people to realize is that the code and the data are dependent on each other. Without the data the machine learning algorithm is worthless, and without the machine learning algorithm we wouldn’t know what to do with the data. So by definition they are tightly intertwined and coupled. This tightly coupled dependency is probably one of the biggest reasons that machine learning projects fail.
+This dependency manifests as two problems in machine learning code: entanglement and glue code. Entanglement is sometimes called the principle of Changing Anything Changes Everything or CACE. The simplest example is probabilities. If you remove one probability from a distribution, then all the rest have to adjust. This is a violation of SRP.
+Possible mitigation strategies include isolating models, analyzing dimensional dependencies,4 and regularization techniques.5 We will return to this problem when we review Bayesian models and probability models.
+Glue code is the code that accumulates over time in a coding project. Its purpose is usually to glue two separate pieces together inelegantly. It also tends to be the type of code that tries to solve all problems instead of just one.
+Whether machine learning researchers want to admit it or not, many times the actual machine learning algorithms themselves are quite simple. The surrounding code is what makes up the bulk of the project. Depending on what library you use, whether it be GraphLab, MATLAB, scikit-learn, or R, they all have their own implementation of vectors and matrices, which is what machine learning mostly comes down to.
+
+
+OCP
+Recall that the OCP is about opening classes for extension but not modification. One way this manifests in machine learning code is the problem of CACE. This can manifest in any software project but in machine learning projects it is often seen as hidden feedback loops.
+A good example of a hidden feedback loop is predictive policing. Over the last few years, many researchers have shown that machine learning algorithms can be applied to determine where crimes will occur. Preliminary results have shown that these algorithms work exceptionally well. But unfortunately there is a dark side to them as well.
+While these algorithms can show where crimes will happen, what will naturally occur is the police will start patrolling those areas more and finding more crimes there, and as a result will self-reinforce the algorithm. This could also be called confirmation bias, or the bias of confirming our preconceived notion, and also has the downside of enforcing systematic discrimination against certain demographics or neighborhoods.
+While hidden feedback loops are hard to detect, they should be watched for with a keen eye and taken out.
+
+
+LSP
+Not a lot of people talk about the LSP anymore because many programmers are advocating for composition over inheritance these days. But in the machine learning world, the LSP is violated a lot. Many times we are given data sets that we don’t have all the answers for yet. Sometimes these data sets are thousands of dimensions wide.
+Running algorithms against those data sets can actually violate the LSP. One common manifestation in machine learning code is underutilized data dependencies. Many times we are given data sets that include thousands of dimensions, which can sometimes yield pertinent information and sometimes not. Our models might take all dimensions yet use one infrequently. So for instance, in classifying mushrooms as either poisonous or edible, information like odor can be a big indicator while ring number isn’t. The ring number has low granularity and can only be zero, one, or two; thus it really doesn’t add much to our model of classifying mushrooms. So that information could be trimmed out of our model and wouldn’t greatly degrade performance.
+You might be thinking why this is related to the LSP, and the reason is if we can use only the smallest set of datapoints (or features), we have built the best model possible. This also aligns well with Ockham’s Razor, which states that the simplest solution is the best one.
+
+
+ISP
+The ISP is the notion that a client-specific interface is better than a general purpose one. In machine learning projects this can often be hard to enforce because of the tight coupling of data to the code. In machine learning code, the ISP is usually violated by two types of problems: visibility debt and unstable data.
+Take for instance the case where a company has a reporting database that is used to collect information about sales, shipping data, and other pieces of crucial information. This is all managed through some sort of project that gets the data into this database. The customer that this database defines is a machine learning project that takes previous sales data to predict the sales for the future. Then one day during cleanup, someone renames a table that used to be called something very confusing to something much more useful. All hell breaks loose and people are wondering what happened.
+What ended up happening is that the machine learning project wasn’t the only consumer of the data; six Access databases were attached to it, too. The fact that there were that many undeclared consumers is in itself a piece of debt for a machine learning project.
+This type of debt is called visibility debt and while it mostly doesn’t affect a project’s stability, sometimes, as features are built, at some point it will hold everything back.
+Data is dependent on the code used to make inductions from it, so building a stable project requires having stable data. Many times this just isn’t the case. Take for instance the price of a stock; in the morning it might be valuable but hours later become worthless.
+This ends up violating the ISP because we are looking at the general data stream instead of one specific to the client, which can make portfolio trading algorithms very difficult to build. One common trick is to build some sort of exponential weighting scheme around data; another more important one is to version data streams. This versioned scheme serves as a viable way to limit the volatility of a model’s predictions.
+
+
+DIP
+The Dependency Inversion Principle is about limiting our buildups of data and making code more flexible for future changes. In a machine learning project we see concretions happen in two specific ways: pipeline jungles and experimental paths.
+Pipeline jungles are common in data-driven projects and are almost a form of glue code. This is the amalgamation of data being prepared and moved around. In some cases this code is tying everything together so the model can work with the prepared data. Unfortunately, though, over time these jungles start to grow complicated and unusable.
+Machine learning code requires both software and data. They are intertwined and inseparable. Sometimes, then, we have to test things during production. Sometimes tests on our machines give us false hope and we need to experiment with a line of code. Those experimental paths add up over time and end up polluting our workspace. The best way of reducing the associated debt is to introduce tombstoning, which is an old technique from C.
+Tombstones are a method of marking something as ready to be deleted. If the method is called in production it will log an event to a logfile that can be used to sweep the codebase later.
+For those of you who have studied garbage collection you most likely have heard of this method as mark and sweep. Basically you mark an object as ready to be deleted and later sweep marked objects out.
+
+
+
+Machine Learning Code Is Complex but Not Impossible
+At times, machine learning code can be difficult to write and understand, but it is far from impossible. Remember the flight analogy we began with, and use the SOLID guidelines as your “preflight” checklist for writing successful machine learning code—while complex, it doesn’t have to be complicated.
+In the same vein, you can compare machine learning code to flying a spaceship—it’s certainly been done before, but it’s still bleeding edge. With the SOLID checklist model, we can launch our code effectively using TDD and refactoring. In essence, writing successful machine learning code comes down to being disciplined enough to follow the principles of design we’ve laid out in this chapter, and writing tests to support your code-based hypotheses. Another critical element in writing effective code is being flexible and adapting to the changes it will encounter in the real world.
+
+
+TDD: Scientific Method 2.0
+Every true scientist is a dreamer and a skeptic. Daring to put a person on the moon was audacious, but through systematic research and development we have accomplished that and much more. The same is true with machine learning code. Some of the applications are fascinating but also hard to pull off.
+The secret to doing so is to use the checklist of SOLID for machine learning and the tools of TDD and refactoring to get us there.
+TDD is more of a style of problem solving, not a mandate from above. What testing gives us is a feedback loop that we can use to work through tough problems. As scientists would assert that they need to first hypothesize, test, and theorize, we can assert that as a TDD practitioner, the process of red (the tests fail), green (the tests pass), refactor is just as viable.
+This book will delve heavily into applying not only TDD but also SOLID principles to machine learning, with the  goal being to refactor our way to building a stable, scalable, and easy-to-use model.
+
+
+Refactoring Our Way to Knowledge
+As mentioned, refactoring is the ability to edit one’s work and to rethink what was once stated. Throughout the book we will talk about refactoring common machine learning pitfalls as it applies to algorithms.
+
+
+
+The Plan for the Book
+This book will cover a lot of ground with machine learning, but by the end you should have a better grasp of how to write machine learning code as well as how to deploy to a production environment and operate at scale. Machine learning is a fascinating field that can achieve much, but without discipline, checklists, and guidelines, many machine learning projects are doomed to fail.
+Throughout the book we will tie back to the original principles in this chapter by talking about SOLID principles, testing our code (using various means), and refactoring as a way to continually learn from and improve the performance of our code.
+Every chapter will explain the Python packages we will use and describe a general testing plan. While machine learning code isn’t testable in a one-to-one case, it ends up being something for which we can write tests to help our knowledge of the problem.
+
+1 Robert Martin, “The Dependency Inversion Principle,” http://bit.ly/the-DIP.2 Atul Gawande, The Checklist Manifesto (New York: Metropolitan Books), p. 161.3 Nachiappan Nagappan et al., “Realizing Quality Improvement through Test Driven Development: Results and Experience of Four Industrial Teams,” Empirical Software Engineering  13, no. 3 (2008): 289–302, http://bit.ly/Nagappanetal.4 H. B. McMahan et al., “Ad Click Prediction: A View from the Trenches.” In The 19th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, KDD 2013, Chicago, IL, August 11–14, 2013.5 A. Lavoie et al., “History Dependent Domain Adaptation.” In Domain Adaptation Workshop at NIPS ’11, 2011.
+
+
+Get Thoughtful Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+We are a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. A Quick Introduction to Machine Learning - Thoughtful Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thoughtful Machine Learning with Python by Matthew Kirk
+
+
+
+
+Buy on Amazon
+Buy on ebooks.com
+
+
+
+
+
+
+
+Get full access to Thoughtful Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+Chapter 2. A Quick Introduction to Machine Learning
+You’ve picked up this book because you’re interested in machine learning. While you probably have an idea of what machine learning is, the subject is often defined somewhat vaguely. In this quick introduction, I’ll go over what exactly machine learning is, and provide a general framework for thinking about machine learning algorithms.
+
+What Is Machine Learning?
+Machine learning is the intersection between theoretically sound computer science and practically noisy data. Essentially, it’s about machines making sense out of data in much the same way that humans do.
+Machine learning is a type of artificial intelligence whereby an algorithm or method extracts patterns from data. Machine learning solves a few general problems; these are listed in Table 2-1 and described in the subsections that follow.
+
+Table 2-1. The problems that machine learning can solve
+
+
+Problem
+Machine learning category
+
+
+
+
+Fitting some data to a function or function approximation
+Supervised learning
+
+
+Figuring out what the data is without any feedback
+Unsupervised learning
+
+
+Maximizing rewards over time
+Reinforcement learning
+
+
+
+
+
+Supervised Learning
+Supervised learning, or function approximation, is simply fitting data to a function of any variety. For instance, given the noisy data shown in Figure 2-1, you can fit a line that generally approximates it.
+
+
+Figure ...
+
+
+Get Thoughtful Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+We are a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3. K-Nearest Neighbors - Thoughtful Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thoughtful Machine Learning with Python by Matthew Kirk
+
+
+
+
+Buy on Amazon
+Buy on ebooks.com
+
+
+
+
+
+
+
+Get full access to Thoughtful Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+Chapter 3. K-Nearest Neighbors
+Have you ever bought a house before? If you’re like a lot of people around the world, the joy of owning your own home is exciting, but the process of finding and buying a house can be stressful. Whether we’re in a economic boom or recession, everybody wants to get the best house for the most reasonable price.
+But how would you go about buying a house? How do you appraise a house? How does a company like Zillow come up with their Zestimates? We’ll spend most of this chapter answering questions related to this fundamental concept: distance-based approximations.
+First we’ll talk about how we can estimate a house’s value. Then we’ll discuss how to classify houses into categories such as “Buy,” “Hold,” and “Sell.” At that point we’ll talk about a general algorithm, K-Nearest Neighbors, and how it can be used to solve problems such as this. We’ll break it down into a few sections of what makes something near, as well as what a neighborhood really is (i.e., what is the optimal K for something?).
+
+How Do You Determine Whether You Want to Buy a House?
+This question has plagued many of us for a long time. If you are going out to buy a house, or calculating whether it’s better to rent, you are most likely trying to answer this question implicitly. Home appraisals are a tricky subject, and are notorious for drift with calculations. For instance on Zillow’s website they explain that their famous Zestimate is flawed. They state that based on where you are looking, ...
+
+
+Get Thoughtful Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+We are a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4. Naive Bayesian Classification - Thoughtful Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thoughtful Machine Learning with Python by Matthew Kirk
+
+
+
+
+Buy on Amazon
+Buy on ebooks.com
+
+
+
+
+
+
+
+Get full access to Thoughtful Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+Chapter 4. Naive Bayesian Classification
+Remember how email was several years ago? You probably recall your inbox being full of spam messages ranging from Nigerian princes wanting to pawn off money to pharmaceutical advertisements. It became such a major issue that we spent most of our time filtering spam.
+Nowadays we spend a lot less time filtering spam than we used to, thanks to Gmail and tools like SpamAssassin. Using a method called a Naive Bayesian Classifier, such tools have been able to mitigate the influx of spam to our inboxes. This chapter will explore that topic as well as:
+
+
+Bayes’ theorem
+
+
+What a Naive Bayesian Classifier is and why it’s called “naive”
+
+
+How to build a spam filter using a Naive Bayesian Classifier
+
+
+As noted in Table 2-2, a Naive Bayes Classifier is a supervised and probabilistic learning method. It does well with data in which the inputs are independent from one another. It also prefers problems where the probability of any attribute is greater than zero.
+
+Using Bayes’ Theorem to Find Fraudulent Orders
+Imagine you’re running an online store and lately you’ve been overrun with fraudulent orders. You estimate that about 10% of all orders coming in are fraudulent. In other words, in 10% of orders, people are stealing from you. Now of course you want to mitigate this by reducing the fraudulent orders, but you are facing a conundrum.
+Every month you receive at least 1,000 orders, and if you were to check every single one, you’d spend more money fighting fraud than the fraud was costing you in the first place. Assuming that it takes up to 60 seconds per order to determine whether it’s fraudulent or not, and a customer service representative costs around $15 per hour to hire, that totals 200 hours and $3,000 per year.
+Another way of approaching this problem would be to construct a probability that an order is over 50% fraudulent. In this case, we’d expect the number of orders we’d have to look at to be much lower. But this is where things become difficult, because the only thing we can determine is the probability that it’s fraudulent, which is 10%. Given that piece of information, we’d be back at square one looking at all orders because it’s more probable that an order is not fraudulent!
+Let’s say that we notice that fraudulent orders often use gift cards and multiple promotional codes. Using this knowledge, how would we determine what is fraudulent or not—namely, how would we calculate the probability of fraud given that the purchaser used a gift card?
+To answer for that, we first have to talk about conditional probabilities.
+
+
+Conditional Probabilities
+Most people understand what we mean by the probability of something happening. For instance, the probability of an order being fraudulent is 10%. That’s pretty straightforward. But what about the probability of an order being fraudulent given that it used a gift card? To handle that more complicated case, we need something called a conditional probability, which is defined as follows:
+
+Equation 4-1. Conditional probability
+
+
+P
+
+(
+A
+|
+B
+)
+
+=
+P(A∩B) P(B)
+
+
+
+
+
+Probability Symbols
+Generally speaking, writing P(E) means that you are looking at the probability of a given event. This event can be a lot of different things, including the event that A and B happened, the probability that A or B happened, or the probability of A given B happening in the past. Here we’ll cover how you’d notate each of these scenarios.
+A ∩ B is called the intersection function but could also be thought of as the Boolean operation AND. For instance, in Python it looks like this:
+a = [1,2,3]
+b = [1,4,5]
+
+set(a) & set(b) #=> [1]
+A ∪ B could be called the OR function, as it is both A and B. For instance, in Python it looks like the following:
+a = [1,2,3]
+b = [1,4,5]
+
+set(a) | set(b) #=> [1,2,3,4,5]
+Finally, the probability of A given B looks as follows in Python:
+a = set([1,2,3])
+b = set([1,4,5])
+
+total = 5.0
+
+p_a_cap_b = len(a & b) / total
+p_b = len(b) / total
+
+p_a_given_b = p_a_cap_b / p_b #=> 0.33
+This definition basically says that the probability of A happening given that B happened is the probability of A and B happening divided by the probability of B. Graphically, it looks something like Figure 4-1.
+
+
+Figure 4-1. How conditional probabilities are made
+
+This shows how P(A | B) sits between P(A and B) and P(B).
+In our fraud example, let’s say we want to measure the probability of fraud given that an order used a gift card. This would be:
+
+
+
+P
+
+(
+F
+r
+a
+u
+d
+|
+G
+i
+f
+t
+c
+a
+r
+d
+)
+
+=
+P(Fraud∩Giftcard) P(Giftcard)
+
+
+
+Now this works if you know the actual probability of Fraud and Giftcard.
+At this point, we are up against the problem that we cannot calculate P(Fraud|Giftcard) because that is hard to separate out. To solve this problem, we need to use a trick introduced by Bayes.
+
+
+Inverse Conditional Probability (aka Bayes’ Theorem)
+In the 1700s, Reverend Thomas Bayes came up with the original research that would become Bayes’ theorem. Pierre-Simon Laplace extended Bayes’ research to produce the beautiful result we know today. Bayes’ theorem is as follows:
+
+Equation 4-2. Bayes’ theorem
+
+
+P
+
+(
+B
+∣
+A
+)
+
+=
+P(A∣B)P(B) P(A)
+
+
+
+This is because of the following:
+
+Equation 4-3. Bayes’ theorem expanded
+
+
+P
+
+(
+B
+∣
+A
+)
+
+=
+P(A∩B)P(B) P(B) P(A)
+=
+P(A∩B) P(A)
+
+
+
+This is useful in our fraud example because we can effectively back out our result using other information. Using Bayes’ theorem, we would now calculate:
+
+
+
+P
+
+(
+F
+r
+a
+u
+d
+∣
+G
+i
+f
+t
+c
+a
+r
+d
+)
+
+=
+P(Giftcard∣Fraud)P(Fraud) P(Giftcard)
+
+
+
+Remember that the probability of fraud was 10%. Let’s say that the probability of gift card use is 10%, and based on our research the probability of gift card use in a fraudulent order is 60%. So what is the probability that an order is fraudulent given that it uses a gift card?
+
+
+
+P
+
+(
+F
+r
+a
+u
+d
+∣
+G
+i
+f
+t
+c
+a
+r
+d
+)
+
+=
+60%·10% 10%
+=
+60
+%
+
+
+
+The beauty of this is that your work on measuring fraudulent orders is drastically reduced because all you have to look for is the orders with gift cards. Because the total number of orders is 1,000, and 100 of those are fraudulent, we will look at 60 of those fraudulent orders. Out of the remaining 900, 90 used gift cards, which brings the total we need to look at to 150!
+At this point, you’ll notice we reduced the orders needing fraud review from 1,000 to 150 (i.e., 15% of the total). But can we do better? What about introducing something like people using multiple promo codes or other information?
+
+
+Naive Bayesian Classifier
+We’ve already solved the problem of finding fraudulent orders given that a gift card was used, but what about the problem of fraudulent orders given the fact that they have gift cards, or multiple promo codes, or other features? How would we go about that?
+Namely, we want to solve the problem of 
+
+P
+(
+A
+∣
+B
+,
+C
+)
+=
+?
+
+. For this, we need a bit more information and something called the chain rule.
+
+The Chain Rule
+If you think back to probability class, you might recall that the probability of A and B happening is the probability of B given A times the probability of A. Mathematically, this looks like 
+
+P
+(
+A
+∩
+B
+)
+=
+P
+(
+B
+|
+A
+)
+P
+(
+A
+)
+
+. This is assuming these events are not mutually exclusive. Using something called a joint probability, this smaller result transforms into the chain rule.
+Joint probabilities are the probability that all the events will happen. We denote this by using ∩. The generic case of the chain rule is:
+
+Equation 4-4. Chain rule
+
+
+P
+
+(
+A 1 
+,
+A 2 
+,
+⋯
+,
+A n 
+)
+
+=
+P
+
+(
+A 1 
+)
+
+P
+
+(
+A 2 
+∣
+A 1 
+)
+
+P
+
+(
+A 3 
+∣
+A 1 
+,
+A 2 
+)
+
+⋯
+P
+
+(
+A n 
+|
+A 1 
+,
+A 2 
+,
+⋯
+,
+A n-1 
+)
+
+
+
+
+This expanded version is useful in trying to solve our problem by feeding lots of information into our Bayesian probability estimates. But there is one problem: this can quickly evolve into a complex calculation using information we don’t have, so we make one big assumption and act naive.
+
+
+
+Naiveté in Bayesian Reasoning
+The chain rule is useful for solving potentially inclusive problems, but we don’t have the ability to calculate all of those probabilities. For instance, if we were to introduce multiple promos into our fraud example, then we’d have the following to calculate:
+
+
+
+P
+
+(
+F
+r
+a
+u
+d
+∣
+G
+i
+f
+t
+c
+a
+r
+d
+,
+P
+r
+o
+m
+o
+s
+)
+
+=
+P(Giftcard,Promos∣Fraud)P(Fraud) P(Giftcard,Promos)
+
+
+
+Let’s ignore the denominator for now, as it doesn’t depend on whether the order is fraudulent or not. At this point, we need to focus on finding the calculation for P(Giftcard, Promos|Fraud)P(Fraud). If we apply the chain rule, this is equivalent to P(Fraud, Giftcard, Promos).
+You can see this by the following (note that Fraud, Giftcard, and Promo have been abbreviated for space):
+
+
+
+P
+(
+F
+,
+G
+,
+P
+)
+=
+P
+(
+F
+)
+P
+(
+G
+,
+P
+|
+F
+)
+
+
+
+
+
+
+P
+(
+F
+)
+P
+(
+G
+,
+P
+|
+F
+)
+=
+P
+(
+F
+)
+P
+(
+G
+|
+F
+)
+P
+(
+P
+|
+F
+,
+G
+)
+
+
+
+Now at this point we have a conundrum: how do you measure the probability of a promo code given fraud and gift cards? While this is the correct probability, it really can be difficult to measure—especially with more features coming in. What if we were to be a tad naive and assume that we can get away with independence and just say that we don’t care about the interaction between promo codes and gift cards, just the interaction of each independently with fraud?
+In that case, our math would be much simpler:
+
+
+
+P
+(
+F
+r
+a
+u
+d
+,
+G
+i
+f
+t
+c
+a
+r
+d
+,
+P
+r
+o
+m
+o
+)
+=
+P
+(
+F
+r
+a
+u
+d
+)
+P
+(
+G
+i
+f
+t
+c
+a
+r
+d
+∣
+F
+r
+a
+u
+d
+)
+P
+(
+P
+r
+o
+m
+o
+∣
+F
+r
+a
+u
+d
+)
+
+
+
+This would be proportional to our numerator. And, to simplify things even more, we can assert that we’ll normalize later with some magical Z, which is the sum of all the probabilities of classes. So now our model becomes:
+
+
+
+P
+
+(
+F
+r
+a
+u
+d
+∣
+G
+i
+f
+t
+c
+a
+r
+d
+,
+P
+r
+o
+m
+o
+)
+
+=
+1 Z
+P
+
+(
+F
+r
+a
+u
+d
+)
+
+P
+
+(
+G
+i
+f
+t
+c
+a
+r
+d
+∣
+F
+r
+a
+u
+d
+)
+
+P
+
+(
+P
+r
+o
+m
+o
+∣
+F
+r
+a
+u
+d
+)
+
+
+
+
+To turn this into a classification problem, we simply determine which input—fraud or not fraud—yields the highest probability. See Table 4-1.
+
+Table 4-1. Probability of gift cards versus promos
+
+
+
+Fraud
+Not fraud
+
+
+
+
+Gift card present
+60%
+30%
+
+
+Multiple promos used
+50%
+30%
+
+
+Probability of class
+10%
+90%
+
+
+
+At this point, you can use this information to determine whether an order is fraudulent based purely on whether it has a gift card present and whether it used multiple promos. The probability that an order is fraudulent given the use of gift cards and multiple promos is 62.5%. While we can’t exactly figure out how much savings this gives you in terms of the number of orders you must review, we know that we’re using better information and making a better judgment.
+There is one problem, though: what happens when the probability of using multiple promos given a fraudulent order is zero? A zero result can happen for several reasons, including that there just isn’t enough of a sample size. The way we solve this is by using something called a pseudocount.
+
+
+Pseudocount
+There is one big challenge with a Naive Bayesian Classifier, and that is the introduction of new information. For instance, let’s say we have a bunch of emails that are classified as spam or ham. We build our probabilities using all of this data, but then something bad happens: a new spammy word, fuzzbolt. Nowhere in our data did we see the word fuzzbolt, and so when we calculate the probability of spam given the word fuzzbolt, we get a probability of zero. This can have a zeroing-out effect that will greatly skew results toward the data we have.
+Because a Naive Bayesian Classifier relies on multiplying all of the independent probabilities together to come up with a classification, if any of those probabilities are zero then our probability will be zero.
+Take, for instance, the email subject “Fuzzbolt: Prince of Nigeria.” Assuming we strip off of, we have the data shown in Table 4-2.
+
+Table 4-2. Probability of word given ham or spam
+
+
+Word
+Spam
+Ham
+
+
+
+
+Fuzzbolt
+0
+0
+
+
+Prince
+75%
+15%
+
+
+Nigeria
+85%
+10%
+
+
+
+Now let’s assume we want to calculate a score for ham or spam. In both cases, the score would end up being zero because fuzzbolt isn’t present. At that point, because we have a tie, we’d just go with the more common situation, which is ham. This means that we have failed and classified something incorrectly due to one word not being recognized.
+There is an easy fix for that: pseudocount. When we go about calculating the probability, we add one to the count of the word. So, in other words, everything will end up being word_count + 1. This helps mitigate the zeroing-out effect for now. In the case of our fraud detector, we would add one to each count to ensure that it is never zero.
+So in our preceding example, let’s say we have 3,000 words. We would give fuzzbolt a score of 
+1 3000
+. The other scores would change slightly, but this avoids the zeroing-out problem.
+
+
+Spam Filter
+The canonical machine learning example is building a spam filter. In this section, we will work up a simple spam filter, SpamTrainer, using a Naive Bayesian Classifier and improve it by utilizing a 3-gram tokenization model.
+As you have learned before, Naive Bayesian Classifiers can be easily calculated, and operate well under strongly independent conditions. In this example, we will cover the following:
+
+
+What the classes look like interacting with each other
+
+
+A good data source
+
+
+A tokenization model
+
+
+An objective to minimize our error
+
+
+A way to improve over time
+
+
+
+Setup Notes
+Python is constantly changing and I have tried to keep the examples working under both 3.5.x and 2.7.x Python. That being said, things might change as Python changes. For more comprehensive information check out the GitHub repo.
+
+
+Coding and Testing Design
+In our example, each email has an object that takes an .eml type text file that then tokenizes it into something the SpamTrainer can utilize for incoming email messages. See Figure 4-2 for the class diagram.
+
+
+Figure 4-2. Class diagram showing how emails get turned into a SpamTrainer
+
+When it comes to testing we will focus on the tradeoff between false positives and false negatives. With spam detection it becomes important to realize that a false positive (classifying an email as spam when it isn’t) could actually be very bad for business. We will focus on minimizing the false positive rate but similar results could be applied to minimizing false negatives or having them equal each other.
+
+
+Data Source
+There are numerous sources of data that we can use, but the best is raw email messages marked as either spam or ham. For our purposes, we can use the CSDMC2010 SPAM corpus.
+This data set has 4,327 total messages, of which 2,949 are ham and 1,378 are spam. For our proof of concept, this should work well enough.
+
+
+EmailObject
+The EmailObject class has one responsibility, which is to parse an incoming email message according to the RFC for emails. To handle this, we use the standard library in Python because there’s a lot of nuance in there. In our model, all we’re concerned with is subject and body.
+The cases we need to handle are HTML messages, plaintext, and multipart. Everything else we’ll just ignore. Building this class using test-driven development, let’s go through this step by step.
+Starting with the simple plaintext case, we’ll copy one of the example training files from our data set under data/TRAINING/TRAIN_00001.eml to ./test/fixtures/plain.eml. This is a plaintext email and will work for our purposes. Note that the split between a message and header in an email is usually denoted by “\r\n\r\n”. Along with that header information is generally something like “Subject: A Subject goes here.” Using that, we can easily extract our test case, which is:
+import unittest
+
+import io
+import re
+from naive_bayes.email_object import EmailObject
+
+
+class TestPlaintextEmailObject(unittest.TestCase):
+  CLRF = "\n\n"
+
+  def setUp(self):
+    self.plain_file = './tests/fixtures/plain.eml'
+    with io.open(self.plain_file, 'rb') as plaintext:
+      self.text = plaintext.read().decode('utf-8')
+      plaintext.seek(0)
+      self.plain_email = EmailObject(plaintext)
+
+  def test_parse_plain_body(self):
+    body = self.CLRF.join(self.text.split(self.CLRF)[1:])
+    self.assertEqual(self.plain_email.body(), body)
+
+  def test_parses_the_subject(self):
+    subject = re.search("Subject: (.*)", self.text).group(1)
+    self.assertEqual(self.plain_email.subject(), subject)
+
+Unit Testing in Python
+Up until this point we haven’t introduced the unittest package in Python. Its main objective is to define unit tests for us to run on our code. Like similar unit testing frameworks in other languages like Ruby, we build a class that is prefixed with “Test” and then implement specific methods.
+Methods to implement:
+
+
+Any method that is prefixed with test_ will be treated as a test to be run.
+
+
+setUp(self) is a special method that gets run before any test gets run. Think of this like a block of code that gets run before all tests (Table 4-3).
+
+
+
+Table 4-3. Python unittest has many assertions we can use
+
+
+Method
+Checks
+
+
+
+
+assertEqual(a, b)
+a == b
+
+
+assertNotEqual(a, b)
+a != b
+
+
+assertTrue(x)
+bool(x) is True
+
+
+assertFalse(x)
+bool(x) is False
+
+
+assertIs(a,b)
+a is  b
+
+
+assertIsNot(a,b)
+a is not b
+
+
+assertIsNone(x)
+x is None
+
+
+assertIsNotNone(x)
+x is not None
+
+
+assertIn(a,b)
+a in b
+
+
+assertNotIn(a,b)
+a not in b
+
+
+assertIsInstance(a,b)
+isinstance(a,b)
+
+
+assertNotIsInstance(a,b)
+not isinstance(a,b)
+
+
+
+Do note that we will not use all of these methods; they are listed here for future reference.
+
+Now instead of relying purely on regular expressions, we’ll use the standard library of Python. The standard library will handle all of the nitty-gritty details. Making email work for this particular case, we have:
+import email
+import sys
+
+from bs4 import BeautifulSoup
+
+
+class EmailObject(object):
+  """
+  Parses incoming email messages
+  """
+  CLRF = "\n\r\n\r"
+
+  def __init__(self, infile, category=None):
+    self.category = category
+    if sys.version_info > (3, 0):
+      # Python 3 code in this block
+      self.mail = email.message_from_binary_file(infile)
+    else:
+      # Python 2 code in this block
+      self.mail = email.message_from_file(infile)
+
+  def subject(self):
+    """
+    Get message subject line
+    :return: str
+    """
+    return self.mail.get('Subject')
+
+  def body(self):
+    """
+    Get message body
+    :return: str in Py3, unicode in Py2
+    """
+    payload = self.mail.get_payload()
+    return self._single_body(self.mail)
+
+  @staticmethod
+  def _single_body(part):
+    """
+    Get text from part.
+    :param part: email.Message
+    :return: str body or empty str if body cannot be decoded
+    """
+    content_type = part.get_content_type()
+    try:
+      body = part.get_payload(decode=True)
+    except Exception:
+      return ''
+
+    return body
+Note
+BeautifulSoup is a library that parses HTML and XML.
+
+Now that we have captured the case of plaintext, we need to solve the case of HTML. For that, we want to capture only the inner_text. But first we need a test case, which looks something like this:
+import unittest
+
+import io
+import re
+from bs4 import BeautifulSoup
+from naive_bayes.email_object import EmailObject
+
+class TestHTMLEmail(unittest.TestCase):
+  def setUp(self):
+    with io.open('./tests/fixtures/html.eml', 'rb') as html_file:
+      self.html = html_file.read().decode('utf-8')
+      html_file.seek(0)
+      self.html_email = EmailObject(html_file)
+
+  def test_parses_stores_inner_text_html(self):
+    body = "\n\n".join(self.html.split("\n\n")[1:])
+    expected = BeautifulSoup(body, 'html.parser').text
+    actual_body = self.html_email.body()
+    self.assertEqual(actual_body, expected)
+
+  def test_stores_subject(self):
+    expected_subject = re.search("Subject: (.*)", self.html).group(1)
+    actual_subject = self.html_email.subject()
+    self.assertEqual(actual_subject, expected_subject)
+As mentioned, we’re using BeautifulSoup to calculate the inner_text, and we’ll have to use it inside of the Email class as well. Now the problem is that we also need to detect the content_type. So we’ll add that in:
+import email
+import sys
+
+from bs4 import BeautifulSoup
+
+
+class EmailObject(object):
+
+class EmailObject:
+  # __init__
+  # subject
+  # body
+
+  @staticmethod
+  def _single_body(part):
+    """
+    Get text from part.
+    :param part: email.Message
+    :return: str body or empty str if body cannot be decoded
+    """
+    content_type = part.get_content_type()
+    try:
+      body = part.get_payload(decode=True)
+    except Exception:
+      return ''
+
+    if content_type == 'text/html':
+      return BeautifulSoup(body, 'html.parser').text
+    elif content_type == 'text/plain':
+      return body
+    return ''
+At this point, we could add multipart processing as well, but I will leave that as an exercise that you can try out yourself. In the coding repository mentioned earlier in the chapter, you can see the multipart version.
+Now we have a working email parser, but we still have to deal with tokenization, or what to extract from the body and subject.
+
+
+Tokenization and Context
+As Figure 4-3 shows, there are numerous ways to tokenize text, such as by stems, word frequencies, and words. In the case of spam, we are up against a tough problem because things are more contextual. The phrase Buy now sounds spammy, whereas Buy and now do not. Because we are building a Naive Bayesian Classifier, we are assuming that each individual token is contributing to the spamminess of the email.
+
+
+Figure 4-3. Lots of ways to tokenize text
+
+The goal of the tokenizer we’ll build is to extract words into a stream. Instead of returning an array, we want to yield the token as it happens so that we are keeping a low memory profile. Our tokenizer should also downcase all strings to keep them similar:
+import unittest
+
+from naive_bayes.tokenizer import Tokenizer
+
+
+class TestTokenizer(unittest.TestCase):
+  def setUp(self):
+    self.string = "this is a test of the emergency broadcasting system"
+
+  def test_downcasing(self):
+    expectation = ["this", "is", "all", "caps"]
+
+    actual = Tokenizer.tokenize("THIS IS ALL CAPS")
+    self.assertEqual(actual, expectation)
+
+  def test_ngrams(self):
+    expectation = [
+      [u'\u0000', "quick"],
+      ["quick", "brown"],
+      ["brown", "fox"],
+    ]
+
+    actual = Tokenizer.ngram("quick brown fox", 2)
+    self.assertEqual(actual, expectation)
+As promised, we do two things in this tokenizer code. First, we lowercase all words. Second, instead of returning an array, we use a block. This is to mitigate memory constraints, as there is no need to build an array and return it. This makes it lazier. To make the subsequent tests work, though, we will have to fill in the skeleton for our tokenizer module like so:
+class Tokenizer:
+  """
+  Splits lines by whitespaces, converts to lower case and builds n-grams.
+  """
+  NULL = u'\u0000'
+
+  @staticmethod
+  def tokenize(string):
+    return re.findall("\w+", string.lower())
+
+  @staticmethod
+  def unique_tokenizer(string):
+    return set(Tokenizer.tokenize(string))
+
+  @staticmethod
+  def ngram(string, ngram):
+    tokens = Tokenizer.tokenize(string)
+
+    ngrams = []
+
+    for i in range(len(tokens)):
+      shift = i - ngram + 1
+      padding = max(-shift, 0)
+      first_idx = max(shift, 0)
+      last_idx = first_idx + ngram - padding
+
+      ngrams.append(Tokenizer.pad(tokens[first_idx:last_idx], padding))
+
+    return ngrams
+
+  @staticmethod
+  def pad(tokens, padding):
+    padded_tokens = []
+
+    for i in range(padding):
+      padded_tokens.append(Tokenizer.NULL)
+
+    return padded_tokens + tokens
+Now that we have a way of parsing and tokenizing emails, we can move on to build the Bayesian portion: the SpamTrainer.
+
+
+SpamTrainer
+The SpamTrainer will accomplish three things:
+
+
+Storing training data
+
+
+Building a Bayesian classifier
+
+
+Error minimization through cross-validation
+
+
+
+Storing training data
+The first step we need to tackle is to store training data from a given set of email messages. In a production environment, you would pick something that has persistence. In our case, we will go with storing everything in one big dictionary.
+Note
+A set is a unique collection of data.
+
+Remember that most machine learning algorithms have two steps: training and then computation. Our training step will consist of these substeps:
+
+
+Storing a set of all categories
+
+
+Storing unique word counts for each category
+
+
+Storing the totals for each category
+
+
+So first we need to capture all of the category names; that test would look something like this:
+import unittest
+
+import io
+from naive_bayes.email_object import EmailObject
+from naive_bayes.spam_trainer import SpamTrainer
+
+
+class TestSpamTrainer(unittest.TestCase):
+  def setUp(self):
+    self.training = [['spam', './tests/fixtures/plain.eml'],
+                     ['ham', './tests/fixtures/small.eml'],
+                     ['scram', './tests/fixtures/plain.eml']]
+    self.trainer = SpamTrainer(self.training)
+    with io.open('./tests/fixtures/plain.eml', 'rb') as eml_file:
+      self.email = EmailObject(eml_file)
+
+  def test_multiple_categories(self):
+    categories = self.trainer.categories
+    expected = set([k for k, v in self.training])
+    self.assertEqual(categories, expected)
+The solution is in the following code:
+import io
+from collections import defaultdict
+
+from naive_bayes.tokenizer import Tokenizer
+from naive_bayes.email_object import EmailObject
+
+
+class SpamTrainer(object):
+  """
+  Storing training data
+  Building a Bayesian classifier
+  Error minimization through cross-validation
+  """
+
+  def __init__(self, training_files):
+    self.categories = set()
+
+    for category, _ in training_files:
+      self.categories.add(category)
+
+    self.totals = defaultdict(float)
+
+    self.training = {c: defaultdict(float) for c in self.categories}
+
+    self.to_train = training_files
+
+  def total_for(self, category):
+    """
+    Get
+    :param category:
+    :return:
+    """
+    return self.totals[category]
+You’ll notice we’re just using a set to capture this for now, as it’ll hold on to the unique version of what we need. Our next step is to capture the unique tokens for each email. We are using the special category called _all to capture the count for everything:
+class TestSpamTrainer(unittest.TestCase):
+  # setUp
+  # test_multiple_categories
+
+  def test_counts_all_at_zero(self):
+    for cat in ['_all', 'spam', 'ham', 'scram']:
+      self.assertEqual(self.trainer.total_for(cat), 0)
+To get this to work, we have introduced a new method called train(), which will take the training data, iterate over it, and save it into an internal hash. The following is a solution:
+class SpamTrainer(object):
+  # __init__
+  # total_for
+
+  def train(self):
+    for category, file in self.to_train:
+      with io.open(file, 'rb') as eml_file:
+        email = EmailObject(eml_file)
+
+      self.categories.add(category)
+
+      for token in Tokenizer.unique_tokenizer(email.body()):
+        self.training[category][token] += 1
+        self.totals['_all'] += 1
+        self.totals[category] += 1
+
+    self.to_train = {}
+Now we have taken care of the training aspect of our program but really have no clue how well it performs. And it doesn’t classify anything. For that, we still need to build our classifier.
+
+
+Building the Bayesian classifier
+To refresh your memory, Bayes’ theorem is:
+
+
+
+P
+
+(
+A i 
+|
+B
+)
+
+=
+P(B∣A i )P(A i ) ∑ j P(B∣A j )P(A j )
+
+
+
+But because we’re being naive about this, we’ve distilled it into something much simpler:
+
+Equation 4-5. Bayesian spam score
+
+
+S
+c
+o
+r
+e
+
+(
+S
+p
+a
+m
+,
+W 1 
+,
+W 2 
+,
+⋯
+,
+W n 
+)
+
+=
+P
+
+(
+S
+p
+a
+m
+)
+
+P
+
+(
+W 1 
+∣
+S
+p
+a
+m
+)
+
+P
+
+(
+W 2 
+∣
+S
+p
+a
+m
+)
+
+⋯
+P
+
+(
+W n 
+∣
+S
+p
+a
+m
+)
+
+
+
+
+which is then divided by some normalizing constant, Z.
+Our goal now is to build the methods score, normalized_score, and classify. The score method will just be the raw score from the preceding calculation, while normalized_score will fit the range from 0 to 1 (we get this by dividing by the total sum, Z).
+The score method’s test is as follows:
+class TestSpamTrainer(unittest.TestCase):
+  # setUp
+  # test_multiple_categories
+  # test_counts_all_at_zero
+
+  def test_probability_being_1_over_n(self):
+    trainer = self.trainer
+    scores = list(trainer.score(self.email).values())
+
+    self.assertAlmostEqual(scores[0], scores[-1])
+
+    for i in range(len(scores) - 1):
+      self.assertAlmostEqual(scores[i], scores[i + 1])
+Because the training data is uniform across the categories, there is no reason for the score to differ across them. To make this work in our SpamTrainer object, we will have to fill in the pieces like so:
+class SpamTrainer(object):
+  # __init__
+  # total_for
+  # train
+
+  def score(self, email):
+    """
+    Calculates score
+    :param email: EmailObject
+    :return: float number
+    """
+    self.train()
+
+    cat_totals = self.totals
+
+    aggregates = {cat: cat_totals[cat] / cat_totals['_all'] \
+                  for cat in self.categories}
+
+    for token in Tokenizer.unique_tokenizer(email.body()):
+      for cat in self.categories:
+        value = self.training[cat][token]
+        r = (value + 1) / (cat_totals[cat] + 1)
+        aggregates[cat] *= r
+
+    return aggregates
+This test does the following:
+
+
+First, it trains the model if it’s not already trained (the train method handles this).
+
+
+For each token of the blob of an email we iterate through all categories and calculate the probability of that token being within that category. This calculates the Naive Bayesian score of each without dividing by Z.
+
+
+Now that we have score figured out, we need to build a normalized_score  that adds up to 1. Testing for this, we have:
+class TestSpamTrainer(unittest.TestCase):
+  # setUp
+  # test_multiple_categories
+  # test_counts_all_at_zero
+  # test_probability_being_1_over_n
+
+  def test_adds_up_to_one(self):
+    trainer = self.trainer
+    scores = list(trainer.normalized_score(self.email).values())
+    self.assertAlmostEqual(sum(scores), 1)
+    self.assertAlmostEqual(scores[0], 1 / 2.0)
+And subsequently on the SpamTrainer class we have:
+class SpamTrainer(object):
+  # __init__
+  # total_for
+  # train
+  # score
+
+
+  def normalized_score(self, email):
+    """
+    Calculates normalized score
+    :param email: EmailObject
+    :return: float number
+    """
+    score = self.score(email)
+    scoresum = sum(score.values())
+
+    normalized = {cat: (aggregate / scoresum) \
+                  for cat, aggregate in score.items()}
+    return normalized
+
+
+Calculating a classification
+Because we now have a score, we need to calculate a classification for the end user to use. This classification should take the form of an object that returns guess and score. There is an issue of tie breaking here.
+Let’s say, for instance, we have a model that has turkey and tofu. What happens when the scores come back evenly split? Probably the best course of action is to go with which is more popular, whether it be turkey or tofu. What about the case where the probability is the same? In that case, we can just go with alphabetical order.
+When testing for this, we need to introduce a preference order—that is, the occurrence of each category. A test for this would be:
+class TestSpamTrainer(unittest.TestCase):
+  # setUp
+  # test_multiple_categories
+  # test_counts_all_at_zero
+  # test_probability_being_1_over_n
+  # test_adds_up_to_one
+
+  def test_preference_category(self):
+    trainer = self.trainer
+    expected = sorted(trainer.categories,
+                      key=lambda cat: trainer.total_for(cat))
+
+    self.assertEqual(trainer.preference(), expected)
+Getting this to work is trivial and would look like this:
+class SpamTrainer(object):
+  # __init__
+  # total_for
+  # train
+  # score
+  # normalized_score
+
+  def preference(self):
+    return sorted(self.categories, key=lambda cat: self.total_for(cat))
+Now that we have preference set up, we can test for our classification being correct. The code to do that is as follows:
+class TestSpamTrainer(unittest.TestCase):
+  # setUp
+  # test_multiple_categories
+  # test_counts_all_at_zero
+  # test_probability_being_1_over_n
+  # test_adds_up_to_one
+  # test_preference_category
+
+  def test_give_preference_to_whatever_has_the_most(self):
+    trainer = self.trainer
+    score = trainer.score(self.email)
+
+    preference = trainer.preference()[-1]
+    preference_score = score[preference]
+
+    expected = SpamTrainer.Classification(preference, preference_score)
+    self.assertEqual(trainer.classify(self.email), expected)
+Getting this to work in code again is simple:
+class SpamTrainer:
+  # __init__
+  # total_for
+  # train
+  # score
+  # normalized_score
+  # preference
+
+  class Classification(object):
+    """
+    Guess and score
+    """
+
+    def __init__(self, guess, score):
+      self.guess = guess
+      self.score = score
+
+    def __eq__(self, other):
+      return self.guess == other.guess and self.score == other.score
+
+  def classify(self, email):
+    score = self.score(email)
+
+    max_score = 0.0
+    preference = self.preference()
+    max_key = preference[-1]
+
+    for k, v in score.items():
+      if v > max_score:
+        max_key = k
+        max_score = v
+      elif v == max_score and preference.index(k) > preference.index(max_key):
+        max_key = k
+        max_score = v
+    return self.Classification(max_key, max_score)
+
+
+
+Error Minimization Through Cross-Validation
+At this point, we need to measure how well our model works. To do so, we need to take the data that we downloaded earlier and do a cross-validation test on it. From there, we need to measure only false positives, and then based on that determine whether we need to fine-tune our model more.
+
+Minimizing false positives
+Up until this point, our goal with making models has been to minimize error. This error could be easily denoted as the count of misclassifications divided by the total classifications. In most cases, this is exactly what we want, but in a spam filter this isn’t what we’re optimizing for. Instead, we want to minimize false positives. False positives, also known as Type I errors, are when the model incorrectly predicts a positive when it should have been negative.
+In our case, if our model predicts spam when in fact the email isn’t, then the user will lose her emails. We want our spam filter to have as few false positives as possible. On the other hand, if our model incorrectly predicts something as ham when it isn’t, we don’t care as much.
+Instead of minimizing the total misclassifications divided by total classifications, we want to minimize spam misclassifications divided by total classifications. We will also measure false negatives, but they are less important because we are trying to reduce spam that enters someone’s mailbox, not eliminate it.
+To accomplish this, we first need to take some information from our data set, which we’ll cover next.
+
+
+Building the two folds
+Inside the spam email training data is a file called keyfile.label. It contains information about whether the file is spam or ham. Using that, we can build a cross-validation script. First let’s start with setup, which involves importing the packages we’ve worked on and some IO and regular expression libraries:
+import io
+
+from spam_trainer import SpamTrainer
+from email_object import EmailObject
+
+print("Cross Validation")
+
+correct = 0
+false_positives = 0.0
+false_negatives = 0.0
+confidence = 0.0
+This doesn’t do much yet except start with a zeroed counter for correct, false positives, false negatives, and confidence. To set up the test we need to load the label data and turn that into a SpamTrainer object. We can do that using the following:
+def label_to_training_data(fold_file):
+  training_data = []
+
+  for line in io.open(fold_file, 'r'):
+    label_file = line.rstrip().split(' ')
+    training_data.append(label_file)
+
+  print(training_data)
+  return SpamTrainer(training_data)
+
+trainer = label_to_training_data('./tests/fixtures/fold1.label')
+This instantiates a trainer object by calling the label_to_training_data function. Next we parse the emails we have in fold number 2:
+def parse_emails(keyfile):
+  emails = []
+  print("Parsing emails for " + keyfile)
+
+  for line in io.open(keyfile, 'r'):
+    label, file = line.rstrip().split(' ')
+
+    with io.open(file, 'rb') as eml_file:
+      emails.append(EmailObject(eml_file, category=label))
+
+  print("Done parsing files for " + keyfile)
+  return emails
+
+emails = parse_emails('./tests/fixtures/fold2.label')
+Now we have a trainer object and emails parsed. All we need to do now is calculate the accuracy and validation metrics:
+def validate(trainer, set_of_emails):
+  correct = 0
+  false_positives = 0.0
+  false_negatives = 0.0
+  confidence = 0.0
+
+  for email in set_of_emails:
+    classification = trainer.classify(email)
+    confidence += classification.score
+
+    if classification.guess == 'spam' and email.category == 'ham':
+      false_positives += 1
+    elif classification.guess == 'ham' and email.category == 'spam':
+      false_negatives += 1
+    else:
+      correct += 1
+
+  total = false_positives + false_negatives + correct
+
+  false_positive_rate = false_positives / total
+  false_negative_rate = false_negatives / total
+  accuracy = (false_positives + false_negatives) / total
+  message = """
+  False Positives: {0}
+  False Negatives: {1}
+  Accuracy: {2}
+  """.format(false_positive_rate, false_negative_rate, accuracy)
+  print(message)
+
+
+validate(trainer, emails)
+Last, we can analyze the other direction of the cross-validation (i.e., validating fold1 against a fold2 trained model):
+trainer = label_to_training_data('./tests/fixtures/fold2.label')
+emails = parse_emails('./tests/fixtures/fold1.label')
+validate(trainer, emails)
+
+
+Cross-validation and error measuring
+From here, we can actually build our cross-validation test, which will read fold1 and fold2 and then cross-validate to determine the actual error rate. The test looks something like this (see Table 4-4 for the results):
+Cross Validation::Fold1 unigram model
+  validates fold1 against fold2 with a unigram model
+
+        False Positives: 0.0036985668053629217
+        False Negatives: 0.16458622283865001
+        Error Rate: 0.16828478964401294
+
+Cross Validation::Fold2 unigram model
+  validates fold2 against fold1 with a unigram model
+
+        False Positives: 0.005545286506469501
+        False Negatives: 0.17375231053604437
+        Error Rate: 0.17929759704251386
+
+Table 4-4. Spam versus ham
+
+
+Category
+Email count
+Word count
+Probability of email
+Probability of word
+
+
+
+
+Spam
+1,378
+231,472
+31.8%
+36.3%
+
+
+Ham
+2,949
+406,984
+68.2%
+63.7%
+
+
+Total
+4,327
+638,456
+100%
+100%
+
+
+
+As you can see, ham is more probable, so we will default to that and more often than not we’ll classify something as ham when it might not be. The good thing here, though, is that we have reduced spam by 80% without sacrificing incoming messages.
+
+
+
+
+Conclusion
+In this chapter, we have delved into building and understanding a Naive Bayesian Classifier. As you have learned, this algorithm is well suited for data that can be asserted to be independent. Being a probablistic model, it works well for classifying data into multiple directions given the underlying score. This supervised learning method is useful for fraud detection, spam filtering, and any other problem that has these types of features.
+
+
+
+
+Get Thoughtful Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+We are a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5. Decision Trees and Random Forests - Thoughtful Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thoughtful Machine Learning with Python by Matthew Kirk
+
+
+
+
+Buy on Amazon
+Buy on ebooks.com
+
+
+
+
+
+
+
+Get full access to Thoughtful Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+Chapter 5. Decision Trees and Random Forests
+Every day we make decisions. Every second we make decisions. Our perceptive brains receive roughly 12.5 gigabytes to 2.5 terabytes of information per second—an impressive amount—but they only focus on 60 bits of information per second.1 Humans are exceptionally adept at taking in lots of data and quickly finding patterns in it.
+But we’re not so great under pressure. In Chapter 1 we discussed flight and how checklists have solved many of its problems. We don’t use checklists because we’re stupid; on the contrary, it’s because under stress we forget small bits of information.
+What if the effects of our decisions were even greater? Take, for instance, classifying mushrooms in the forest. If you are lucky enough to live in a climate that supports mushrooms such as morels, which are delicious, then you can see the allure of going to find your own, as they are quite expensive! But as we all know finding mushrooms in the forest is extremely dangerous if you misclassify them.
+While death by mushroom is quite rare, the effects are well documented. Death caps, Amanita phalloides, cause liver failure. On the other hand, if you were to eat a Psilocybe semilanceata by accident, you would be in for a trip. Also known as liberty caps, these are the notorious magic mushrooms that people ingest to experience psychedelic effects!
+While we as humans are good at processing information, we might not be the best at making decisions that are objective. When ...
+
+
+Get Thoughtful Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+We are a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6. Hidden Markov Models - Thoughtful Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thoughtful Machine Learning with Python by Matthew Kirk
+
+
+
+
+Buy on Amazon
+Buy on ebooks.com
+
+
+
+
+
+
+
+Get full access to Thoughtful Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+Chapter 6. Hidden Markov Models
+Intuition informs much of what we do: for example, it tells us that certain words tend to be a certain part of speech, or that if a user visits a signup page, she has a higher probability of becoming a customer. But how would you build a model around intuition?
+Hidden Markov models (HMMs) are well versed in finding a hidden state of a given system using observations and an assumption about how those states work. In this chapter, we will first talk about how to track user states given their actions, then explore more about what an HMM is, and finally build a part-of-speech tagger using the Brown Corpus. The part-of-speech tagger will tag words in sentences as nouns, pronouns, or any part of speech in the Brown Corpus.
+HMMs can be either supervised or unsupervised and also are called Markovian due to their reliance on a Markov model. They work well where there doesn’t need to be a lot of historical information built into the model. They also work well for adding localized context to a classification. Unlike what we saw with Naive Bayesian Classification, which relied on a lot of history to determine whether a user is spammy or not, HMMs can be used to predict changes over time in a model.
+
+Tracking User Behavior Using State Machines
+Have you ever heard of the sales funnel? This is the idea that there are different levels of customer interaction. People will start as prospects and then transition into more engaged states (see Figure 6-1).
+
+Figure ...
+
+
+Get Thoughtful Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+We are a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7. Support Vector Machines - Thoughtful Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thoughtful Machine Learning with Python by Matthew Kirk
+
+
+
+
+Buy on Amazon
+Buy on ebooks.com
+
+
+
+
+
+
+
+Get full access to Thoughtful Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+Chapter 7. Support Vector Machines
+In this chapter, we will set out to solve a common problem: determining whether customers are happy or not. We’ll approach this by understanding that happy customers generally say nice things while unhappy ones don’t. This is their sentiment.
+There are an infinite amount of solutions to this problem, but this chapter will focus on just one that works well: support vector machines (SVMs). This algorithm uses decision boundaries to split data into multiple parts and operates well in higher dimensions due to feature transformation and ignoring distances between data points. We will discuss the normal testing methods we have laid out before, such as:
+
+
+Cross-validation
+
+
+Confusion matrix
+
+
+Precision and recall
+
+
+But we will also delve into a new way of improving models, known as feature transformation. In addition, we will discuss the possibilities of the following phenomena happening in a problem of sentiment analysis:
+
+
+Entanglement
+
+
+Unstable data
+
+
+Correction cascade
+
+
+Configuration debt
+
+
+
+Customer Happiness as a Function of What They Say
+Our online store has two sets of customers, happy and unhappy. The happy customers return to the site consistently and buy from the company, while the unhappy customers are either window shoppers or spendthrifts who don’t care about the company or who are spending their money elsewhere. Our goals are to determine whether customer happiness correlates with our bottom line, and, down the line, to monitor their ...
+
+
+Get Thoughtful Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+We are a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8. Neural Networks - Thoughtful Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thoughtful Machine Learning with Python by Matthew Kirk
+
+
+
+
+Buy on Amazon
+Buy on ebooks.com
+
+
+
+
+
+
+
+Get full access to Thoughtful Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+Chapter 8. Neural Networks
+Humans are amazing pattern matchers. When we come out of the womb, we are able to make sense of the surrounding chaos until we have learned how to operate effectively in the world. This of course has to do with our upbringing, our environment, but most importantly our brain.
+Your brain contains roughly 86 billion neurons that talk to one another over a network of synapses. These neurons are able to control your body functions as well as form thoughts, memories, and mental models. Each one of these neurons acts as part of a computer network, taking inputs and sending outputs to other neurons, all communicating in orchestrated fashion.
+Mathematicians decided a long time ago  it would be interesting to try to piece together mathematical representations of our brains, called neural networks. While the original research is over 60 years old, many of the techniques conceived back then still apply today and can be used to build models to tricky to compute problems.
+In this chapter we will discuss neural networks in depth. We’ll cover:
+
+
+Threshold logic, or how to build a Boolean function
+
+
+Neural networks as chaotic Boolean functions
+
+
+How to construct a feed-forward neural net
+
+
+Testing strategies for neural networks through gradient descent
+
+
+An example of classifying the language of handwritten text
+
+
+
+What Is a Neural Network?
+In a lot of ways neural networks are the perfect machine learning construct. They are a way of mapping inputs to a general output ...
+
+
+Get Thoughtful Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+We are a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9. Clustering - Thoughtful Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thoughtful Machine Learning with Python by Matthew Kirk
+
+
+
+
+Buy on Amazon
+Buy on ebooks.com
+
+
+
+
+
+
+
+Get full access to Thoughtful Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+Chapter 9. Clustering
+Up until this point we have been solving problems of fitting a function to a set of data. For instance, given previously observed mushroom attributes and edibleness, how would we classify new mushrooms? Or, given a neighborhood, what should the house value be?
+This chapter talks about a completely different learning problem: clustering. This is a subset of unsupervised learning methods and is useful in practice for understanding data at its core.
+If you’ve been to a library you’ve seen clustering at work. The Dewey Decimal system is a form of clustering. Dewey came up with a system that attached numbers of increasing granularity to categories of books, and it revolutionized libraries.
+We will talk about what it means to be unsupervised and what power exists in that, as well as two clustering algorithms: K-Means and expectation maximization (EM) clustering. We will also address two other issues associated with clustering and unsupervised learning:
+
+
+How do you test a clustering algorithm?
+
+
+The impossibility theorem.
+
+
+
+Studying Data Without Any Bias
+If I were to give you an Excel spreadsheet full of data, and instead of giving you any idea as to what I’m looking for, just asked you to tell me something, what could you tell me? That is what unsupervised learning aims to do: study what the data is about.
+A more formal definition would be to think of unsupervised learning as finding the best function f such that f(x) = x. At first glance, wouldn’t x = x? But ...
+
+
+Get Thoughtful Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+We are a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+10. Improving Models and Data Extraction - Thoughtful Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thoughtful Machine Learning with Python by Matthew Kirk
+
+
+
+
+Buy on Amazon
+Buy on ebooks.com
+
+
+
+
+
+
+
+Get full access to Thoughtful Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+Chapter 10. Improving Models and Data Extraction
+How do you go about improving upon a simple machine learning algorithm such as Naive Bayesian Classifiers, SVMs, or really any method? That is what we will delve into in this chapter, by talking about four major ways of improving models:
+
+
+Feature selection
+
+
+Feature transformation
+
+
+Ensemble learning
+
+
+Bootstrapping
+
+
+I’ll outline the benefits of each of these methods but in general they reduce entanglement, overcome the curse of dimensionality, and reduce correction cascades and sensitivity to data changes.
+They each have certain pros and cons and should be used when there is a purpose behind it. Sometimes problems are so sufficiently complex that tweaking and improvement are warranted at this level, other times they are not. That is a judgment people must make depending on the business context.
+
+Debate Club
+I’m not sure if this is common throughout the world, but in the United States, debate club is a high school fixture. For those of you who haven’t heard of this, it’s a simple idea: high schoolers will take polarizing issues and debate their side. This serves as a great way for students who want to become lawyers to try out their skills arguing for a case.
+The fascinating thing about this is just how rigorous and disciplined these kids are. Usually they study all kinds of facts to put together a dossier of important points to make. Sometimes they argue for a side they don’t agree with but they do so with conviction.
+Why am ...
+
+
+Get Thoughtful Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+We are a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+11. Putting It Together: Conclusion - Thoughtful Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thoughtful Machine Learning with Python by Matthew Kirk
+
+
+
+
+Buy on Amazon
+Buy on ebooks.com
+
+
+
+
+
+
+
+Get full access to Thoughtful Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+Chapter 11. Putting It Together: Conclusion
+Well, here we are! The end of the book. While you probably don’t have the same depth of understanding as a PhD in machine learning, I hope you have learned something. Specifically, I hope you’ve developed a thought process for approaching problems that machine learning works so well at solving. I firmly believe that using tests is the only way that we can effectively use the scientific method. It is the reason the modern world exists, and it helps us become much better at writing code.
+Of course, you can’t write a test for everything, but it’s the mindset that matters. And hopefully you have learned a bit about how you can apply that mindset to machine learning. In this chapter, we will discuss what we covered at a high level, and I’ll list some suggested reading so you can dive further into machine learning research.
+
+Machine Learning Algorithms Revisited
+As we touched on earlier in the book, machine learning  is split into three main categories: supervised,  unsupervised,  and  reinforcement learning (Table 11-1). This book skips reinforcement learning, but I highly suggest you research it now that you have a better background. I’ll list a source for you in the final section of this chapter.
+
+Table 11-1. Machine learning categories
+
+
+Category
+Description
+
+
+
+
+Supervised
+Supervised learning is the most common machine learning category. This is functional approximation. We are trying to map some data points to some fuzzy function. Optimization-wise, ...
+
+
+Get Thoughtful Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+We are a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Index - Thoughtful Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thoughtful Machine Learning with Python by Matthew Kirk
+
+
+
+
+Buy on Amazon
+Buy on ebooks.com
+
+
+
+
+
+
+
+Get full access to Thoughtful Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+IndexAactivation functions, Neurons-Activation FunctionsAdaboost, BoostingAdzic, Gojko, Writing the Right SoftwareAgile Manifesto, Testing or TDDalgorithms summary, What Can Machine Learning Accomplish?-What Can Machine Learning Accomplish?, Machine Learning Algorithms Revisited-Machine Learning Algorithms RevisitedAmazonFresh, Writing the Right Softwareartificial neural networks, History of Neural NetsBback propagation algorithm, Training Algorithms, The Delta Rulebagging, Bagging-Bagging, BaggingBain, Alexander, History of Neural NetsBayes' theorem, Inverse Conditional Probability (aka Bayes’ Theorem)(see also Naive Bayesian Classification)BeautifulSoup, EmailObjectBeck, Kent, Testing or TDDBoolean logic, Boolean Logicboosting, Boosting-Boostingbootstrap aggregation (see bagging)Brown Corpus, Part-of-Speech Tagging with the Brown Corpus-How to Make This Model Better(see also part-of-speech tagging with the Brown Corpus)Cchain rule, The Chain RuleChanging Anything Changes Everything (CACE), SRPclustering, Clustering-Conclusion, How to Use This Information to Solve Problemsconsistency in, The Impossibility Theoremdata gathering, Gathering the DataEM algorithm, EM Clustering-Maximization, EM Clustering Our Data-The Results from the EM Jazz Clusteringexample with music categorization, Example: Categorizing Music-The Results from the EM Jazz Clusteringfitness functions, Fitness of a Clusterground truth testing, Comparing Results to Ground Truthand the impossibility theorem, The Impossibility ...
+
+
+Get Thoughtful Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+We are a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

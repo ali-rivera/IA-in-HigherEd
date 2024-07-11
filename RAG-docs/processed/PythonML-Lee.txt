@@ -1,0 +1,3537 @@
+
+
+
+
+
+
+CHAPTER 1: Introduction to Machine Learning - Python Machine Learning [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning by Wei-Meng Lee
+
+
+
+
+
+
+
+Get full access to Python Machine Learning and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+CHAPTER 1Introduction to Machine Learning
+
+Welcome to Python Machine Learning! The fact that you are reading this book is a clear indication of your interest in this very interesting and exciting topic.
+This book covers machine learning, one of the hottest programming topics in more recent years. Machine learning (ML) is a collection of algorithms and techniques used to design systems that learn from data. These systems are then able to perform predictions or deduce patterns from the supplied data.
+With computing power increasing exponentially and prices decreasing simultaneously, there is no better time for machine learning. Machine learning tasks that usually require huge processing power are now possible on desktop machines. Nevertheless, machine learning is not for the faint of heart—it requires a good foundation in mathematics, statistics, as well as programming knowledge. The majority of the books in the market on machine learning go into too much detail, which often leaves beginning readers gasping for air. Most of the discussion on machine learning revolves heavily around statistical theories and algorithms, so unless you are a mathematician or a PhD candidate, you will likely find them difficult to digest. For most people, developers in particular, what they want is to have a foundational understanding of how machine learning works, and most importantly, how to apply machine learning in their applications. It is with this motive in mind that I set out to write this book. ...
+
+
+Get Python Machine Learning now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CHAPTER 2: Extending Python Using NumPy - Python Machine Learning [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning by Wei-Meng Lee
+
+
+
+
+
+
+
+Get full access to Python Machine Learning and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+CHAPTER 2Extending Python Using NumPy
+
+What Is NumPy?
+In Python, you usually use the list data type to store a collection of items. The Python list is similar to the concept of arrays in languages like Java, C#, and JavaScript. The following code snippet shows a Python list:
+list1 = [1,2,3,4,5] 
+Unlike arrays, a Python list does not need to contain elements of the same type. The following example is a perfectly legal list in Python:
+list2 = [1,"Hello",3.14,True,5] 
+While this unique feature in Python provides flexibility when handling multiple types in a list, it has its disadvantages when processing large amounts of data (as is typical in machine learning and data science projects). The key problem with Python's list data type is its efficiency. To allow a list to have non‐uniform type items, each item in the list is stored in a memory location, with the list containing an “array” of pointers to each of these locations. A Python list requires the following:
+
+At least 4 bytes per pointer.
+At least 16 bytes for the smallest Python object—4 bytes for a pointer, 4 bytes for the reference count, 4 bytes for the value. All of these together round up to 16 bytes.
+ Due to the way that a Python list is implemented, accessing items in a large list is computationally expensive. To solve this limitation with Python's list feature, Python programmers turn to NumPy, an extension to the Python programming language that adds support for large, multidimensional arrays and matrices, along with ...
+
+
+Get Python Machine Learning now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CHAPTER 3: Manipulating Tabular Data Using Pandas - Python Machine Learning [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning by Wei-Meng Lee
+
+
+
+
+
+
+
+Get full access to Python Machine Learning and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+CHAPTER 3Manipulating Tabular Data Using Pandas
+
+What Is Pandas?
+While NumPy arrays are a much‐improved N‐dimensional array object version over Python's list, it is insufficient to meet the needs of data science. In the real world, data are often presented in table formats. For example, consider the content of the CSV file shown here:,DateTime,mmol/L
+0,2016-06-01 08:00:00,6.1
+1,2016-06-01 12:00:00,6.5
+2,2016-06-01 18:00:00,6.7
+3,2016-06-02 08:00:00,5.0
+4,2016-06-02 12:00:00,4.9
+5,2016-06-02 18:00:00,5.5
+6,2016-06-03 08:00:00,5.6
+7,2016-06-03 12:00:00,7.1
+8,2016-06-03 18:00:00,5.9
+9,2016-06-04 09:00:00,6.6
+10,2016-06-04 11:00:00,4.1
+11,2016-06-04 17:00:00,5.9
+12,2016-06-05 08:00:00,7.6
+13,2016-06-05 12:00:00,5.1
+14,2016-06-05 18:00:00,6.9
+15,2016-06-06 08:00:00,5.0
+16,2016-06-06 12:00:00,6.1
+17,2016-06-06 18:00:00,4.9
+18,2016-06-07 08:00:00,6.6
+19,2016-06-07 12:00:00,4.1
+20,2016-06-07 18:00:00,6.9
+21,2016-06-08 08:00:00,5.6
+22,2016-06-08 12:00:00,8.1
+23,2016-06-08 18:00:00,10.9
+24,2016-06-09 08:00:00,5.2
+25,2016-06-09 12:00:00,7.1
+26,2016-06-09 18:00:00,4.9 
+The CSV file contains rows of data that are divided into three columns—index, date and time of recording, and blood glucose readings in mmol/L. To be able to deal with data stored as tables, you need a new data type that is more suited to deal with it—Pandas. While Python supports lists and dictionaries for manipulating structured data, it is not well suited for manipulating numerical tables, such as the one stored in the CSV ...
+
+
+Get Python Machine Learning now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CHAPTER 4: Data Visualization Using matplotlib - Python Machine Learning [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning by Wei-Meng Lee
+
+
+
+
+
+
+
+Get full access to Python Machine Learning and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+CHAPTER 4Data Visualization Using matplotlib
+
+What Is matplotlib?
+As the adage goes, “A picture is worth a thousand words.” This is probably most true in the world of machine learning. No matter how large or how small your dataset, it is often very useful (and many times, essential) that you are able to visualize the data and see the relationships between the various features within it. For example, given a dataset containing a group of students with their family details (such as examination results, family income, educational background of parents, and so forth), you might want to establish a relationship between the students' results with their family income. The best way to do this would be to plot a chart displaying the related data. Once the chart is plotted, you can then use it to draw your own conclusions and determine whether the results have a positive relationship to family income.
+In Python, one of the most commonly used tools for plotting is matplotlib. Matplotlib is a Python 2D plotting library that you can use to produce publication‐quality charts and figures. Using matplotlib, complex charts and figures can be generated with ease, and its integration with Jupyter Notebook makes it an ideal tool for machine learning.
+In this chapter, you will learn the basics of matplotlib. In addition, you will also learn about Seaborn, a complementary data visualization library that is based on matplotlib.
+
+
+Plotting Line Charts
+To see how easy it is to use matplotlib, let's plot ...
+
+
+Get Python Machine Learning now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CHAPTER 5: Getting Started with Scikit‐learn for Machine Learning - Python Machine Learning [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning by Wei-Meng Lee
+
+
+
+
+
+
+
+Get full access to Python Machine Learning and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+CHAPTER 5Getting Started with Scikit‐learn for Machine Learning
+
+Introduction to Scikit‐learn
+In Chapters 2–4, you learned how to use Python together with libraries such as NumPy and Pandas to perform number crunching, data visualization, and analysis. For machine learning, you can also use these libraries to build your own learning models. However, doing so would require you to have a strong appreciation of the mathematical foundation for the various machine learning algorithms—not a trivial matter.
+Instead of implementing the various machine learning algorithms manually by hand, fortunately, someone else has already done the hard work for you. Introducing Scikit‐learn, a Python library that implements the various types of machine learning algorithms, such as classification, regression, clustering, decision tree, and more. Using Scikit‐learn, implementing machine learning is now simply a matter of calling a function with the appropriate data so that you can fit and train the model.
+In this chapter, first you will learn the various venues where you can get the sample datasets to learn how to perform machine learning. You will then learn how to use Scikit‐learn to perform simple linear regression on a simple dataset. Finally, you will learn how to perform data cleansing.
+
+
+Getting Datasets
+Often, one of the challenges in machine learning is obtaining sample datasets for experimentation. In machine learning, when you are just getting started with an algorithm, it is often useful ...
+
+
+Get Python Machine Learning now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CHAPTER 6: Supervised Learning—Linear Regression - Python Machine Learning [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning by Wei-Meng Lee
+
+
+
+
+
+
+
+Get full access to Python Machine Learning and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+CHAPTER 6Supervised Learning—Linear Regression
+
+Types of Linear Regression
+In the previous chapter, you learned how to get started with machine learning using simple linear regression, first using Python, and then followed by using the Scikit‐learn library. In this chapter, we will look into linear regression in more detail and discuss another variant of linear regression known as polynomial regression.
+To recap, Figure 6.1 shows the Iris dataset used in Chapter 5, “Getting Started with Scikit‐learn for Machine Learning.” The first four columns are known as the features, or also commonly referred to as the independent variables. The last column is known as the label, or commonly called the dependent variable (or dependent variables if there is more than one label).
+ 
+Figure 6.1: Some terminologies for features and label
+
+
+TIP
+Features are also sometimes called explanatory variables, while labels are also sometimes called targets.
+
+In simple linear regression, we talked about the linear relationship between one independent variable and one dependent variable. In this chapter, besides simple linear regression, we will also discuss the following:
+
+Multiple Regression  Linear relationships between two or more independent variables and one dependent variable.
+Polynomial Regression Modeling the relationship between one independent variable and one dependent variable using an nth degree ...
+
+
+Get Python Machine Learning now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CHAPTER 7: Supervised Learning—Classification Using Logistic Regression - Python Machine Learning [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning by Wei-Meng Lee
+
+
+
+
+
+
+
+Get full access to Python Machine Learning and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+CHAPTER 7Supervised Learning—Classification Using Logistic Regression
+
+What Is Logistic Regression?
+In the previous chapter, you learned about linear regression and how you can use it to predict future values. In this chapter, you will learn another supervised machine learning algorithm—logistic regression. Unlike linear regression, logistic regression does not try to predict the value of a numeric variable given a set of inputs. Instead, the output of logistic regression is the probability of a given input point belonging to a specific class. The output of logistic regression always lies in [0,1].
+To understand the use of logistic regression, consider the example shown in Figure 7.1. Suppose that you have a dataset containing information about voter income and voting preferences. For this dataset, you can see that low‐income voters tend to vote for candidate B, while high‐income voters tend to favor candidate A.
+ 
+Figure 7.1: Some problems have binary outcomes
+
+With this dataset, you would be very interested in trying to predict which candidate future voters will vote for based on their income level. At first glance, you might be tempted to apply what you have just learned to this problem; that is, using linear regression. Figure 7.2 shows what it looks like when you apply linear regression to this problem.
+
+Figure 7.2: Using linear regression to solve the voting preferences problem ...
+
+
+Get Python Machine Learning now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CHAPTER 8: Supervised Learning—Classification Using Support Vector Machines - Python Machine Learning [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning by Wei-Meng Lee
+
+
+
+
+
+
+
+Get full access to Python Machine Learning and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+CHAPTER 8Supervised Learning—Classification Using Support Vector Machines
+
+What Is a Support Vector Machine?
+In the previous chapter, you saw how to perform classification using logistics regression. In this chapter, you will learn another supervised machine learning algorithm that is also very popular among data scientists—Support Vector Machines (SVM). Like logistics regression, SVM is also a classification algorithm.
+The main idea behind SVM is to draw a line between two or more classes in the best possible manner (see Figure 8.1).
+ 
+Figure 8.1: Using SVM to separate two classes of animals
+
+Once the line is drawn to separate the classes, you can then use it to predict future data. For example, given the snout length and ear geometry of a new unknown animal, you can now use the dividing line as a classifier to predict if the animal is a dog or a cat.
+In this chapter, you will learn how SVM works and the various techniques you can use to adapt SVM for solving nonlinearly‐separable datasets.
+
+Maximum Separability
+How does SVM separate two or more classes? Consider the set of points in Figure 8.2. Before you look at the next figure, visually think of a straight line dividing the points into two groups.
+ 
+Figure 8.2: A set of points that can be separated using SVM
+
+Now look at Figure ...
+
+
+Get Python Machine Learning now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CHAPTER 9: Supervised Learning—Classification Using K‐Nearest Neighbors (KNN) - Python Machine Learning [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning by Wei-Meng Lee
+
+
+
+
+
+
+
+Get full access to Python Machine Learning and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+CHAPTER 9Supervised Learning—Classification Using K‐Nearest Neighbors (KNN)
+
+What Is K‐Nearest Neighbors?
+Up until this point, we have discussed three supervised learning algorithms: linear regression, logistics regression, and support vector machines. In this chapter, we will dive into another supervised machine learning algorithm known as K‐Nearest Neighbors (KNN).
+KNN is a relatively simple algorithm compared to the other algorithms that we have discussed in previous chapters. It works by comparing the query instance's distance to the other training samples and selecting the K‐nearest neighbors (hence its name). It then takes the majority of these K‐neighbor classes to be the prediction of the query instance.
+Figure 9.1 sums this up nicely. When k = 3, the closest three neighbors of the circle are the two squares and the one triangle. Based on the simple rule of majority, the circle is classified as a square. If k = 5, then the closest five neighbors are the two squares and the three triangles. Hence, the circle is classified as a triangle.
+ 
+Figure 9.1: The classification of a point depends on the majority of its neighbors
+
+
+TIP
+KNN is also sometimes used for regression in addition to classification. For example, it can be used to calculate the average of the numerical target of the K‐nearest neighbors. For this chapter, however, we are focusing solely on its more common use ...
+
+
+Get Python Machine Learning now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CHAPTER 10: Unsupervised Learning—Clustering Using K‐Means - Python Machine Learning [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning by Wei-Meng Lee
+
+
+
+
+
+
+
+Get full access to Python Machine Learning and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+CHAPTER 10Unsupervised Learning—Clustering Using K‐Means
+
+What Is Unsupervised Learning?
+So far, all of the machine learning algorithms that you have seen are supervised learning. That is, the datasets have all been labeled, classified, or categorized. Datasets that have been labeled are known as labeled data, while datasets that have not been labeled are known as unlabeled data. Figure 10.1 shows an example of labeled data.
+ 
+Figure 10.1: Labeled data
+
+Based on the size of the house and the year in which it was built, you have the price at which the house was sold. The selling price of the house is the label, and your machine learning model can be trained to give the estimated worth of the house based on its size and the year in which it was built.
+Unlabeled data, on the other hand, is data without label(s). For example, Figure 10.2 shows a dataset containing a group of people's waist circumference and corresponding leg length. Given this set of data, you can try to cluster them into groups based on the waist circumference and leg length, and from there you can figure out the average dimension in each group. This would be useful for clothing manufacturers to tailor different sizes of clothing to fit its customers.
+ 
+Figure 10.2: Unlabeled data
+
+
+Unsupervised Learning Using K‐Means ...
+
+
+Get Python Machine Learning now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CHAPTER 11: Using Azure Machine Learning Studio - Python Machine Learning [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning by Wei-Meng Lee
+
+
+
+
+
+
+
+Get full access to Python Machine Learning and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+CHAPTER 11Using Azure Machine Learning Studio
+
+What Is Microsoft Azure Machine Learning Studio?
+
+Microsoft Azure Machine Learning Studio (henceforth referred to as MAML) is an online collaborative, drag‐and‐drop tool for building machine learning models. Instead of implementing machine learning algorithms in languages like Python or R, MAML encapsulates the most‐commonly used machine learning algorithms as modules, and it lets you build learning models visually using your dataset. This shields the beginning data science practitioners from the details of the algorithms, while at the same time offering the ability to fine‐tune the hyperparameters of the algorithm for advanced users. Once the learning model is tested and evaluated, you can publish your learning models as web services so that your custom apps or BI tools, such as Excel, can consume it. What's more, MAML supports embedding your Python or R scripts within your learning models, giving advanced users the opportunity to write custom machine learning algorithms.
+In this chapter, you will take a break from all of the coding that you have been doing in the previous few chapters. Instead of implementing machine learning using Python and Scikit‐learn, you will take a look at how to use the MAML to perform machine learning visually using drag‐and‐drop.
+
+An Example Using the Titanic Experiment
+Now that you have a good sense of what machine learning is and what it can do, let's get started with an experiment using MAML. For this ...
+
+
+Get Python Machine Learning now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CHAPTER 12: Deploying Machine Learning Models - Python Machine Learning [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning by Wei-Meng Lee
+
+
+
+
+
+
+
+Get full access to Python Machine Learning and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+CHAPTER 12Deploying Machine Learning Models
+
+Deploying ML
+The main goal of machine learning is to create a model that you can use for making predictions. Over the past few chapters in this book, you learned about the various algorithms used to build an ideal machine learning model. At the end of the entire process, what you really want is to make your model accessible to users so that they can utilize it to do useful tasks, like making predictions (such as helping doctors with their diagnosis, and so forth).
+A good way to deploy your machine learning model is to build a REST (REpresentational State Transfer) API, so that the model is accessible by others who may not be familiar with how machine learning works. Using REST, you can build multi‐platform front‐end applications (such as iOS, Android, Windows, and so forth) and pass the data to the model for processing. The result can then be returned back to the application. Figure 12.1 summarizes the architecture that we will use for deploying our machine learning model.
+ 
+Figure 12.1: Deploying your machine learning model as a REST API allows front‐end applications to use it for predictions
+
+In this chapter, we will go through a case study, build a machine learning model, and then deploy it as a REST service. Finally, we will build a console front‐end application using Python to allow users to make some predictions.
+
+
+Case Study
+
+
+
+Get Python Machine Learning now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Index - Python Machine Learning [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning by Wei-Meng Lee
+
+
+
+
+
+
+
+Get full access to Python Machine Learning and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+Index
+
+
+A
+accuracy, computing of, 168–171
+algorithms
+categories of in ML, 5
+comparing ML algorithms, 258–260
+evaluating ML algorithms, 260–261, 277–279
+supervised learning algorithms, 5
+Two‐Class Decision Jungle algorithm, 258, 259, 260
+Two‐Class Logistic Regression algorithm, 258, 259, 260
+Two‐Class Support Vector Machine algorithm, 258
+unsupervised learning algorithms, 5, 7
+Anaconda, 88–1
+apply() function, 57, 58, 59
+area under the curve (AUC), 174
+argsort() function, 33
+arrange() function, 20
+array assignment, 34–38
+array indexing, 22–26
+array math, 27–34
+arrays
+copying by reference, 34–35
+copying by value (deep copy), 37
+copying by view (shallow copy), 36–37
+creating NumPy arrays, 20–21
+reshaping of, 26–27
+slicing of, 23–25
+asmatrix() function, 30
+auc() function, 174
+Auto MPG Data Set, 98
+Azure Machine Learning Studio (MAML)
+comparing against other algorithms, 258–260
+creating experiment, 248–252
+evaluating machine learning algorithms, 260–261
+example using Titanic experiment, 244–246
+filtering data and making fields categorical, 252–254
+introduction, 243
+programmatically accessing web service, 263–266
+publishing experiment, 261–263
+publishing learning model as web service, 261–262
+removing missing data, 254
+splitting data for training and testing, 254–256
+testing web service, 263
+training a model, 256–258
+uploading dataset, 247–248
+use of, 246–266
+
+
+
+B
+Bagging, 143
+bar chart
+defined, 73
+plotting of, 73–77
+bar() function, 73
+bias, 141–144
+Boolean indexing, 22–23
+Boosting, ...
+
+
+Get Python Machine Learning now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,4778 @@
+
+
+
+
+
+
+Giving Computers the Ability to Learn from Data - Python Machine Learning - Third Edition [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning - Third Edition by Sebastian Raschka, Vahid Mirjalili
+
+
+
+
+
+
+
+Get full access to Python Machine Learning - Third Edition and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+1
+Giving Computers the Ability to Learn from Data
+
+
+In my opinion, machine learning, the application and science of algorithms that make sense of data, is the most exciting field of all the computer sciences! We are living in an age where data comes in abundance; using self-learning algorithms from the field of machine learning, we can turn this data into knowledge. Thanks to the many powerful open source libraries that have been developed in recent years, there has probably never been a better time to break into the machine learning field and learn how to utilize powerful algorithms to spot patterns in data and make predictions about future events.
+In this chapter, you will learn about the main concepts and different types of machine learning. ...
+
+
+Get Python Machine Learning - Third Edition now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Training Simple Machine Learning Algorithms for Classification - Python Machine Learning - Third Edition [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning - Third Edition by Sebastian Raschka, Vahid Mirjalili
+
+
+
+
+
+
+
+Get full access to Python Machine Learning - Third Edition and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+2
+Training Simple Machine Learning Algorithms for Classification
+
+
+In this chapter, we will make use of two of the first algorithmically described machine learning algorithms for classification: the perceptron and adaptive linear neurons. We will start by implementing a perceptron step by step in Python and training it to classify different flower species in the Iris dataset. This will help us to understand the concept of machine learning algorithms for classification and how they can be efficiently implemented in Python.
+Discussing the basics of optimization using adaptive linear neurons will then lay the groundwork for using more sophisticated classifiers via the scikit-learn machine learning library in Chapter 3, A Tour of Machine Learning ...
+
+
+Get Python Machine Learning - Third Edition now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A Tour of Machine Learning Classifiers Using scikit-learn - Python Machine Learning - Third Edition [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning - Third Edition by Sebastian Raschka, Vahid Mirjalili
+
+
+
+
+
+
+
+Get full access to Python Machine Learning - Third Edition and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+3
+A Tour of Machine Learning Classifiers Using scikit-learn
+
+
+In this chapter, we will take a tour of a selection of popular and powerful machine learning algorithms that are commonly used in academia as well as in industry. While learning about the differences between several supervised learning algorithms for classification, we will also develop an appreciation of their individual strengths and weaknesses. In addition, we will take our first steps with the scikit-learn library, which offers a user-friendly and consistent interface for using those algorithms efficiently and productively.
+The topics that will be covered throughout this chapter are as follows:
+
+An introduction to robust and popular algorithms for classification, such as logistic ...
+
+
+Get Python Machine Learning - Third Edition now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Building Good Training Datasets – Data Preprocessing - Python Machine Learning - Third Edition [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning - Third Edition by Sebastian Raschka, Vahid Mirjalili
+
+
+
+
+
+
+
+Get full access to Python Machine Learning - Third Edition and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+4
+Building Good Training Datasets – Data Preprocessing
+
+
+The quality of the data and the amount of useful information that it contains are key factors that determine how well a machine learning algorithm can learn. Therefore, it is absolutely critical to ensure that we examine and preprocess a dataset before we feed it to a learning algorithm. In this chapter, we will discuss the essential data preprocessing techniques that will help us to build good machine learning models.
+The topics that we will cover in this chapter are as follows:
+
+Removing and imputing missing values from the dataset
+Getting categorical data into shape for machine learning algorithms
+Selecting relevant features for the model construction
+
+Dealing with missing data
+It is ...
+
+
+Get Python Machine Learning - Third Edition now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Compressing Data via Dimensionality Reduction - Python Machine Learning - Third Edition [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning - Third Edition by Sebastian Raschka, Vahid Mirjalili
+
+
+
+
+
+
+
+Get full access to Python Machine Learning - Third Edition and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+5
+Compressing Data via Dimensionality Reduction
+
+
+In Chapter 4, Building Good Training Datasets – Data Preprocessing, you learned about the different approaches for reducing the dimensionality of a dataset using different feature selection techniques. An alternative approach to feature selection for dimensionality reduction is feature extraction. In this chapter, you will learn about three fundamental techniques that will help you to summarize the information content of a dataset by transforming it onto a new feature subspace of lower dimensionality than the original one. Data compression is an important topic in machine learning, and it helps us to store and analyze the increasing amounts of data that are produced and collected in the modern ...
+
+
+Get Python Machine Learning - Third Edition now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Learning Best Practices for Model Evaluation and Hyperparameter Tuning - Python Machine Learning - Third Edition [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning - Third Edition by Sebastian Raschka, Vahid Mirjalili
+
+
+
+
+
+
+
+Get full access to Python Machine Learning - Third Edition and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+6
+Learning Best Practices for Model Evaluation and Hyperparameter Tuning
+
+
+In the previous chapters, you learned about the essential machine learning algorithms for classification and how to get our data into shape before we feed it into those algorithms. Now, it's time to learn about the best practices of building good machine learning models by fine-tuning the algorithms and evaluating the performance of the models. In this chapter, we will learn how to do the following:
+
+Assess the performance of machine learning models
+Diagnose the common problems of machine learning algorithms
+Fine-tune machine learning models
+Evaluate predictive models using different performance metrics
+
+Streamlining workflows with pipelines
+When we applied different ...
+
+
+Get Python Machine Learning - Third Edition now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Combining Different Models for Ensemble Learning - Python Machine Learning - Third Edition [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning - Third Edition by Sebastian Raschka, Vahid Mirjalili
+
+
+
+
+
+
+
+Get full access to Python Machine Learning - Third Edition and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+7
+Combining Different Models for Ensemble Learning
+
+
+In the previous chapter, we focused on the best practices for tuning and evaluating different models for classification. In this chapter, we will build upon those techniques and explore different methods for constructing a set of classifiers that can often have a better predictive performance than any of its individual members. We will learn how to do the following:
+
+Make predictions based on majority voting
+Use bagging to reduce overfitting by drawing random combinations of the training dataset with repetition
+Apply boosting to build powerful models from weak learners that learn from their mistakes
+
+Learning with ensembles
+The goal of ensemble methods is to combine different classifiers into ...
+
+
+Get Python Machine Learning - Third Edition now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Applying Machine Learning to Sentiment Analysis - Python Machine Learning - Third Edition [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning - Third Edition by Sebastian Raschka, Vahid Mirjalili
+
+
+
+
+
+
+
+Get full access to Python Machine Learning - Third Edition and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+8
+Applying Machine Learning to Sentiment Analysis
+
+
+In the modern internet and social media age, people's opinions, reviews, and recommendations have become a valuable resource for political science and businesses. Thanks to modern technologies, we are now able to collect and analyze such data most efficiently. In this chapter, we will delve into a subfield of natural language processing (NLP) called sentiment analysis and learn how to use machine learning algorithms to classify documents based on their polarity: the attitude of the writer. In particular, we are going to work with a dataset of 50,000 movie reviews from the Internet Movie Database (IMDb) and build a predictor that can distinguish between positive and negative reviews.
+The topics ...
+
+
+Get Python Machine Learning - Third Edition now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Embedding a Machine Learning Model into a Web Application - Python Machine Learning - Third Edition [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning - Third Edition by Sebastian Raschka, Vahid Mirjalili
+
+
+
+
+
+
+
+Get full access to Python Machine Learning - Third Edition and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+9
+Embedding a Machine Learning Model into a Web Application
+
+
+In the previous chapters, you learned about the many different machine learning concepts and algorithms that can help us with better and more efficient decision-making. However, machine learning techniques are not limited to offline applications and analyses, and they have become the predictive engine of various web services. For example, popular and useful applications of machine learning models in web applications include spam detection in submission forms, search engines, recommendation systems for media or shopping portals, and many more.
+In this chapter, you will learn how to embed a machine learning model into a web application that can not only classify, but also learn from ...
+
+
+Get Python Machine Learning - Third Edition now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Predicting Continuous Target Variables with Regression Analysis - Python Machine Learning - Third Edition [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning - Third Edition by Sebastian Raschka, Vahid Mirjalili
+
+
+
+
+
+
+
+Get full access to Python Machine Learning - Third Edition and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+10
+Predicting Continuous Target Variables with Regression Analysis
+
+
+Throughout the previous chapters, you learned a lot about the main concepts behind supervised learning and trained many different models for classification tasks to predict group memberships or categorical variables. In this chapter, we will dive into another subcategory of supervised learning: regression analysis.
+Regression models are used to predict target variables on a continuous scale, which makes them attractive for addressing many questions in science. They also have applications in industry, such as understanding relationships between variables, evaluating trends, or making forecasts. One example is predicting the sales of a company in future months.
+In this chapter, ...
+
+
+Get Python Machine Learning - Third Edition now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Working with Unlabeled Data – Clustering Analysis - Python Machine Learning - Third Edition [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning - Third Edition by Sebastian Raschka, Vahid Mirjalili
+
+
+
+
+
+
+
+Get full access to Python Machine Learning - Third Edition and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+11
+Working with Unlabeled Data – Clustering Analysis
+
+
+In the previous chapters, we used supervised learning techniques to build machine learning models, using data where the answer was already known—the class labels were already available in our training data. In this chapter, we will switch gears and explore cluster analysis, a category of unsupervised learning techniques that allows us to discover hidden structures in data where we do not know the right answer upfront. The goal of clustering is to find a natural grouping in data so that items in the same cluster are more similar to each other than to those from different clusters.
+Given its exploratory nature, clustering is an exciting topic, and in this chapter, you will learn about the ...
+
+
+Get Python Machine Learning - Third Edition now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Implementing a Multilayer Artificial Neural Network from Scratch - Python Machine Learning - Third Edition [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning - Third Edition by Sebastian Raschka, Vahid Mirjalili
+
+
+
+
+
+
+
+Get full access to Python Machine Learning - Third Edition and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+12
+Implementing a Multilayer Artificial Neural Network from Scratch
+
+
+As you may know, deep learning is getting a lot of attention from the press and is without any doubt the hottest topic in the machine learning field. Deep learning can be understood as a subfield of machine learning that is concerned with training artificial neural networks (NNs) with many layers efficiently. In this chapter, you will learn the basic concepts of artificial NNs so that you are well equipped for the following chapters, which will introduce advanced Python-based deep learning libraries and deep neural network (DNN) architectures that are particularly well suited for image and text analyses.
+The topics that we will cover in this chapter are as follows:
+
+Gaining ...
+
+
+Get Python Machine Learning - Third Edition now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Parallelizing Neural Network Training with TensorFlow - Python Machine Learning - Third Edition [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning - Third Edition by Sebastian Raschka, Vahid Mirjalili
+
+
+
+
+
+
+
+Get full access to Python Machine Learning - Third Edition and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+13
+Parallelizing Neural Network Training with TensorFlow
+
+
+In this chapter, we will move on from the mathematical foundations of machine learning and deep learning to focus on TensorFlow. TensorFlow is one of the most popular deep learning libraries currently available, and it lets us implement neural networks (NNs) much more efficiently than any of our previous NumPy implementations. In this chapter, we will start using TensorFlow and see how it brings significant benefits to training performance.
+This chapter will begin the next stage of our journey into machine learning and deep learning, and we will explore the following topics:
+
+How TensorFlow improves training performance
+Working with TensorFlow's Dataset API (tf.data) to build input pipelines ...
+
+
+Get Python Machine Learning - Third Edition now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Going Deeper – The Mechanics of TensorFlow - Python Machine Learning - Third Edition [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning - Third Edition by Sebastian Raschka, Vahid Mirjalili
+
+
+
+
+
+
+
+Get full access to Python Machine Learning - Third Edition and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+14
+Going Deeper – The Mechanics of TensorFlow
+
+
+In Chapter 13, Parallelizing Neural Network Training with TensorFlow, we covered how to define and manipulate tensors and worked with the tf.data API to build input pipelines. We further built and trained a multilayer perceptron to classify the Iris dataset using the TensorFlow Keras API (tf.keras).
+Now that we have some hands-on experience with TensorFlow neural network (NN) training and machine learning, it's time to take a deeper dive into the TensorFlow library and explore its rich set of features, which will allow us to implement more advanced deep learning models in upcoming chapters.
+In this chapter, we will use different aspects of TensorFlow's API to implement NNs. In particular, we will ...
+
+
+Get Python Machine Learning - Third Edition now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Classifying Images with Deep Convolutional Neural Networks - Python Machine Learning - Third Edition [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning - Third Edition by Sebastian Raschka, Vahid Mirjalili
+
+
+
+
+
+
+
+Get full access to Python Machine Learning - Third Edition and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+15
+Classifying Images with Deep Convolutional Neural Networks
+
+
+In the previous chapter, we looked in depth at different aspects of the TensorFlow API, you became familiar with tensors and decorating functions, and you learned how to work with TensorFlow Estimators. In this chapter, you will now learn about convolutional neural networks (CNNs) for image classification. We will start by discussing the basic building blocks of CNNs, using a bottom-up approach. Then, we will take a deeper dive into the CNN architecture and explore how to implement CNNs in TensorFlow. In this chapter, we will cover the following topics:
+
+Convolution operations in one and two dimensions
+The building blocks of CNN architectures
+Implementing deep CNNs in TensorFlow ...
+
+
+Get Python Machine Learning - Third Edition now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Modeling Sequential Data Using Recurrent Neural Networks - Python Machine Learning - Third Edition [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning - Third Edition by Sebastian Raschka, Vahid Mirjalili
+
+
+
+
+
+
+
+Get full access to Python Machine Learning - Third Edition and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+16
+Modeling Sequential Data Using Recurrent Neural Networks
+
+
+In the previous chapter, we focused on convolutional neural networks (CNNs). We covered the building blocks of CNN architectures and how to implement deep CNNs in TensorFlow. Finally, you learned how to use CNNs for image classification. In this chapter, we will explore recurrent neural networks (RNNs) and see their application in modeling sequential data.
+We will cover the following topics:
+
+Introducing sequential data
+RNNs for modeling sequences
+Long short-term memory (LSTM)
+Truncated backpropagation through time (TBPTT)
+Implementing a multilayer RNN for sequence modeling in TensorFlow
+Project one: RNN sentiment analysis of the IMDb movie review dataset
+Project two: RNN character-level ...
+
+
+Get Python Machine Learning - Third Edition now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Generative Adversarial Networks for Synthesizing New Data - Python Machine Learning - Third Edition [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning - Third Edition by Sebastian Raschka, Vahid Mirjalili
+
+
+
+
+
+
+
+Get full access to Python Machine Learning - Third Edition and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+17
+Generative Adversarial Networks for Synthesizing New Data
+
+
+In the previous chapter, we focused on recurrent neural networks for modeling sequences. In this chapter, we will explore generative adversarial networks (GANs) and see their application in synthesizing new data samples. GANs are considered to be the most important breakthrough in deep learning, allowing computers to generate new data (such as new images).
+In this chapter, we will cover the following topics:
+
+Introducing generative models for synthesizing new data
+Autoencoders, variational autoencoders (VAEs), and their relationship to GANs
+Understanding the building blocks of GANs
+Implementing a simple GAN model to generate handwritten digits
+Understanding transposed convolution ...
+
+
+Get Python Machine Learning - Third Edition now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Reinforcement Learning for Decision Making in Complex Environments - Python Machine Learning - Third Edition [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Machine Learning - Third Edition by Sebastian Raschka, Vahid Mirjalili
+
+
+
+
+
+
+
+Get full access to Python Machine Learning - Third Edition and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+18
+Reinforcement Learning for Decision Making in Complex Environments
+
+
+In the previous chapters, we focused on supervised and unsupervised machine learning. We also learned how to leverage artificial neural networks and deep learning to tackle problems encountered with these types of machine learning. As you'll recall, supervised learning focuses on predicting a category label or continuous value from a given input feature vector. Unsupervised learning focuses on extracting patterns from data, making it useful for data compression (Chapter 5, Compressing Data via Dimensionality Reduction), clustering (Chapter 11, Working with Unlabeled Data – Clustering Analysis), or approximating the training set distribution for generating new data (Chapter ...
+
+
+Get Python Machine Learning - Third Edition now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

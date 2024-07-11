@@ -1,0 +1,4037 @@
+
+
+
+
+
+
+1. Let’s Discuss Learning - Machine Learning with Python for Everyone [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Machine Learning with Python for Everyone by Mark Fenner
+
+
+
+
+
+
+
+Get full access to Machine Learning with Python for Everyone and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+1. Let’s Discuss Learning
+
+1.1 Welcome
+From time to time, people trot out a tired claim that computers can “only do what they are told to do.” The claim is taken to mean that computers can only do what their programmers know how to do and can explain to the computer. This claim is false. Computers can perform tasks that their programmers cannot explain to them. Computers can solve tasks that their programmers do not understand. We will break down this paradox with an example of a computer program that learns.
+I’ll start by discussing one of the oldest—if not the oldest known—examples of a programmed machine-learning system. I’ve turned this into a story, but it is rooted in historical facts. Arthur Samuel was working for IBM in the 1950s and ...
+
+
+Get Machine Learning with Python for Everyone now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. Some Technical Background - Machine Learning with Python for Everyone [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Machine Learning with Python for Everyone by Mark Fenner
+
+
+
+
+
+
+
+Get full access to Machine Learning with Python for Everyone and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+2. Some Technical Background
+
+2.1 About Our Setup
+We’re about to get down—funk style—with some coding. The chapters in this book started life as Jupyter notebooks. If you’re unfamiliar with Jupyter notebooks, they are a very cool environment for working with Python code, text, and graphics in one browser tab. Many Python-related blogs are built with Jupyter notebooks. At the beginning of each chapter, I’ll execute some lines of code to set up the coding environment.
+The content of mlwpy.py is shown in Appendix A. While from module import * is generally not recommended, in this case I’m using it specifically to get all of the definitions in mlwpy.py included in our notebook environment without taking up forty lines of code. Since scikit-learn ...
+
+
+Get Machine Learning with Python for Everyone now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3. Predicting Categories: Getting Started with Classification - Machine Learning with Python for Everyone [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Machine Learning with Python for Everyone by Mark Fenner
+
+
+
+
+
+
+
+Get full access to Machine Learning with Python for Everyone and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+3. Predicting Categories: Getting Started with Classification
+In [1]:
+# setup
+from mlwpy import *
+%matplotlib inline
+
+3.1 Classification Tasks
+Now that we’ve laid a bit of groundwork, let’s turn our attention to the main attraction: building and evaluating learning systems. We’ll start with classification and we need some data to play with. If that weren’t enough, we need to establish some evaluation criteria for success. All of these are just ahead.
+Let me squeeze in a few quick notes on terminology. If there are only two target classes for output, we can call a learning task binary classification. You can think about {Yes, No}, {Red, Black}, or {True, False} targets. Very often, binary problems are described mathematically using {-1, +1} or ...
+
+
+Get Machine Learning with Python for Everyone now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4. Predicting Numerical Values: Getting Started with Regression - Machine Learning with Python for Everyone [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Machine Learning with Python for Everyone by Mark Fenner
+
+
+
+
+
+
+
+Get full access to Machine Learning with Python for Everyone and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+4. Predicting Numerical Values: Getting Started with Regression
+In [1]:
+# setup
+from mlwpy import*
+%matplotlib inline
+
+4.1 A Simple Regression Dataset
+Regression is the process of predicting a finely graded numerical value from inputs. To illustrate, we need a simple dataset that has numerical results. sklearn comes with the diabetes dataset that will serve us nicely. The dataset consists of several biometric and demographic measurements. The version included with sklearn has been modified from raw numerical features by subtracting the mean and dividing by the standard deviation of each column. That process is called standardizing or z-scoring the features. We’ll return to the standard deviation later; briefly, it is a measure of how spread ...
+
+
+Get Machine Learning with Python for Everyone now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5. Evaluating and Comparing Learners - Machine Learning with Python for Everyone [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Machine Learning with Python for Everyone by Mark Fenner
+
+
+
+
+
+
+
+Get full access to Machine Learning with Python for Everyone and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+5. Evaluating and Comparing Learners
+In [1]:
+Click here to view code image
+# setup 
+from mlwpy import *
+diabetes = datasets.load_diabetes()
+%matplotlib inline
+
+5.1 Evaluation and Why Less Is More
+Lao Tzu: Those that know others are wise. Those that know themselves are Enlightened.
+The biggest risk in developing a learning system is overestimating how well it will do when we use it. I touched on this risk in our first look at classification. Those of us that have studied for a test and thought we had a good mastery of the material, and then bombed the test, will be intimately familiar with this risk. It is very, very easy to (1) think we know a lot and will do well on an exam and (2) not do very well on the exam. On a test, we may discover we ...
+
+
+Get Machine Learning with Python for Everyone now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6. Evaluating Classifiers - Machine Learning with Python for Everyone [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Machine Learning with Python for Everyone by Mark Fenner
+
+
+
+
+
+
+
+Get full access to Machine Learning with Python for Everyone and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+6. Evaluating Classifiers
+In [1]:
+Click here to view code image
+# setup
+from mlwpy import *
+%matplotlib inline
+
+iris = datasets.load_iris()
+
+tts = skms.train_test_split(iris.data, iris.target,
+                            test_size=.33, random_state=21)
+
+(iris_train_ftrs, iris_test_ftrs,
+ iris_train_tgt, iris_test_tgt) = tts
+In the previous chapter, we discussed evaluation issues that pertain to both classifiers and regressors. Now, I’m going to turn our attention to evaluation techniques that are appropriate for classifiers. We’ll start by examining baseline models as a standard of comparison. We will then progress to different metrics that help identify different types of mistakes that classifiers make. We’ll also look at some graphical methods for evaluating and comparing ...
+
+
+Get Machine Learning with Python for Everyone now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7. Evaluating Regressors - Machine Learning with Python for Everyone [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Machine Learning with Python for Everyone by Mark Fenner
+
+
+
+
+
+
+
+Get full access to Machine Learning with Python for Everyone and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+7. Evaluating Regressors
+In [1]:
+Click here to view code image
+# Setup
+from mlwpy import *
+%matplotlib inline
+
+diabetes = datasets.load_diabetes()
+
+tts = skms.train_test_split(diabetes.data,
+                            diabetes.target,
+                            test_size=.25,
+                            random_state=42)
+
+(diabetes_train_ftrs, diabetes_test_ftrs,
+ diabetes_train_tgt,  diabetes_test_tgt) = tts
+We’ve discussed evaluation of learning systems and evaluation techniques specific to classifiers. Now, it is time to turn our focus to evaluating regressors. There are fewer ad-hoc techniques in evaluating regressors than in classifiers. For example, we don’t have confusion matrices and ROC curves, but we’ll see an interesting alternative in residual plots. Since we have some extra mental and physical space, we’ll spend a ...
+
+
+Get Machine Learning with Python for Everyone now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8. More Classification Methods - Machine Learning with Python for Everyone [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Machine Learning with Python for Everyone by Mark Fenner
+
+
+
+
+
+
+
+Get full access to Machine Learning with Python for Everyone and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+8. More Classification Methods
+In [1]:
+Click here to view code image
+# setup
+from mlwpy import *
+%matplotlib inline
+
+iris = datasets.load_iris()
+
+# standard iris dataset
+tts = skms.train_test_split(iris.data, iris.target,
+                            test_size=.33, random_state=21)
+(iris_train_ftrs, iris_test_ftrs,
+ iris_train_tgt,  iris_test_tgt) = tts
+
+# one-class variation
+useclass = 1
+tts_1c = skms.train_test_split(iris.data, iris.target==useclass,
+                               test_size=.33, random_state = 21)
+(iris_1c_train_ftrs, iris_1c_test_ftrs,
+ iris_1c_train_tgt,  iris_1c_test_tgt) = tts_1c
+
+8.1 Revisiting Classification
+So far, we’ve discussed two classifiers: Naive Bayes (NB) and k-Nearest Neighbors (k-NN). I want to add to our classification toolkit—but first, I want to revisit what is happening ...
+
+
+Get Machine Learning with Python for Everyone now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9. More Regression Methods - Machine Learning with Python for Everyone [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Machine Learning with Python for Everyone by Mark Fenner
+
+
+
+
+
+
+
+Get full access to Machine Learning with Python for Everyone and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+9. More Regression Methods
+In [1]:
+Click here to view code image
+#setup
+from mlwpy import *
+%matplotlib inline
+
+diabetes = datasets.load_diabetes()
+
+d_tts = skms.train_test_split(diabetes.data,
+                              diabetes.target,
+                              test_size=.25,
+                              random_state=42)
+
+(diabetes_train_ftrs, diabetes_test_ftrs,
+ diabetes_train_tgt, diabetes_test_tgt) = d_tts
+We are going to dive into a few additional techniques for regression. All of these are variations on techniques we’ve seen before. Two are direct variations on linear regression, one splices a support vector classifier with linear regression to create a Support Vector Regressor, and one uses decision trees for regression instead of classification. As such, much of what we’ll talk about will be somewhat familiar. We’ll ...
+
+
+Get Machine Learning with Python for Everyone now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+10. Manual Feature Engineering: Manipulating Data for Fun and Profit - Machine Learning with Python for Everyone [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Machine Learning with Python for Everyone by Mark Fenner
+
+
+
+
+
+
+
+Get full access to Machine Learning with Python for Everyone and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+10. Manual Feature Engineering: Manipulating Data for Fun and Profit
+In [1]:
+Click here to view code image
+# setup
+from mlwpy import *
+%matplotlib inline
+
+iris = datasets.load_iris()
+(iris_train,     iris_test,
+ iris_train_tgt, iris_test_tgt) = skms.train_test_split(iris.data,
+                                                        iris.target,
+                                                        test_size=.25)
+# remove units ' (cm)' from names
+iris.feature_names = [fn[:-5] for fn in iris.feature_names]
+
+# dataframe for convenience
+iris_df = pd.DataFrame(iris.data, columns=iris.feature_names)
+iris_df['species'] = iris.target_names[iris.target]
+
+10.1 Feature Engineering Terminology and Motivation
+We are going to turn our attention away from expanding our catalog of models and instead take a closer look at the data. Feature engineering refers to manipulation—addition, ...
+
+
+Get Machine Learning with Python for Everyone now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+11. Tuning Hyperparameters and Pipelines - Machine Learning with Python for Everyone [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Machine Learning with Python for Everyone by Mark Fenner
+
+
+
+
+
+
+
+Get full access to Machine Learning with Python for Everyone and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+11. Tuning Hyperparameters and Pipelines
+In [1]:
+Click here to view code image
+# setup
+from mlwpy import *
+%matplotlib inline
+
+iris     = datasets.load_iris()
+diabetes = datasets.load_diabetes()
+digits   = datasets.load_digits()
+We’ve already introduced models, parameters, and hyperparameters in Section 5.2.2.4. I’m about to bring them up again for two reasons. First, I want you to see a concrete analogy between (1) how we write simple Python functions in different ways by varying their code and arguments and (2) how learning models use parameters and hyperparameters. Second, we’ll turn our attention towards choosing good hyperparameters. When we fit a model, we are choosing good parameters. We need some sort of well-defined process to choose good ...
+
+
+Get Machine Learning with Python for Everyone now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+12. Combining Learners - Machine Learning with Python for Everyone [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Machine Learning with Python for Everyone by Mark Fenner
+
+
+
+
+
+
+
+Get full access to Machine Learning with Python for Everyone and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+12. Combining Learners
+In [1]:
+Click here to view code image
+# setup
+from mlwpy import *
+
+digits = datasets.load_digits()
+digits_ftrs, digits_tgt = digits.data, digits.target
+
+diabetes = datasets.load_diabetes()
+diabetes_ftrs, diabetes_tgt = diabetes.data, diabetes.target
+
+iris = datasets.load_iris()
+tts = skms.train_test_split(iris.data, iris.target,
+                            test_size=.75, stratify=iris.target)
+(iris_train_ftrs, iris_test_ftrs,
+ iris_train_tgt, iris_test_tgt) = tts
+
+12.1 Ensembles
+Up to this point, we’ve talked about learning methods as stand-alone, singular entities. For example, when we use linear regression (LR) or a decision tree (DT), that’s the single and entire model we are using. We might connect it with other preprocessing steps, but the LR or ...
+
+
+Get Machine Learning with Python for Everyone now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13. Models That Engineer Features for Us - Machine Learning with Python for Everyone [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Machine Learning with Python for Everyone by Mark Fenner
+
+
+
+
+
+
+
+Get full access to Machine Learning with Python for Everyone and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+13. Models That Engineer Features for Us
+In [1]:
+Click here to view code image
+# setup
+from mlwpy import *
+%matplotlib inline*
+
+kwargs = {'test_size':.25, 'random_state':42}
+
+iris = datasets.load_iris()
+tts = skms.train_test_split(iris.data, iris.target, **kwargs)
+(iris_train,     iris_test,
+ iris_train_tgt, iris_test_tgt) = tts
+
+wine = datasets.load_wine()
+tts = skms.train_test_split(wine.data, wine.target, **kwargs)
+(wine_train,     wine_test,
+ wine_train_tgt, wine_test_tgt) = tts
+
+diabetes = datasets.load_diabetes()
+tts = skms.train_test_split(diabetes.data, diabetes.target, **kwargs)
+(diabetes_train_ftrs, diabetes_test_ftrs,
+ diabetes_train_tgt,  diabetes_test_tgt) = tts
+
+# these are entire datasets
+iris_df = pd.DataFrame(iris.data, columns=iris.feature_names) ...
+
+
+Get Machine Learning with Python for Everyone now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+14. Feature Engineering for Domains: Domain-Specific Learning - Machine Learning with Python for Everyone [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Machine Learning with Python for Everyone by Mark Fenner
+
+
+
+
+
+
+
+Get full access to Machine Learning with Python for Everyone and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+14. Feature Engineering for Domains: Domain-Specific Learning
+In [1]:
+# setup
+from mlwpy import *
+%matplotlib inline
+
+import cv2
+In a perfect world, our standard classification algorithms would be provided with data that is relevant, plentiful, tabular (formatted in a table), and naturally discriminitive when we look at it as points in space.
+In reality, we may be stuck with data that is
+
+Only an approximation of our target task
+Limited in quantity or covers only some of many possibilities
+Misaligned with the prediction method(s) we are trying to apply to it
+Written as text or images which are decidedly not in an example-feature table
+
+Issues 1 and 2 are specific to a learning problem you are focused on. We discussed issue 3 in Chapters 10 and ...
+
+
+Get Machine Learning with Python for Everyone now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15. Connections, Extensions, and Further Directions - Machine Learning with Python for Everyone [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Machine Learning with Python for Everyone by Mark Fenner
+
+
+
+
+
+
+
+Get full access to Machine Learning with Python for Everyone and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+15. Connections, Extensions, and Further Directions
+In [1]:
+from mlwpy import *
+
+15.1 Optimization
+When we try to find a best line, curve, or tree to match our data—which is our main goal in training—we want to have an automated method do the work for us. We’re not asking the hot dog vendor for a quick stock tip: we need an algorithm. One of the principal—principled—ways to do this is by assessing our cost and looking for ways to lower that cost. Remember, the cost is a combination of the loss—how well our model’s predictions match the training data—and the complexity of the model. When we minimize cost, we try to achieve a small loss while keeping a low complexity. We can’t always get to that ideal, but that’s our goal.
+When we train a learning ...
+
+
+Get Machine Learning with Python for Everyone now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

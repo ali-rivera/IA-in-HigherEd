@@ -1,0 +1,2086 @@
+
+
+
+
+
+
+Chapter 1: Introducing Active Machine Learning - Active Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Active Machine Learning with Python by Margaux Masson-Forsythe
+
+
+
+
+
+
+
+Get full access to Active Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+1
+Introducing Active Machine Learning
+Machine learning models require large, labeled datasets, which can be expensive and time-consuming to obtain. Active machine learning (active ML) minimizes the labeling effort needed by intelligently choosing which data points a human should label. In this book, you will gain the necessary knowledge to understand active learning, including its mechanisms and applications. With these fundamentals, the subsequent chapters will equip you with concrete skills to implement active learning techniques on your own.
+By the end of this book, you will have practical experience with state-of-the-art strategies to minimize labeling costs and maximize model performance. You will be able to apply active learning to enhance ...
+
+
+Get Active Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Chapter 2: Designing Query Strategy Frameworks - Active Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Active Machine Learning with Python by Margaux Masson-Forsythe
+
+
+
+
+
+
+
+Get full access to Active Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+2
+Designing Query Strategy Frameworks
+Query strategies act as the engine that drives active ML and determines which data points get selected for labeling. In this chapter, we aim to provide a comprehensive and detailed explanation of the most widely used and highly effective query strategy frameworks that are employed in active ML. These frameworks play a crucial role in the field of active ML, aiding in selecting informative and representative data points for labeling. The strategies that we will delve into include uncertainty sampling, query-by-committee, expected model change (EMC), expected error reduction (EER), and density-weighted methods. By thoroughly understanding these frameworks and the underlying principles, you can make informed ...
+
+
+Get Active Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Chapter 3: Managing the Human in the Loop - Active Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Active Machine Learning with Python by Margaux Masson-Forsythe
+
+
+
+
+
+
+
+Get full access to Active Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+3
+Managing the Human in the Loop
+Active ML promises more efficient ML by intelligently selecting the most informative samples for labeling by human oracles. However, the success of these human-in-the-loop systems depends on effective interface design and workflow management. In this chapter, we will cover best practices for optimizing the human role in active ML. First, we will explore interactive system design, discussing how to create labeling interfaces that enable efficient and accurate annotations. Next, we will provide an extensive overview of the leading human-in-the-loop frameworks for managing the labeling pipeline. We will then turn to handling model-label disagreements through adjudication and quality control. After that, we will ...
+
+
+Get Active Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Chapter 4: Applying Active Learning to Computer Vision - Active Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Active Machine Learning with Python by Margaux Masson-Forsythe
+
+
+
+
+
+
+
+Get full access to Active Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+4
+Applying Active Learning to Computer Vision
+In this chapter, we will dive into using active learning techniques for computer vision tasks. Computer vision involves analyzing visual data such as images and videos to extract useful information. It relies heavily on machine learning models such as convolutional neural networks. However, these models require large labeled training sets, which can be expensive and time-consuming to obtain. Active ML provides a solution by interactively querying the user to label only the most informative examples. This chapter demonstrates how to implement uncertainty sampling for diverse computer vision tasks. By the end, you will have the tools to efficiently train computer vision models with optimized labeling ...
+
+
+Get Active Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Chapter 5: Leveraging Active Learning for Big Data - Active Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Active Machine Learning with Python by Margaux Masson-Forsythe
+
+
+
+
+
+
+
+Get full access to Active Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+5
+Leveraging Active Learning for Big Data
+In this chapter, we will explore how to use machine learning (ML) to deal with big data, such as videos. The task of developing ML models for video analysis comes with its own set of unique challenges. Videos, being inherently large, pose significant hurdles in terms of efficient processing. Video analysis using ML has become an increasingly important technique across many industries and applications. From autonomous vehicles that rely on computer vision models to analyze road conditions in real-time video feeds, to security systems that can automatically detect suspicious activity, ML is revolutionizing what’s possible with video data. These models can automate time-consuming manual analysis and provide ...
+
+
+Get Active Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Chapter 6: Evaluating and Enhancing Efficiency - Active Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Active Machine Learning with Python by Margaux Masson-Forsythe
+
+
+
+
+
+
+
+Get full access to Active Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+6
+Evaluating and Enhancing Efficiency
+In this chapter, we will explore the important aspects of rigorously evaluating the performance of active machine learning systems. We will cover various topics such as automation, testing, monitoring, and determining the stopping criteria. In this chapter we will use a paid cloud service, such as AWS, to demonstrate how an automatic, efficient active learning pipeline can be implemented in the real world.
+By thoroughly understanding these concepts and techniques, we can ensure a comprehensive active ML process that yields accurate and reliable results. Through this exploration, we will gain insights into the effectiveness and efficiency of active ML systems, enabling us to make informed decisions and improvements. ...
+
+
+Get Active Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Chapter 7: Utilizing Tools and Packages for Active ML - Active Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Active Machine Learning with Python by Margaux Masson-Forsythe
+
+
+
+
+
+
+
+Get full access to Active Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+7
+Utilizing Tools and Packages for Active ML
+In this chapter, we will discuss a range of Python libraries, frameworks, and tools commonly used in active ML. These resources are instrumental to implementing a variety of active ML techniques. The content of this chapter is structured to be informative and useful for individuals at different levels of expertise, from beginners to experienced programmers. The aim is to provide a solid understanding of the tools we will cover in order to effectively incorporate active ML techniques into your projects.
+Throughout this chapter, the focus will be on understanding Python packages for active ML. We will use the popular Python libraries scikit-learn and modAL. You’ll learn about their functionalities and ...
+
+
+Get Active Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Index - Active Machine Learning with Python [Book]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to main content
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sign In
+Try Now
+
+
+
+
+Teams
+
+For business
+For government
+For higher ed
+
+
+Individuals
+Features
+
+All features
+Courses
+Certifications
+Interactive learning
+Live events
+Answers
+Insights reporting
+
+
+Blog
+Content sponsorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Active Machine Learning with Python by Margaux Masson-Forsythe
+
+
+
+
+
+
+
+Get full access to Active Machine Learning with Python and 60K+ other titles, with a free 10-day trial of O'Reilly.
+There are also live events, courses curated by job role, and more.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+Index
+As this ebook edition doesn't have fixed pagination, the page numbers below are hyperlinked for reference only, based on the printed edition of this book.
+A
+active learning
+versus passive learning  13, 14
+active machine learning (active ML)  3, 115-117, 131, 132
+components  5
+definition  4
+implementing, for image classification project  66
+loop  6
+methods  131
+used, for enhancing production model monitoring  128
+using, for segmentation project  84-88
+active ML, applications  4
+anomaly detection  5
+computer vision applications  4
+medical diagnosis  5
+natural language tasks  4
+recommendation systems  5
+active ML, for image classification project
+CNN, building for CIFAR dataset  67-73
+uncertainty sampling, applying to improve classification performance  ...
+
+
+Get Active Machine Learning with Python now with the O’Reilly learning platform.
+O’Reilly members experience books, live events, courses curated by job role, and more from O’Reilly and nearly 200 top publishers.
+
+Start your free trial
+
+
+
+
+
+
+
+
+
+
+
+
+About O’Reilly
+
+Teach/write/train
+Careers
+Press releases
+Media coverage
+Community partners
+Affiliate program
+Submit an RFP
+Diversity
+O’Reilly for marketers
+
+
+
+
+
+Support
+
+Contact us
+Newsletters
+Privacy policy
+
+
+linkedin-logo
+youtube-logo
+
+
+International
+
+Australia & New Zealand
+Hong Kong & Taiwan
+India
+Indonesia
+Japan
+
+
+
+
+
+Download the O’Reilly App
+Take O’Reilly with you and learn anywhere, anytime on your phone and tablet.
+
+
+
+
+
+
+Watch on your big screen
+View all O’Reilly videos, Superstream events, and Meet the Expert sessions on your home TV.
+
+
+
+
+
+
+Do not sell my personal information
+
+
+
+
+
+
+© 2024, O’Reilly Media, Inc. All trademarks and registered trademarks appearing on oreilly.com are the property of their respective owners.
+Terms of service • Privacy policy • Editorial independence
+
+
+
+
+
+
+
+Don’t leave empty-handed
+Get Mark Richards’s Software Architecture Patterns ebook to better understand how to design components—and how they should interact.
+It’s yours, free.
+Get it now
+
+
+
+Close
+
+
+
+
+
+
+Check it out now on O’Reilly
+Dive in for free with a 10-day trial of the O’Reilly learning platform—then explore all the other resources our members count on to build skills and solve problems every day.
+Start your free trial
+Become a member now
+
+
+
+Close
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
