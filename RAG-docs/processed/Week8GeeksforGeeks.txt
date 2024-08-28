@@ -1,0 +1,123 @@
+How to tune a Decision Tree in Hyperparameter tuning
+
+
+Last Updated : 
+16 Apr, 2024
+
+
+Decision trees are powerful models extensively used in machine learning for classification and regression tasks. The structure of decision trees resembles the flowchart of decisions helps us to interpret and explain easily. However, the performance of decision trees highly relies on the hyperparameters, selecting the optimal hyperparameter can significantly impact the model’s accuracy, generalization ability, and robustness. 
+In this article, we will explore the different ways to tune the hyperparameters and their optimization techniques with the help of decision trees. 
+Table of Content
+Hyperparameters in Decision TreesWhy Tune hyperparameters in Decision Trees?Methods for Hyperparameter Tuning in Decision TreeImplementing Hyperparameter Tuning in a decision TreeHyperparameters in Decision TreesDecision trees are versatile algorithms used in machine learning that perform classification and regression tasks. They can even handle multi-output tasks for various predictive modeling tasks. A model parameter is an adjustable parameter that is said to be learned from the training data during the model’s training process. In decision trees, there are two types of model parameters such as learnable and non-learnable parameters.
+Learnable parameters: Learnable parameters are calculated or updated iteratively during the training phase of the model. They play a potential role in capturing the patterns and relationships present in the training data. Most importantly, the model gains the ability to learn the optimal values for these parameters autonomously, without requiring external assistance.Hyperparameter: Non-learnable parameters are also called hyperparameters. A hyperparameter is a parameter that is defined before the learning process begins and it helps to control aspects of the learning process. Examples of hyperparameters include the learning rate, regularization strength, and the choice of optimization algorithm. When we define these hyperparameters, the model can control the features of the learning process and possibly impact its performance and behavior. Why Tune hyperparameters in Decision Trees?While training the machine learning models, the requirement for different sets of hyperparameters arises because of the needs of each dataset and model. One such solution to determine the hyperparameter is to perform multiple experiments that allow us to choose a set of hyperparameters that best suits our model. This process of selecting the optimal hyperparameter is called hyperparameter tuning. 
+Tuning hyperparameters is crucial for decision trees for below reasons:
+Improved Performance: Untuned hyperparameters can lead to sub-optimal decision trees. Tuning allows you to find the settings that best suit your data, resulting in a model that captures the underlying patterns more effectively and delivers better predictions.Reduced Overfitting: Decision trees are prone to overfitting, where the model memorizes the training data’s noise instead of learning generalizable patterns. Hyperparameter tuning helps prevent this by controlling the tree’s complexity (e.g., with max_depth) and preventing excessive granularity (e.g., with min_samples_split).Enhanced Generalization:The goal is for the decision tree to perform well on unseen data. Tuning hyperparameters helps achieve this by striking a balance between model complexity and flexibility. A well-tuned tree can capture the important trends in the data without overfitting to the specifics of the training set, leading to better performance on new data.Addressing Class Imbalance: Class imbalance occurs when one class has significantly fewer samples than others. Tuning hyperparameters like min_weight_fraction_leaf allows you to leverage sample weights and ensure the tree doesn’t get biased towards the majority class, leading to more accurate predictions for the minority class.Tailoring the Model to Specific Tasks: Different tasks might require different decision tree behaviors. Hyperparameter tuning allows you to customize the tree’s structure and learning process to fit the specific needs of your prediction problem. For example, you might prioritize capturing complex relationships by adjusting max_depth for a complex classification task.Types of Hyperparameters in Decision TreeHyperparameter in decision trees are essential settings that controls the behavior and the structure of the model during the training phase. The major hyperparameters that are used to fine-tune the decision:
+Criteria : The quality of the split in the decision tree is measured by the function called criteria. The criteria support two types such as gini (Gini impurity) and entropy (information gain).Gini index – Gini impurity or Gini index is the measure that parts the probability distributions of the target attribute’s values. It splits the node in a way that yields the least amount of impurity. Information gain – It is an impurity measure that uses the entropy measure to spilt a node in a way that it yields the most amount of information gain. max_depth: As the name suggests, max_depth hyperparameter controls the maximum depth to which the decision tree is allowed to grow. When the max_depth is deeper it allows the tree to capture more complex patterns in the training data potentially reducing the training error. However, setting max_depth too high can lead to overfitting where the model memorizes the noise in the training data. It is very important to tune max_depth carefully to find the right balance between model complexity and generalization performance. The input option for max_depth can be a positive integer or ‘None’ that indicates no maximum depth limit. Example: max_depth = 3 limits the tree to three levels, achieving moderate complexity and reducing overfitting risk.min_samples_split: The min_sample_split hyperparameter defines the minimal number of samples that are needed to split a node. It should be noted that the  min_samples_split works as a threshold to split a node in a decision tree, if the number of samples in a node is less than min_samples_split, the node will not be split and it will turn into a leaf node. The input option for min_samples_split can be an integer that indicates the minimum number of samples necessary in an internal node or it can be a fraction that indicates the minimum percentage of samples needed in an internal node. Example: min_samples_split = 10 ensures a node must have at least 10 samples before splitting.min_samples_leaf: The min_samples_leaf hyperparameter defines the required minimal amount of samples to be present at a leaf node. It acts as a threshold for halting the splitting process and designating a node as a leaf. The condition for splitting is that it must leave at least min_samples_leaf samples on both resulting child nodes, this ensures that the splitting process doesn’t continue indefinitely. The input option for min_samples_leaf can either be an integer or float. For example, min_samples_leaf = 5. We set a hyperparameter value of 5 to  min_samples_leaf that ensures each leaf node in the decision tree must contain at least 5 samples which prevents further splitting if the node reaches this threshold.max_features: The max_features hyperparameter allow us to control the number of features to be considered when looking for the best split in the decision tree. It can either define an exact number of features to consider at each split or as a percentage that represents the proportion of features to consider. The input options can be an integer, float, auto, sqrt, log2.  It function as follows:auto – It allows the decision tree algorithm to consider all the features for each split.sqrt – It allows the algorithm to consider only the square root of the total number of features for each splitlog2 – It allows the algorithm to consider the logarithm base 2 of a total number of features for each split.min_weight_fraction_leaf: The min_weight_fraction_leaf hyperparameter  that is used to control the tree’s structure based on the weights assigned to each sample. This hyperparameter determines the minimum fraction of input samples required at a leaf node. It also has the potential to deal with class imbalance where one class may have particularly fewer samples than others, to solve the class imbalance we use sample weights. When the decision tree is biased toward the majority classes then it fails to be aware of sample weights like min_sample_leaf.  To resolve this issue, weight-based criteria can be used that are quite less challenging to optimize the tree structure if the samples are weighted. The min_weight_fraction_leaf  hyperparameter’s leaf node holds at least a fraction of the overall sum of the weights. For example, min_weight_fraction_leaf = 0.1. Here, we set a hyperparameter value of 0.1 which helps us to guarantee that the presence of each leaf node in the decision tree must hold at least 10% if the tidal sum of sample weights potentially helps to address the class imbalance and optimize the tree structure.Methods for Hyperparameter Tuning in Decision TreeTo optimize the model’s performance it is important to tune the hyperparameters. There are three most widely used methods available such as grid search, random search, and Bayesian optimization, these searches explore the different combinations of hyperparameter values that help to find the most effective configuration and fine-tune the decision tree model. 
+Grid searchGrid search is a fundamental method for hyperparameter tuning that exhaustively searches through the predefined hyperparameters. It evaluates all possible combinations and makes it a reliable approach for finding the optimal hyperparameter. Grid search often leads to highly accurate predictions when adequate computational resources are available.
+It can run in parallel since each trail runs independently without influencing the time sequence. However, the drawback of grid search is its computational cost, especially when dealing with high-dimensional parameter spaces. 
+Randomized SearchIt performs the randomized search over hyperparameters from certain distributions over possible parameter values. The random search’s searching process continues until the predetermined limit or the desired accuracy is achieved. This search yields finer results than the grid search because of the two benefits. 
+Independent allocation of limit: Unlike grid search where the limit for each hyperparameter set is a fixed value, the random search holds the power of assigning the limit independently according to the distribution in the search space. Therefore, the random search may perform better in the case where the hyperparameters are not uniformly distributed.Easy parallelization: When there is a longer search time in the grid search it is not guaranteed that it will lead to better results. But in the random search flexible resource allocation and easy parallelization accredit the effectiveness of the model.Bayesian OptimizationBayesian optimization is a sequential model-based method where the goal is to find the global optimum with the minimum number of trails. It is a kind of search where the probabilistic model helps to identify the best set of hyperparameters. Compared to grid and random search, it requires fewer attempts to find the best hyperparameter set which makes it a computationally efficient optimization technique. Even though it is computationally efficient, it is more complex to use compared to the grid and random search. 
+For most cases, Grid Search or Randomized Search are good starting points due to their ease of implementation. If computational cost is a major concern and you have a large search space, consider exploring Bayesian Optimization.
+Implementing Hyperparameter Tuning in a decision TreeInstall required librariespip install bayesian-optimizationImporting Libraries and Loading the DatasetFor the implementation of all methods we will use California housing prices dataset.
+
+Python3
+
+from sklearn.datasets import fetch_california_housing
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.metrics import mean_squared_error
+from bayes_opt import BayesianOptimization
+
+data = fetch_california_housing()
+X, y = data.data, data.target
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+Grid SearchLet’s discover the implementation of how the hyperparameter gets tuned in decision trees with the help of grid search. 
+Defining parameter grid: We defined a dictionary named param_grid, where the keys are hyperparameters of the decision tree classifier such as criterion, max_depth, min_samples_split, and min_samples_leaf. The key’s corresponding list of possible values is tested during the grid search.Creating decision tree classifier instances and performing grid searches: An instance of the DecisionTreeregressor class is created that will be used to fit the data and evaluate the different hyperparameter combinations. The GridSearchCV is used to perform the grid search with cross-validation. The grid search algorithm trains k different models and each time uses k-1 subsets (folds)  as training data and the rest of the subsets as validation data. For each combination of hyperparameters that are specified in the parameter grid, the decision tree algorithm fits a model using the training data and evaluates its performance on the validation data. Hyperparameter selection: Once all the models have been trained and evaluated, the grid search selects the combination of hyperparameters that yields the best average performance across all k folds. And that combination of hyperparameters is considered to be an optimal set of hyperparameters for the model. 
+Python3
+
+# Define the parameter grid to tune the hyperparameters
+param_grid = {
+    'max_depth': [10, 20, 30, None],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4]
+}
+dtree_reg = DecisionTreeRegressor(random_state=42) # Initialize a decision tree regressor
+grid_search = GridSearchCV(estimator=dtree_reg, param_grid=param_grid, 
+                           cv=5, n_jobs=-1, verbose=2, scoring='neg_mean_squared_error')
+grid_search.fit(X_train, y_train)
+best_dtree_reg = grid_search.best_estimator_ # Get the best estimator from the grid search
+y_pred = best_dtree_reg.predict(X_test)
+mse = mean_squared_error(y_test, y_pred)
+rmse = mse ** 0.5
+best_params = grid_search.best_params_
+print(f"Best parameters: {best_params}")
+print(f"Test RMSE: {rmse}")
+
+Output: 
+Best parameters: {'max_depth': 10, 'min_samples_leaf': 4, 'min_samples_split': 2}Test RMSE: 0.6390654005312799Chosen hyperparameters are shown that produced the best performance according to the cross-validation grid search. The classification report shows the performance metrics of the decision tree classifier on the test using the best parameters found by the grid search before. 
+Random searchThe implementation of how the hyperparameter gets tuned in decision trees with the help of random search is shown below. Since random search is an improved version of grid search, we do a similar implementation task as we did in the grid search.  The RandomizedSearchCV performs hyperparameter tuning by randomly searching through the selection combinations of hyperparameters from the specified parameter distributions. Once the RandomizedSearchCV completes its search, the best combination of hyperparameters is found and the predictions are made based on those hyperparameter combinations. 
+
+Python3
+
+# Define the parameter distribution to sample from
+param_dist = {
+    'max_depth': randint(1, 20),
+    'min_samples_split': randint(2, 20),
+    'min_samples_leaf': randint(1, 20)
+}
+dtree_reg = DecisionTreeRegressor(random_state=42)
+random_search = RandomizedSearchCV(dtree_reg, param_distributions=param_dist, 
+                                   n_iter=100, cv=5, random_state=42)
+random_search.fit(X_train, y_train)
+best_params_random = random_search.best_params_
+best_score_random = random_search.best_score_
+
+print(f"Best Parameters (Random Search): {best_params_random}")
+print(f"Best Score (Random Search): {best_score_random}")
+
+Output:
+Best Parameters (Random Search): {'max_depth': 16, 'min_samples_leaf': 16, 'min_samples_split': 2}Best Score (Random Search): 0.7301785873565848To understand difference between Grid search and randomized search, please refer to: Grid search vs randomized search
+Bayesian optimizationLet’s now discover the implementation of how the hyperparameter gets tuned in decision trees with the help of Bayesian optimization.
+Defining the search space: We define a dictionary in the name of param_space we did earlier in the grid and random search where we defined param_grid. The search space holds the range for each hyperparameter.Initialize Bayesian optimization: When we initialize the Bayesian optimization, we’re configuring the optimization framework to explore the hyperparameter space efficiently and that helps to find the best set of hyperparameters for the classifier. Acquiring the best hyperparameters and score: The Bayesian optimizer helps to acquire the best set of hyperparameters and their corresponding best score is obtained by the best_params and best_score.  
+Python3
+
+# Define the function to optimize using cross-validation
+def dtree_cv(max_depth, min_samples_split, min_samples_leaf):
+    # Define the model with the parameters to be optimized
+    estimator = DecisionTreeRegressor(
+        max_depth=int(max_depth),
+        min_samples_split=int(min_samples_split),
+        min_samples_leaf=int(min_samples_leaf),
+        random_state=2
+    )
+    cval = cross_val_score(estimator, X_train, y_train, scoring='neg_mean_squared_error', cv=5)
+    return cval.mean() # The optimizer tries to maximize the function, so we negate the score to minimize it
+
+# Define the parameter bounds
+param_bounds = {
+    'max_depth': (1, 20),
+    'min_samples_split': (2, 20),
+    'min_samples_leaf': (1, 20)
+}
+
+optimizer = BayesianOptimization(
+    f=dtree_cv,
+    pbounds=param_bounds,
+    random_state=1,
+)
+
+optimizer.maximize(n_iter=25, init_points=5) # Bayesian optimization
+best_params_bayes = optimizer.max['params']
+best_params_bayes['max_depth'] = int(best_params_bayes['max_depth'])
+best_params_bayes['min_samples_split'] = int(best_params_bayes['min_samples_split'])
+best_params_bayes['min_samples_leaf'] = int(best_params_bayes['min_samples_leaf'])
+best_score_bayes = optimizer.max['target']
+
+print(f"Best Parameters (Bayesian Optimization): {best_params_bayes}")
+print(f"Best Score (Bayesian Optimization): {best_score_bayes}")
+
+Output: 
+Best Parameters (Bayesian Optimization): {'max_depth': 18, 'min_samples_leaf': 16, 'min_samples_split': 20}Best Score (Bayesian Optimization): -0.36047878315909154 As we negated the MSE to convert it into a maximization problem for the optimizer, the reported score is also negated. Therefore, a more negative score actually corresponds to a better performance. In this case, a score of -0.36047878315909154 obtained through Bayesian optimization suggests that the model performs relatively well on the dataset.
+ConclusionHyperparameter tuning plays a crucial role in optimizing decision tree models for its enhanced accuracy, generalization, and robustness. We have explored techniques like grid search, random search, and Bayesian optimization that efficiently navigates the hyperparameter space. 
+
