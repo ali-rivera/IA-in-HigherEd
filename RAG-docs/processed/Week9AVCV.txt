@@ -1,0 +1,1626 @@
+
+K-Fold Cross Validation Technique, cross validation in machine learning
+
+
+Introduction
+Welcome to this comprehensive guide on model evaluation and selection techniques in machine learning, particularly focusing on K-fold cross-validation and its application in time series analysis. Before delving into the specifics, let’s consider the importance of these techniques in monitoring model performance before deployment. Understanding the performance metrics such as mean squared error, which evaluates the deviation between predicted and observed values, is crucial in ensuring model accuracy. We will explore how K-fold cross-validation, especially in the context of time series data, helps in training and validating models using multiple train-test splits. 
+
+By employing K-fold cross-validation, with features like test_index and train_index, we can mitigate overfitting and understand how the model generalizes to unseen data. Furthermore, we will examine the role of neural networks in classification tasks, highlighting their application in subsamples and their ability to learn complex patterns. Join us on this journey to optimize your machine learning models and enhance their performance.
+Learning Outcomes
+
+Understand the concept of n_splits in 5 fold cross validation in machine learning cross-validation and implement K-fold cross-validation with different values of n_splits.
+Discuss how the choice of n_splits affects the model evaluation.
+Explain the significance of random_state in machine learning models.
+Discuss how setting random_state ensures reproducibility of results.
+Implement random_state in scikit-learn for various classifiers and regression models.
+Implement various machine learning algorithms using scikit-learn.
+Understand the importance of stratified k-fold cross-validation in classification problems.
+Discuss the advantages and limitations of train-test split compared to other validation techniques.
+Implement various classifiers (e.g., SVM, Random Forest, Logistic Regression) using scikit-learn.
+Discuss strategies for handling new data in machine learning models.
+
+This article was published as a part of the Data Science Blogathon.
+Table of contentsWhat is Accuracy of the Model and Performance?ML Engineers and Business Team AgreementWhat is K-Fold Cross Validation?Life Cycle of K-Fold Cross-ValidationThumb Rules Associated with K FoldWhat is Cross Validation in Machine Learning?Basic ExampleModel Selection usi ng K-FoldParameter Tuning Using K-FoldK-Fold in Visual formFrequently Asked Questions
+What are Model Performance and its necessity?
+Machine learning model performance assessment is just like assessing the scores, how we used to evaluate our sores in high schools and colleges for the meeting the eligibility criteria for getting the best courses or getting selected in the campus interviews for companies for the job and clearing cut-off scores for many more competition exams for getting selected. So apparently, the GOOD score recognizes the fact that the candidate is always good. The same is been expected in the machine learning model, and that should achieve the expected results in predictions/forecasting/calcification problem statements. Even in the ML world, the model has been trained in the context of data, model, and code.
+What is Accuracy of the Model and Performance?
+The accuracy of a model in data science is computed as a metric to understand how well it performs in predicting outcomes. It measures the proportion of true predictions made by different models built using available data records. To achieve robust performance, these models are trained across various combinations of data, ensuring they can generalize well to new data and improve accuracy.
+ML Engineers and Business Team Agreement
+As we know, there are various methods to evaluate model performance. It is our team’s responsibility to construct a robust and generalized model that meets production expectations. Additionally, we need to effectively communicate its performance and the business benefits to stakeholders and customers, guided by SMEs, to achieve our goals.
+As we are an ML engineer team, we must provide the performance of the model in the numeric range. Let’s say the performance of the model would be 85-90%. Sometimes the performance of the model in training and testing will not behave the same in production, in many cases, Overfitting or Underfitting will be experienced during the production environment.
+Yes! Of course, this is really threatening to junior Data scientists and ML Engineers, but the challenge is one requires to improvise your technical capabilities, right? , So after many iterations and CI/CD involvement (MLOps), only the model will achieve the accuracy as expected and in a generalised mode. One step further, always we have to monitor the performance and apply the necessary changes to the model algorithm and code.
+Will see how we could overcome this in the real-time, scenario.
+As I mentioned earlier the RANGE-Factor, we have different techniques to evaluate, in which Cross-Validation or 5 fold cross validation is best and easy to understand. This is simple in nature and involves a typical resampling technique, without any replacement in the data. And easily we could understand and visualise while implementing.
+
+
+What is K-Fold Cross Validation?
+K-fold cross validation in machine learning cross-validation is a powerful technique for evaluating predictive models in data science. It involves splitting the dataset into k subsets or folds, where each fold is used as the validation set in turn while the remaining k-1 folds are used for training. This process is repeated k times, and performance metrics such as accuracy, precision, and recall are computed for each fold. By averaging these metrics, we obtain an estimate of the model’s generalization performance. This method is essential for model assessment, selection, and hyperparameter tuning, offering a reliable measure of a model’s effectiveness. Compared to leave-one-out cross-validation, which uses k equal to the number of samples, K-fold cross-validation is computationally efficient and widely used in practice.
+In each set (fold) training and the test would be performed precisely once during this entire process. It helps us to avoid overfitting. As we know when a model is trained using all of the data in a single short and give the best performance accuracy. To resist this k fold cross validation in machine learning cross-validation helps us to build the model is a generalized one.
+To achieve this K-Fold Cross Validation, we have to split the data set into three sets, Training, Testing, and Validation, with the challenge of the volume of the data.
+Here Test and Train data set will support building model and hyperparameter assessments.
+In which the model has been validated multiple times based on the value assigned as a parameter and which is called K and it should be an INTEGER.
+Make it simple, based on the K value, the data set would be divided, and train/testing will be conducted in a sequence way equal to K time.
+Life Cycle of K-Fold Cross-Validation
+
+
+       Image designed by the author
+Let’s have a generalised K value. If K=5, it means, in the given dataset and we are splitting into 5 folds and running the Train and Test. During each run, one fold is considered for testing and the rest will be for training and moving on with iterations, the below pictorial representation would give you an idea of the flow of the fold-defined size.
+
+
+In which each data point is used, once in the hold-out set and K-1 in Training. So, during the full iteration at least once, one fold will be used for testing and the rest for training.
+In the above set, 5- Testing 20 Training. In each iteration, we will get an accuracy score and have to sum them and find the mean. Here we can understand how the data is spread in a way of consistency and will make a conclusion whether to for the production with this model (or) NOT.
+
+
+Thumb Rules Associated with K Fold
+Now, we will discuss a few thumb rules while playing with K – fold
+
+K should be always >= 2 and = to number of records, (LOOCV)
+
+If 2 then just 2 iterations
+If K=No of records in the dataset, then 1 for testing and n- for training
+
+
+The optimized value for the K is 10 and used with the data of good size. (Commonly used)
+If the K value is too large, then this will lead to less variance across the training set and limit the model currency difference across the iterations.
+The number of folds is indirectly proportional to the size of the data set, which means, if the dataset size is too small, the number of folds can increase.
+Larger values of K eventually increase the running time of the cross-validation process.
+
+
+
+Please remember K-Fold Cross Validation for the below purpose in the ML stream.
+
+Model selection
+Parameter tuning
+Feature selection
+
+So far, we have discussed the K Fold and its way of implementation, let’s do some hands-on now.
+What is Cross Validation in Machine Learning?
+Cross-validation is a method to evaluate the performance of a model on data it has not been trained on. It’s basically a method to determine if your model is too fixated on the particular training data it received (overfitting) and would struggle with unfamiliar data.
+This is how it operates:
+
+Divide the data: Your data set is separated into various subsets, commonly known as folds.
+Train the model on all folds except the one left out for both training and testing. Next, you evaluate how well the model performs on the fold that was not included in training.
+Redo and assess: You repeat this procedure for every fold, essentially teaching the model several times with varying data. In conclusion, you take the average of the outcomes from every test to obtain a stronger estimation of the model’s performance on new data.
+
+Basic Example
+I am creating a simple array, defining the K size as 5 and splitting my array. Using the simple loop and printing the Train and Test portions. Here we could see clearly that the data points in TT buckets and Test data are unique in each cycle.
+
+Python Code:
+﻿
+You can see the Train and Test array and how the array got split in every iteration.
+Let’s do this with the dataset.
+ 
+
+Model Selection using K-Fold
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
+import numpy as np
+from sklearn.datasets import load_digits
+import matplotlib.pyplot as plt
+digits = load_digits()
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(digits.data,digits.target,test_size=0.3)
+imported required libraries and loaded digits (hand-written digits – open source), let’s apply a different algorithm.
+Logistic Regression
+I am using liblinear. This is the “Large Linear Classification” category. It uses a Coordinate-Descent Algorithm. This would minimize a multivariate function by resolving the univariate and its optimization problems during the loop.
+lr = LogisticRegression(solver='liblinear',multi_class='ovr')
+lr.fit(X_train, y_train)
+lr.score(X_test, y_test)
+Output
+Score : 0.972222
+SVC 
+Just using gamma is a parameter for non-linear perspective for hyperplanes. The value of the gamma tries to fit the training data set and uses 1/n_features.
+svm = SVC(gamma='auto')
+svm.fit(X_train, y_train)
+svm.score(X_test, y_test)
+Output
+Score : 0.62037
+Random Forest
+For RFC, I am assigning estimators as 40.
+rf = RandomForestClassifier(n_estimators=40)
+rf.fit(X_train, y_train)
+rf.score(X_test, y_test)
+Output
+Score: 0.96666
+Scores from the above list of algorithms Logistic Regression and Random Forest are doing comparatively better than SVM.
+Now will use cross_val_score function and get the scores, passing different algorithms with dataset and cv.
+from sklearn.model_selection import cross_val_score
+Set LogisticRegression, CV =3
+score_lr=cross_val_score(LogisticRegression(solver='liblinear',multi_class='ovr'), digits.data, digits.target,cv=3)
+print(score_lr)
+print("Avg :",np.average(score_lr))
+Output: for 3 fold we have 3 scores
+[0.89482471 0.95325543 0.90984975]
+Avg : 0.9193099610461881
+Set SVM and CV=3
+score_svm =cross_val_score(SVC(gamma='auto'), digits.data, digits.target,cv=3)
+
+print(score_svm)
+
+print("Avg :",np.average(score_svm))
+Output: Scores
+[0.38063439 0.41068447 0.51252087]
+Avg : 0.4346132442960489
+Set Random Forest and CV=3
+score_rf=cross_val_score(RandomForestClassifier(n_estimators=40),digits.data, digits.target,cv=3)
+
+print(score_rf)
+
+print("Avg :",np.average(score_rf))
+Output: Scores
+[0.92821369 0.95325543 0.92320534]
+Avg : 0.9348914858096827
+
+ Before K Fold applyAfter K Fold applied (Avg)Logistic Regression97%91%SVM62%43%Random Forest96%93%
+Based on the above table, we will go with Random Forest for this dataset for production. But we have to monitor the model performance based on the data drift and as the business case changes, we have to revisit the model and redeploy.
+Parameter Tuning Using K-Fold
+Let us consider the RandomForestClassifier for this analysis, and n_estimators is our parameter for this case and CV as 10 (commonly used)
+scores1 = cross_val_score(RandomForestClassifier(n_estimators=5),digits.data, digits.target, cv=10)
+
+print("Avg Score for Estimators=5 and CV=10 :",np.average(scores1))
+Output
+Avg Score for Estimators=5 and CV=10 : 0.87369
+scores2 = cross_val_score(RandomForestClassifier(n_estimators=20),digits.data, digits.target, cv=10)
+
+print("Avg Score for Estimators=20 and CV=10 :",np.average(scores2))
+Output
+Avg Score for Estimators=20 and CV=10 : 0.93377
+scores3 = cross_val_score(RandomForestClassifier(n_estimators=30),digits.data, digits.target, cv=10)
+
+print("Avg Score for Estimators=30 and CV=10 :",np.average(scores3))
+Output
+Avg Score for Estimators=30 and CV=10 : 0.94879
+scores4 = cross_val_score(RandomForestClassifier(n_estimators=40),digits.data, digits.target, cv=10)
+
+print("Avg Score for Estimators=40 and CV=10 :",np.average(scores4))
+Output
+Avg Score for Estimators=40 and CV=10 : 0.94824
+ scores187.36%scores293.33%scores394.87%scores494.82%
+
+Based on the above observation, we will go with Estimators=30.
+K-Fold in Visual form
+Visual representation is always the best evidence for any data which is located across the axes.
+from sklearn.model_selection import cross_val_score
+knn = KNeighborsClassifier(n_neighbors=5)
+scores = cross_val_score(knn, X, y, cv=10, scoring='accuracy')
+print(scores.mean())
+Output
+0.9666666666666668
+k_range = list(range(1, 25))
+k_scores = []
+for k in k_range:
+    knn = KNeighborsClassifier(n_neighbors=k)
+    scores = cross_val_score(knn, X, y, cv=10, scoring='accuracy')
+    k_scores.append(scores.mean())
+print(k_scores)
+Output
+[0.96, 0.95333, 0.96666, 0.96666, 0.966668, 0.96666, 0.966666, 0.966666, 0.97333, 0.96666, 0.96666, 0.97333, 0.9800, 0.97333, 0.97333, 0.97333, 0.97333, 0.98000, 0.9733333, 0.980000, 0.966666, 0.96666, 0.973333, 0.96, 0.96666, 0.96, 0.96666, 0.953333, 0.95333, 0.95333]
+import matplotlib.pyplot as plt
+%matplotlib inline
+plt.plot(k_range, k_scores)
+plt.xlabel('Value of K for KNN')
+plt.ylabel('Cross-Validated-Accuracy')
+Output: With a simple plot, X=> value of K and Y=> Accuracy for respective CV
+
+
+The above visual representation helps us to understand the accuracy is ~98%for K=12,18 and 19 for KNN.
+Conclusion
+Employing K fold cross validation enables a comprehensive evaluation of model performance by partitioning the entire dataset into K equal-sized subsets. This method allows us to mitigate the impact of imbalanced data and provides reliable cross-validation results for deep learning models. By selecting the appropriate hyperparameters based on these results, we can optimize model performance and enhance its generalization ability across the entire dataset.
+Key Takeaways
+
+The test dataset is crucial for evaluating the performance of a trained model on unseen data, ensuring it generalizes well beyond the training set.
+After training a model on the training data, it’s essential to evaluate its performance on both the validation and test datasets to ensure it meets performance expectations.
+Validation data helps in tuning model hyperparameters and assessing the model’s performance before finalizing it for deployment.
+The KFold class from the sklearn.model_selection module is instrumental in splitting the data into K folds for cross-validation, ensuring robust model evaluation and preventing overfitting.
+
+Frequently Asked Questions
+Q1. What is the k-fold cross-validation method? A. K-fold cross-validation splits data into k equal parts; each part serves as a test set while the others form the training set, rotating until every part has been tested.  Q2. Why is k-fold cross-validation useful? A. It is useful because it maximizes the use of limited data, reduces variance in performance estimates, and provides a more reliable model evaluation.  Q3. What is K means in k-fold cross-validation? A. K represents the number of splits or folds into which the data is divided, determining how many times the model is trained and tested.  Q4. What is the difference between K-fold and V-fold cross-validation? A. K-fold and V-fold cross-validation are essentially the same; both involve dividing the data into k or v folds. The terms are often used interchangeably.  
+The media shown in this article is not owned by Analytics Vidhya and are used at the Author’s discretion.
+
+blogathoncross validation in machine learningK Fold Cross Validationk fold validationK-Fold Cross Validation Techniquemachine learningML Engineers 
+
+
+
+
+
+
+
+
+Shanthababu Pandian
+
+05 Aug, 2024
+
+
+
+
+
+
+
+IntermediateMachine LearningPythonTechnique 
+
+
+
+
+
+
+
+
+
+Basics of Machine Learning 
+
+
+
+Machine Learning Basics for a Newbie
+
+
+
+
+
+
+Machine Learning Lifecycle 
+
+
+
+6 Steps of Machine learning Lifecycle
+Introduction to Predictive Modeling
+
+
+
+
+
+
+Importance of Stats and EDA 
+
+
+
+Introduction to Exploratory Data Analysis & Data Insights
+Descriptive Statistics
+Inferential Statistics
+How to Understand Population Distributions?
+
+
+
+
+
+
+Understanding Data 
+
+
+
+Reading Data Files into Python
+Different Variable Datatypes
+
+
+
+
+
+
+Probability 
+
+
+
+Probability for Data Science
+Basic Concepts of Probability
+Axioms of Probability
+Conditional Probability
+
+
+
+
+
+
+Exploring Continuous Variable 
+
+
+
+Central Tendencies for Continuous Variables
+Spread of Data
+KDE plots for Continuous Variable
+Overview of Distribution for Continuous variables
+Normal Distribution
+Skewed Distribution
+Skeweness and Kurtosis
+Distribution for Continuous Variable
+
+
+
+
+
+
+Exploring Categorical Variables 
+
+
+
+Central Tendencies for Categorical Variables
+Understanding Discrete Distributions
+Performing EDA on Categorical Variables
+
+
+
+
+
+
+Missing Values and Outliers 
+
+
+
+Dealing with Missing Values
+Understanding Outliers
+Identifying Outliers in Data
+Outlier Detection in Python
+Outliers Detection Using IQR, Z-score, LOF and DBSCAN
+
+
+
+
+
+
+Central Limit theorem 
+
+
+
+Sample and Population
+Central Limit Theorem
+Confidence Interval and Margin of Error
+
+
+
+
+
+
+Bivariate Analysis Introduction 
+
+
+
+Bivariate Analysis Introduction
+
+
+
+
+
+
+Continuous - Continuous Variables 
+
+
+
+Covariance
+Pearson Correlation
+Spearman's Correlation & Kendall's Tau
+Correlation versus Causation
+Tabular and Graphical methods for Bivariate Analysis
+Performing Bivariate Analysis on Continuous-Continuous Variables
+
+
+
+
+
+
+Continuous Categorical 
+
+
+
+Tabular and Graphical methods for Continuous-Categorical Variables
+Introduction to Hypothesis Testing
+P-value
+Two sample Z-test
+T-test
+T-test vs Z-test
+Performing Bivariate Analysis on Continuous-Catagorical variables
+
+
+
+
+
+
+Categorical Categorical 
+
+
+
+Chi-Squares Test
+Bivariate Analysis on Categorical Categorical Variables
+
+
+
+
+
+
+Multivariate Analysis 
+
+
+
+Multivariate Analysis
+A Comprehensive Guide to Data Exploration
+The Data Science behind IPL
+
+
+
+
+
+
+Different tasks in Machine Learning 
+
+
+
+Supervised Learning vs Unsupervised Learning
+Reinforcement Learning
+Generative and Descriminative Models
+Parametric and Non Parametric model
+
+
+
+
+
+
+Build Your First Predictive Model 
+
+
+
+Machine Learning Pipeline
+Preparing Dataset
+Build a Benchmark Model: Regression
+Build a Benchmark Model: Classification
+
+
+
+
+
+
+Evaluation Metrics 
+
+
+
+Evaluation Metrics for Machine Learning Everyone should know
+Confusion Matrix
+Accuracy
+Precision and Recall
+AUC-ROC
+Log Loss
+R2 and Adjusted R2
+
+
+
+
+
+
+Preprocessing Data 
+
+
+
+Dealing with Missing Values
+Replacing Missing Values
+Imputing Missing Values in Data
+Working with Categorical Variables
+Working with Outliers
+Preprocessing Data for Model Building
+
+
+
+
+
+
+Linear Models 
+
+
+
+Understanding Cost Function
+Understanding Gradient Descent
+Math Behind Gradient Descent
+Assumptions of Linear Regression
+Implement Linear Regression from Scratch
+Train Linear Regression in Python
+Implementing Linear Regression in R
+Diagnosing Residual Plots in Linear Regression Models
+Generalized Linear Models
+Introduction to Logistic Regression
+Odds Ratio
+Implementing Logistic Regression from Scratch
+Introduction to Scikit-learn in Python
+Train Logistic Regression in python
+Multiclass using Logistic Regression
+How to use Multinomial and Ordinal Logistic Regression in R ?
+Challenges with Linear Regression
+Introduction to Regularisation
+Implementing Regularisation
+Ridge Regression
+Lasso Regression
+
+
+
+
+
+
+KNN 
+
+
+
+Introduction to K Nearest Neighbours
+Determining the Right Value of K in KNN
+Implement KNN from Scratch
+Implement KNN in Python
+
+
+
+
+
+
+Selecting the Right Model 
+
+
+
+Bias Variance Tradeoff
+Introduction to Overfitting and Underfitting
+Visualizing Overfitting and Underfitting
+Selecting the Right Model
+What is Validation?
+Hold-Out Validation
+Understanding K Fold Cross Validation
+
+
+
+
+
+
+Feature Selection Techniques 
+
+
+
+Introduction to Feature Selection
+Feature Selection Algorithms
+Missing Value Ratio
+Low Variance Filter
+High Correlation Filter
+Backward Feature Elimination
+Forward Feature Selection
+Implement Feature Selection in Python
+Implement Feature Selection in R
+
+
+
+
+
+
+Decision Tree 
+
+
+
+Introduction to Decision Tree
+Purity in Decision Tree
+Terminologies Related to Decision Tree
+How to Select Best Split Point in Decision Tree?
+Chi-Squares
+Information Gain
+Reduction in Variance
+Optimizing Performance of Decision Tree
+Train Decision Tree using Scikit Learn
+Pruning of Decision Trees
+
+
+
+
+
+
+Feature Engineering 
+
+
+
+Introduction to Feature Engineering
+Feature Transformation
+Feature Scaling
+Feature Engineering
+Frequency Encoding
+Automated Feature Engineering: Feature Tools
+
+
+
+
+
+
+NaÃ¯ve Bayes 
+
+
+
+Introduction to Naive Bayes
+Conditional Probability and Bayes Theorem
+Introduction to Bayesian Adjustment Rating: The Incredible Concept Behind Online Ratings!
+Working of Naive Bayes
+Math behind Naive Bayes
+Types of Naive Bayes
+Implementation of NaÃ¯ve Bayes
+
+
+
+
+
+
+Multiclass and Multilabel 
+
+
+
+Understanding how to solve Multiclass and Multilabled Classification Problem
+Evaluation Metrics: Multi Class Classification
+
+
+
+
+
+
+Basics of Ensemble Techniques 
+
+
+
+Introduction to Ensemble Techniques
+Basic Ensemble Techniques
+Implementing Basic Ensemble Techniques
+Finding Optimal Weights of Ensemble Learner using Neural Network
+Why Ensemble Models Work well?
+
+
+
+
+
+
+Advance Ensemble Techniques 
+
+
+
+Introduction to Stacking
+Implementing Stacking
+Variants of Stacking
+Implementing Variants of Stacking
+Introduction to Blending
+Bootstrap Sampling
+Introduction to Random Sampling
+Hyper-parameters of Random Forest
+Implementing Random Forest
+Out-of-Bag (OOB) Score in the Random Forest
+IPL Team Win Prediction Project Using Machine Learning
+Introduction to Boosting
+Gradient Boosting Algorithm
+Math behind GBM
+Implementing GBM in python
+Regularized Greedy Forests
+Extreme Gradient Boosting
+Implementing XGBM in python
+Tuning Hyperparameters of XGBoost in Python
+Implement XGBM in R/H2O
+Adaptive Boosting
+Implementing Adaptive Boosing
+LightGBM
+Implementing LightGBM in Python
+Catboost
+Implementing Catboost in Python
+
+
+
+
+
+
+Hyperparameter Tuning 
+
+
+
+Different Hyperparameter Tuning methods
+Implementing Different Hyperparameter Tuning methods
+GridsearchCV
+RandomizedsearchCV
+Bayesian Optimization for Hyperparameter Tuning
+Hyperopt
+
+
+
+
+
+
+Support Vector Machine 
+
+
+
+Understanding SVM Algorithm
+SVM Kernels In-depth Intuition and Practical Implementation
+SVM Kernel Tricks
+Kernels and Hyperparameters in SVM
+Implementing SVM from Scratch in Python and R
+
+
+
+
+
+
+Advance Dimensionality Reduction 
+
+
+
+Introduction to Principal Component Analysis
+Steps to Perform Principal Compound Analysis
+Computation of Covariance Matrix
+Finding Eigenvectors and Eigenvalues
+Implementing PCA in python
+Visualizing PCA
+A Brief Introduction to Linear Discriminant Analysis
+Introduction to Factor Analysis
+
+
+
+
+
+
+Unsupervised Machine Learning Methods 
+
+
+
+Introduction to Clustering
+Applications of Clustering
+Evaluation Metrics for Clustering
+Understanding K-Means
+Implementation of K-Means in Python
+Implementation of K-Means in R
+Choosing Right Value for K
+Profiling Market Segments using K-Means Clustering
+Hierarchical Clustering
+Implementation of Hierarchial Clustering
+DBSCAN
+Defining Similarity between clusters
+Build Better and Accurate Clusters with Gaussian Mixture Models
+
+
+
+
+
+
+Recommendation Engines 
+
+
+
+Understand Basics of Recommendation Engine with Case Study
+
+
+
+
+
+
+Improving ML models 
+
+
+
+8 Proven Ways for improving the â€œAccuracyâ€_x009d_ of a Machine Learning Model
+
+
+
+
+
+
+Working with Large Datasets 
+
+
+
+Introduction to Dask
+Working with CuML
+
+
+
+
+
+
+Interpretability of Machine Learning Models 
+
+
+
+Introduction to Machine Learning Interpretability
+Framework and Interpretable Models
+model Agnostic Methods for Interpretability
+Implementing Interpretable Model
+Understanding SHAP
+Out-of-Core ML
+Introduction to Interpretable Machine Learning Models
+Model Agnostic Methods for Interpretability
+Game Theory & Shapley Values
+
+
+
+
+
+
+Automated Machine Learning 
+
+
+
+Introduction to AutoML
+Implementation of MLBox
+Introduction to PyCaret
+TPOT
+Auto-Sklearn
+EvalML
+
+
+
+
+
+
+Model Deployment 
+
+
+
+Pickle and Joblib
+Introduction to Model Deployment
+
+
+
+
+
+
+Deploying ML Models 
+
+
+
+Deploying Machine Learning Model using Streamlit
+Deploying ML Models in Docker
+Deploy Using Streamlit
+Deploy on Heroku
+Deploy Using Netlify
+Introduction to Amazon Sagemaker
+Setting up Amazon SageMaker
+Using SageMaker Endpoint to Generate Inference
+Deploy on Microsoft Azure Cloud
+Introduction to Flask for Model
+Deploying ML model using Flask
+
+
+
+
+
+
+Embedded Devices 
+
+
+
+Model Deployment in Android
+Model Deployment in Iphone
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Frequently Asked Questions
+Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+
+
+
+
+
+
+
+
+
+
+Responses From Readers
+
+
+Cancel reply
+
+ClearSubmit reply 
+
+Δ 
+
+
+
+
+
+
+
+
+
+Sameer RS 
+12 Dec, 2023
+
+
+
+
+
+Q1 Can Stratified k-fold split be committed on the same dataset wherein we commit Train-Test Split?
+Q2 How do we initiate Data Scaling/Data Normalization/Data Transformation on a k-fold split? Is this step done post the split or before k-fold split? Reference codes would be useful. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+123
+
+
+
+
+
+
+
+
+
+Cancel reply
+
+ClearSubmit reply 
+
+Δ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Amit 
+15 Jan, 2024
+
+
+
+
+
+Hello @Shanthababu .
+I think this is one of the best articles I have read so far on "K-Fold Cross Validation". All the images that you used in your blog are self-explanatory and awesomely explain the concept, and then reading the theory part is extra topping on that.
+Thank you, Shanthababu. Please keep up the good work and do not try to dishearten yourself. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+123
+
+
+
+
+
+
+
+
+
+Cancel reply
+
+ClearSubmit reply 
+
+Δ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Aayisha Tabassum 
+23 Mar, 2024
+
+
+
+
+
+Hi,
+Just to clarify, after we use kfold with our various models we choose the one that has similar score values to the model ? How do we comapre our kfold scores with the model performance scores to pick the best model ? 
+
+
+
+
+
+
+
+
+
+
+
+
+
+123
+
+
+
+
+
+
+
+
+
+Cancel reply
+
+ClearSubmit reply 
+
+Δ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Write for us
+
+
+
+
+
+Write, captivate, and earn accolades and rewards for your work
+
+
+
+Reach a Global Audience
+Get Expert Feedback
+Build Your Brand & Audience
+
+
+Cash In on Your Knowledge
+Join a Thriving Community
+Level Up Your Data Science Game
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Rahul Shah
+27
+
+
+
+
+
+
+
+
+
+
+
+
+Sion Chakrabarti
+16
+
+
+
+
+
+
+
+
+
+
+
+
+CHIRAG GOYAL
+87
+
+
+
+
+
+
+
+
+
+
+
+
+Barney Darlington
+5
+
+
+
+
+
+
+
+
+
+
+
+
+Suvojit Hore
+9
+
+
+
+
+
+
+
+
+
+
+
+
+Arnab Mondal
+15
+
+
+
+
+
+
+
+
+
+
+
+
+Prateek Majumder
+68
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Company
+
+About Us
+Contact Us
+Careers
+
+
+
+Discover
+
+Blogs
+Expert session
+Podcasts
+Comprehensive Guides
+
+
+
+Learn
+
+Free courses
+Learning path
+BlackBelt program
+Gen AI
+
+
+
+Engage
+
+Community
+Hackathons
+Events
+Daily challenges
+
+
+
+Contribute
+
+Contribute & win
+Become a speaker
+Become a mentor
+Become an instructor
+
+
+
+Enterprise
+
+Our offerings
+Case studies
+Industry report
+quexto.ai
+
+
+
+Download App
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Terms & conditions
+
+
+
+Refund Policy
+
+
+
+Privacy Policy
+
+
+
+Cookies Policy
+© Analytics Vidhya 2024.All rights reserved.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GenAI 
+Pinnacle 
+Program
+
+Revolutionizing AI Learning & Development
+
+1:1 Mentorship with Generative AI experts
+Advanced Curriculum with 200+ Hours of Learning
+Master 26+ GenAI Tools and Libraries
+
+
+Enroll with us today!
+
+
+
+
+
+
+
+
+
+
+
+
+I Agree to the Terms & Conditions
+
+
+
+Send WhatsApp Updates
+
+
+Enroll Now
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Continue your learning for FREE
+
+
+
+
+
+
+
+Login with Google
+
+
+
+
+
+
+Login with Email
+
+Forgot your password?
+
+
+
+
+I accept the Terms and Conditions
+
+
+
+Receive updates on WhatsApp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter email address to continue
+
+
+Email address
+
+
+
+
+
+
+Get OTP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter OTP sent to
+
+
+Edit
+
+
+
+Enter the OTP
+
+
+
+
+
+
+
+
+
+Resend OTP
+Resend OTP in 45s
+
+
+
+Verify OTP
+
+
+
+
+
+We use cookies on Analytics Vidhya websites to deliver our services, analyze web traffic, and improve your experience on the site. By using Analytics Vidhya, you agree to our Privacy Policy and Terms of Use.AcceptPrivacy & Cookies Policy
+
+
+
+
+Close
+
+
+
+
+
+
+Privacy Overview 
+This website uses cookies to improve your experience while you navigate through the website. Out of these, the cookies that are categorized as necessary are stored on your browser as they are essential for the working of basic functionalities of the website. We also use third-party cookies that help us analyze and understand how you use this website. These cookies will be stored in your browser only with your consent. You also have the option to opt-out of these cookies. But opting out of some of these cookies may affect your browsing experience.
+
+ 
+
+
+
+
+
+Necessary 
+
+
+Necessary
+
+Always Enabled
+
+
+
+
+Necessary cookies are absolutely essential for the website to function properly. This category only includes cookies that ensures basic functionalities and security features of the website. These cookies do not store any personal information. 
+
+
+
+
+
+
+Non-necessary 
+
+
+Non-necessary
+
+
+
+
+
+Any cookies that may not be particularly necessary for the website to function and is used specifically to collect user personal data via analytics, ads, other embedded contents are termed as non-necessary cookies. It is mandatory to procure user consent prior to running these cookies on your website. 
+
+
+
+
+
+
+
+
+
+
+
+
+SAVE & ACCEPT
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
